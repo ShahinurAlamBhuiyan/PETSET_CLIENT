@@ -17,20 +17,19 @@ const SharedNav = () => {
                     <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
                             <a href="index.html" className="nav-item nav-link active">Home</a>
-                            <a href="about.html" className="nav-item nav-link">About</a>
-                            <a href="service.html" className="nav-item nav-link">Service</a>
-                            <a href="price.html" className="nav-item nav-link">Price</a>
-                            <a href="booking.html" className="nav-item nav-link">Booking</a>
+                            <a href="about.html" className="nav-item nav-link">Memories</a>
+                            <a href="about.html" className="nav-item nav-link">Adaptation</a>
+                            <a href="service.html" className="nav-item nav-link">Lost & Found</a>
+                            <a href="price.html" className="nav-item nav-link">Specialist</a>
                             <div className="nav-item dropdown">
-                                <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Store</a>
                                 <div className="dropdown-menu rounded-0 m-0">
-                                    <a href="blog.html" className="dropdown-item">Blog Grid</a>
-                                    <a href="single.html" className="dropdown-item">Blog Detail</a>
+                                    <a href="blog.html" className="dropdown-item">Medicine</a>
+                                    <a href="single.html" className="dropdown-item">Toy</a>
                                 </div>
                             </div>
-                            <a href="contact.html" className="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="/" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Get Quote</a>
+                        <a href="/" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</a>
                     </div>
                 </nav>
             </div>

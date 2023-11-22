@@ -12,6 +12,7 @@ function App() {
       <SharedNav />
       <Home />
       <Footer />
+
     </div>
   );
 }
