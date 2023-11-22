@@ -1,63 +1,40 @@
 import React from 'react'
 import './SharedNav.css'
+import Topbar from './Topbar'
 
 const SharedNav = () => {
     return (
-        <div className="container-fluid" style={{backgroundColor:' #d3d3d3'}}>
-            <div className="row bg-secondary py-2 px-lg-5">
-                <div className="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div className="d-inline-flex align-items-center">
-                        <a className="text-white pr-3" href="/">FAQs</a>
-                        <span className="text-white">|</span>
-                        <a className="text-white px-3" href="/">Help</a>
-                        <span className="text-white">|</span>
-                        <a className="text-white pl-3" href="/">Support</a>
-                    </div>
-                </div>
-                <div className="col-lg-6 text-center text-lg-right">
-                    <div className="d-inline-flex align-items-center">
-                        <a className="text-white px-3" href="/">
-                            <i className="fab fa-facebook-f"></i>
-                        </a>
-                        <a className="text-white px-3" href="/">
-                            <i className="fab fa-twitter"></i>
-                        </a>
-                        <a className="text-white px-3" href="/">
-                            <i className="fab fa-linkedin-in"></i>
-                        </a>
-                        <a className="text-white px-3" href="/">
-                            <i className="fab fa-instagram"></i>
-                        </a>
-                        <a className="text-white pl-3" href="/">
-                            <i className="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div className="row py-3 px-lg-5">
-                <div className="col-lg-4">
-                    <a href="/" className="navbar-brand d-none d-lg-block">
-                        <h1 className="m-0 display-5 text-capitalize"><span className="text-primary">Pet</span>Set</h1>
+        <>
+            <Topbar />
+            <div className="container-fluid p-0">
+                <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+                    <a href="/" className="navbar-brand d-block d-lg-none">
+                        <h1 className="m-0 display-5 text-capitalize font-italic text-white"><span className="text-primary">Safety</span>First</h1>
                     </a>
-                </div>
-                <div className="col-lg-8 text-center text-lg-right">
-                    <div className="d-inline-flex align-items-center">
-                        <div className="d-inline-flex flex-column text-center pr-3 border-right">
-                            <h6>Opening Hours</h6>
-                            <a className="m-0" href='/'>8.00AM - 9.00PM</a>
+                    <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                        <div className="navbar-nav mr-auto py-0">
+                            <a href="index.html" className="nav-item nav-link active">Home</a>
+                            <a href="about.html" className="nav-item nav-link">About</a>
+                            <a href="service.html" className="nav-item nav-link">Service</a>
+                            <a href="price.html" className="nav-item nav-link">Price</a>
+                            <a href="booking.html" className="nav-item nav-link">Booking</a>
+                            <div className="nav-item dropdown">
+                                <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <div className="dropdown-menu rounded-0 m-0">
+                                    <a href="blog.html" className="dropdown-item">Blog Grid</a>
+                                    <a href="single.html" className="dropdown-item">Blog Detail</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" className="nav-item nav-link">Contact</a>
                         </div>
-                        <div className="d-inline-flex flex-column text-center px-3 border-right">
-                            <h6>Email Us</h6>
-                            <a className="m-0" href='/'>info@example.com</a>
-                        </div>
-                        <div className="d-inline-flex flex-column text-center pl-3">
-                            <h6>Call Us</h6>
-                            <a className="m-0" href='/'>+012 345 6789</a>
-                        </div>
+                        <a href="/" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Get Quote</a>
                     </div>
-                </div>
+                </nav>
             </div>
-        </div>
+        </>
     )
 }
 
