@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import HomeCarousel from '../../components/Home/HomeCarousel'
 import AboutUs from '../../components/Home/AboutUs'
-import OurFeatures from '../../components/Home/OurFeatures'
+import WhyChooseUs from '../../components/Home/WhyChooseUs'
 import PopularSpecialist from '../../components/Home/PopularSpecialist'
 import MemoryHigh from '../../components/Home/MemoryHigh'
 
@@ -11,8 +11,8 @@ const Home = () => {
         <div>
             <HomeCarousel />
             <AboutUs />
-            <hr />
-            <OurFeatures />
+            
+            <WhyChooseUs />
             <PopularSpecialist />
             <MemoryHigh />
         </div>

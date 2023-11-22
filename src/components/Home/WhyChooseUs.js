@@ -2,7 +2,7 @@ import React from 'react'
 
 import featureImg from '../../assets/feature.jpg'
 
-const OurFeatures = () => {
+const WhyChooseUs = () => {
     return (
         <div class="container">
             <div class="row align-items-center">
@@ -45,4 +45,4 @@ const OurFeatures = () => {
     )
 }
 
-export default OurFeatures
+export default WhyChooseUs
