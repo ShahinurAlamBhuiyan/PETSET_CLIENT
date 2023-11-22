@@ -1,18 +1,16 @@
 import React from 'react';
 import './App.css';
 
-
-import Home from './pages/Home/Home';
 import SharedNav from './components/Shared/SharedNav/SharedNav';
 import Footer from './components/Shared/Footer/Footer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <SharedNav />
-      <Home />
+      <Outlet />
       <Footer />
-
     </div>
   );
 }

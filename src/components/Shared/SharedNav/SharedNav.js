@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import './SharedNav.css'
 import Topbar from './Topbar'
 
@@ -16,7 +18,7 @@ const SharedNav = () => {
                     </button>
                     <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
-                            <a href="index.html" className="nav-item nav-link active">Home</a>
+                            <Link to="/" className="nav-item nav-link">Home</Link>
                             <a href="about.html" className="nav-item nav-link">Memories</a>
                             <a href="about.html" className="nav-item nav-link">Adaptation</a>
                             <a href="service.html" className="nav-item nav-link">Lost & Found</a>
@@ -29,7 +31,7 @@ const SharedNav = () => {
                                 </div>
                             </div>
                         </div>
-                        <a href="/" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</a>
+                        <Link to="/login" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</Link>
                     </div>
                 </nav>
             </div>
