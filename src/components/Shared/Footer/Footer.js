@@ -55,7 +55,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-md-6 text-center text-md-left mb-3 mb-md-0">
                         <p className="m-0 text-white">
-                            &copy; <a className="text-white font-weight-bold" href="/">Your Site Name</a>. All Rights Reserved.
+                            &copy; <a className="text-white font-weight-bold" href="/">PetSet</a>. All Rights Reserved.
 
                             Designed by <a className="text-white font-weight-bold" href="https://github.com/ShahinurAlamBhuiyan">Team Titans</a>
                         </p>
