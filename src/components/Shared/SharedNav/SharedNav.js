@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './SharedNav.css'
 import Topbar from './Topbar'
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 
 const SharedNav = () => {
     return (
@@ -19,7 +20,7 @@ const SharedNav = () => {
                     <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
                             <Link to="/" className="nav-item nav-link">Home</Link>
-                            <a href="about.html" className="nav-item nav-link">Memories</a>
+                            <Link to="/protected" className="nav-item nav-link">Memories</Link>
                             <a href="about.html" className="nav-item nav-link">Adaptation</a>
                             <a href="service.html" className="nav-item nav-link">Lost & Found</a>
                             <a href="price.html" className="nav-item nav-link">Specialist</a>
@@ -31,7 +32,12 @@ const SharedNav = () => {
                                 </div>
                             </div>
                         </div>
-                        <Link to="/login" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</Link>
+                        <SignedIn>
+                            <UserButton afterSignOutUrl='/home'  />
+                        </SignedIn>
+                        <SignedOut>
+                            <Link to="/sign-in" className="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</Link>
+                        </SignedOut>
                     </div>
                 </nav>
             </div>
