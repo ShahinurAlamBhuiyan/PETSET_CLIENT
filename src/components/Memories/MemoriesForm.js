@@ -5,7 +5,7 @@ const MemoriesForm = () => {
     const [newMemory, setNewMemory] = useState({
         title: '',
         body: '',
-        imageUrl: '' // New property for image URL
+        imageUrl: '' 
     });
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -16,7 +16,7 @@ const MemoriesForm = () => {
     };
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        // Add your logic to handle the form submission, e.g., send data to the server
+        
         console.log('New Memory:', newMemory);
     };
     return (
