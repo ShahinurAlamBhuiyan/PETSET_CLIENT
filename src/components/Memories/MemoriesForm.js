@@ -61,7 +61,7 @@ const MemoriesForm = () => {
                         onChange={handleInputChange}
                     />
                 </Form.Group>
-                <Button className='mt-2' variant="primary" type="submit">
+                <Button className='mt-2' variant="outline-primary" type="submit">
                     Add Memory
                 </Button>
             </Form>

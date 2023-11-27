@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import MemoryCard from '../../components/Memories/MemoryCard';
 import MemoriesForm from '../../components/Memories/MemoriesForm';
 import Pagination from '../../components/Pagination/Pagination';
+import { Spinner } from 'react-bootstrap';
 
 const MemoriesPage = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
-    
+
     // fetching all memories--->
     useEffect(() => {
         const fetchData = async () => {
@@ -37,11 +38,19 @@ const MemoriesPage = () => {
 
 
     return (
-        <div className='container'>
-            <MemoriesForm />
-            <MemoryCard data={data} currentPage={currentPage} itemsPerPage={itemsPerPage} />
-            <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} totalPages={totalPages} handlePageChange={handlePageChange} />
-        </div>
+        <>
+            {!data.length &&
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Spinner animation='border' />
+                </div>}
+            {data.length &&
+                <div className='container'>
+                    <MemoriesForm />
+                    <MemoryCard data={data} currentPage={currentPage} itemsPerPage={itemsPerPage} />
+                    <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} totalPages={totalPages} handlePageChange={handlePageChange} />
+                </div>
+            }
+        </>
     );
 };
 

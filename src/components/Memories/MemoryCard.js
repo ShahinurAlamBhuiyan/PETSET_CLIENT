@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 
 import './Memories.css';
+import { Link } from 'react-router-dom';
 
 const MemoryCard = ({ data, currentPage, itemsPerPage }) => {
     const truncateText = (text, maxLength) => {
@@ -18,9 +19,11 @@ const MemoryCard = ({ data, currentPage, itemsPerPage }) => {
                     <Card>
                         <Card.Img variant="top" src="https://cms-lc.bestfriendspetcare.com/wp-content/uploads/2020/09/keep-your-pet-memories-alive-blog-featured.jpg" />
                         <Card.Body>
-                            <Card.Title>{truncateText(post.body, 40)}...</Card.Title>
+                            <Card.Title>{truncateText(post.title, 30)}...</Card.Title>
                             <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.body, 90)}...</Card.Text>
-                            <Button variant="primary">Details</Button>
+                            <Link to={`/memories/${post.id}`}>
+                                <Button variant="outline-primary">Details</Button>
+                            </Link>
                         </Card.Body>
                     </Card>
                 </div>

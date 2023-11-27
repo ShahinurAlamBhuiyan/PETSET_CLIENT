@@ -1,0 +1,32 @@
+.image-slider {
+    width: 50%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .memory-image {
+    width: 98%;
+    height: auto;
+  }
+  
+  button {
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
