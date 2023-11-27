@@ -1,11 +1,17 @@
+import { useUser } from '@clerk/clerk-react';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
 const MemoriesForm = () => {
+    const { user } = useUser();
+
     const [newMemory, setNewMemory] = useState({
         title: '',
         body: '',
-        imageUrl: '' 
+        imageUrl: '',
+        sharedBy: user.fullName,
+        userID: user.id,
+        sharedDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     });
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -16,9 +22,11 @@ const MemoriesForm = () => {
     };
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        
+
         console.log('New Memory:', newMemory);
     };
+
+    // console.log(newMemory)
     return (
         <div className='form_container'>
             <Form onSubmit={handleFormSubmit} style={{ width: "80%" }} className="mb-4">
@@ -53,7 +61,7 @@ const MemoriesForm = () => {
                         onChange={handleInputChange}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button className='mt-2' variant="primary" type="submit">
                     Add Memory
                 </Button>
             </Form>
