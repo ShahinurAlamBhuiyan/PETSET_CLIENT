@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import logo from '../../../assets/petsetlogo.png'
 
 import './SharedNav.css'
 import Topbar from './Topbar'
@@ -17,8 +17,8 @@ const SharedNav = () => {
             <Topbar />
             <div className="container-fluid p-0">
                 <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
-                    <a href="/" className="navbar-brand d-block d-lg-none">
-                        <h1 className="m-0 display-5 text-capitalize font-italic text-white"><span className="text-primary">Pet</span>Set</h1>
+                    <a href="/" className="navbar-brand" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '5px' }}>
+                        <img height={50} width={165} src={logo} alt="petSetLogo" />
                     </a>
                     <button
                         type="button"
