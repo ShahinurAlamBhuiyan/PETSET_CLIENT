@@ -20,7 +20,7 @@ const SharedNav = () => {
                     <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0">
                             <Link to="/" className="nav-item nav-link">Home</Link>
-                            <Link to="/protected" className="nav-item nav-link">Memories</Link>
+                            <Link to="/memories" className="nav-item nav-link">Memories</Link>
                             <a href="about.html" className="nav-item nav-link">Adaptation</a>
                             <a href="service.html" className="nav-item nav-link">Lost & Found</a>
                             <a href="price.html" className="nav-item nav-link">Specialist</a>

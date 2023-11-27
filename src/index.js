@@ -22,6 +22,7 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 import SharedNav from './components/Shared/SharedNav/SharedNav';
 import Footer from './components/Shared/Footer/Footer';
+import MemoriesPage from './pages/MemoriesPage/MemoriesPage';
 
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -52,11 +53,11 @@ const ClerkProviderWithRoutes = () => {
         />
         <Route />
         <Route
-          path="/protected"
+          path="/memories"
           element={
             <>
               <SignedIn>
-                <h1>welcome this page,  you are SIGNED IN</h1>
+                <MemoriesPage />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
