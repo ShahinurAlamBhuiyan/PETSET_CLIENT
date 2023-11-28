@@ -14,7 +14,7 @@ const HomeCarousel = () => {
                                 <div className="p-3" style={{maxWidth:'900px'}}>
                                     <h3 className="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
                                     <h1 className="display-3 text-white mb-3">Keep Your Pet Happy</h1>
-                                    <h5 className="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
+                                    <h5 className="text-white mb-3 d-none d-sm-block">Where Tail Wags and Whiskers Flourish – Your One-stop Haven to Keep Your Pet Pawsitively Happy!</h5>
                                     <a href="/" className="btn btn-lg btn-primary mt-3 mt-md-4 px-4" style={{marginRight:'10px'}}>Book Now</a>
                                     <a href="/" className="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a>
                                 </div>
@@ -26,7 +26,7 @@ const HomeCarousel = () => {
                                 <div className="p-3" style={{maxWidth:'900px'}}>
                                     <h3 className="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
                                     <h1 className="display-3 text-white mb-3">Pet Spa & Grooming</h1>
-                                    <h5 className="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
+                                    <h5 className="text-white mb-3 d-none d-sm-block">Where pampering meets purr-fection and tails wag with delight – Unleash the ultimate spa experience for your beloved pets at PetSet</h5>
                                     <button href="/" className="btn btn-lg btn-primary mt-3 mt-md-4" style={{marginRight:'10px'}}>Book Now</button>
                                     <button href="/" className="btn btn-lg btn-secondary mt-3 mt-md-4" >Learn More</button>
                                 </div>

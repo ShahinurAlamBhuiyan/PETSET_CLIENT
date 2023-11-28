@@ -10,8 +10,8 @@ const AboutUs = () => {
                 <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
                     <h4 className="text-secondary mb-3">About Us</h4>
                     <h1 className="display-4 mb-4"><span className="text-primary">Boarding</span> & <span className="text-secondary">Daycare</span></h1>
-                    <h5 className="text-muted mb-3">Amet stet amet ut. Sit no vero vero no dolor. Sed erat ut sea. Just clita ut stet kasd at diam sit erat vero sit.</h5>
-                    <p className="mb-4">Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum labore sit sit ut vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et erat sed diam duo</p>
+                    <h5 className="text-muted mb-3">Tailored care for cherished companions - where every day is a vacation at PetSet Boarding & Daycare.</h5>
+                    <p className="mb-4">At PetSet, our Boarding & Daycare services go beyond the ordinary, providing a home away from home for your cherished pets. Our dedicated team ensures a safe and nurturing environment where furry friends can play, relax, and receive personalized attention. Trust us to make every tail wag with joy, offering peace of mind for pet parents and a vacation haven for their beloved companions</p>
                     <ul className="list-inline">
                         <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Best In Industry</h5></li>
                         <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Emergency Services</h5></li>

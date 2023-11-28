@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
                 <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
                     <h4 className="text-secondary mb-3">Why Choose Us?</h4>
                     <h1 className="display-4 mb-4"><span className="text-primary">Special Care</span> On Pets</h1>
-                    <p className="mb-4">Dolor lorem lorem ipsum sit et ipsum. Sadip sea amet diam sed ut vero no sit. Et elitr stet sed sit sed kasd. Erat duo eos et erat sed diam duo</p>
+                    <p className="mb-4">Specially tailored attention, ensuring every pet's unique needs are met with the utmost care and devotion at PetSet.</p>
                     <div className="row py-2">
                         <div className="col-6">
                             <div className="d-flex align-items-center mb-4">

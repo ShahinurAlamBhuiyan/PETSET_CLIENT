@@ -17,13 +17,13 @@ const MemoryHigh = () => {
                     <div className="card border-0 mb-2">
                         <img className="card-img-top" src={memory1} alt="" />
                             <div className="card-body bg-light p-4">
-                                <h4 className="card-title text-truncate">Diam amet eos at no eos</h4>
+                                <h4 className="card-title text-truncate">Paw-some Playdates!</h4>
                                 <div className="d-flex mb-3">
                                     <small className="mr-2"><i className="fa fa-user text-muted"></i> Admin</small>
                                     <small className="mr-2"><i className="fa fa-folder text-muted"></i> Web Design</small>
                                     <small className="mr-2"><i className="fa fa-comments text-muted"></i> 15</small>
                                 </div>
-                                <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
+                                <p>Capture the joy as your furry friends make new pals and create lasting memories during our supervised playdates at PetSet. Share the laughter, the games, and the paw-some friendships that make every visit unforgettable.</p>
                                 <a className="font-weight-bold" href="/">Read More</a>
                             </div>
                     </div>
@@ -32,13 +32,13 @@ const MemoryHigh = () => {
                     <div className="card border-0 mb-2">
                         <img className="card-img-top" src={memory2} alt="" />
                             <div className="card-body bg-light p-4">
-                                <h4 className="card-title text-truncate">Diam amet eos at no eos</h4>
+                                <h4 className="card-title text-truncate">Glamour Shots for Furry Stars</h4>
                                 <div className="d-flex mb-3">
                                     <small className="mr-2"><i className="fa fa-user text-muted"></i> Admin</small>
                                     <small className="mr-2"><i className="fa fa-folder text-muted"></i> Web Design</small>
                                     <small className="mr-2"><i className="fa fa-comments text-muted"></i> 15</small>
                                 </div>
-                                <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
+                                <p>Experience the magic of our professional pet photography sessions, capturing the charm and charisma of your beloved companions. From candid moments to posed portraits, let the snapshots tell the tail of a day filled with love and laughter.</p>
                                 <a className="font-weight-bold" href="/">Read More</a>
                             </div>
                     </div>
@@ -47,13 +47,13 @@ const MemoryHigh = () => {
                     <div className="card border-0 mb-2">
                         <img className="card-img-top" src={memory3} alt="" />
                             <div className="card-body bg-light p-4">
-                                <h4 className="card-title text-truncate">Diam amet eos at no eos</h4>
+                                <h4 className="card-title text-truncate">Wellness Wags</h4>
                                 <div className="d-flex mb-3">
                                     <small className="mr-2"><i className="fa fa-user text-muted"></i> Admin</small>
                                     <small className="mr-2"><i className="fa fa-folder text-muted"></i> Web Design</small>
                                     <small className="mr-2"><i className="fa fa-comments text-muted"></i> 15</small>
                                 </div>
-                                <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
+                                <p>Celebrate the health and happiness of your pets with our wellness updates. From playful antics to moments of relaxation, our daily highlights showcase the well-rounded care and joyful experiences that define life at PetSet.</p>
                                 <a className="font-weight-bold" href="/">Read More</a>
                             </div>
                     </div>
