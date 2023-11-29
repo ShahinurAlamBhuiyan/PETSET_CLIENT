@@ -3,7 +3,7 @@ import './Pagination.css'
 import { Button } from 'react-bootstrap'
 
 const Pagination = ({ handlePageChange, currentPage, totalPages, itemsPerPage, setItemsPerPage }) => {
-    console.log(currentPage)
+    // console.log(currentPage)
     return (
         <>
             <div className="pagination">

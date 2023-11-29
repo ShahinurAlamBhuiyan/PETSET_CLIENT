@@ -2,7 +2,7 @@ import { useUser } from '@clerk/clerk-react';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const MemoriesForm = () => {
+const MemoriesForm = ({ setShowForm }) => {
     const { user } = useUser();
 
     const [newMemory, setNewMemory] = useState({
@@ -51,7 +51,9 @@ const MemoriesForm = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        setShowForm(false); // from upper level
         console.log({ newMemory })
+        alert('Memory posted!');
     };
 
     const isFormComplete = () => {
