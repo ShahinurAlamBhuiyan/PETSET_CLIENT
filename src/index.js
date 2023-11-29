@@ -24,6 +24,7 @@ import SharedNav from './components/Shared/SharedNav/SharedNav';
 import Footer from './components/Shared/Footer/Footer';
 import MemoriesPage from './pages/MemoriesPage/MemoriesPage';
 import MemoryDetailsPage from './pages/MemoriesPage/MemoryDetailsPage';
+import SpecialistsPage from './pages/SpecialistsPage/SpecialistsPage';
 
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -44,14 +45,19 @@ const ClerkProviderWithRoutes = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/home" element={<Home />} />
+
         <Route
           path="/sign-in"
           element={<SignInPage />}
         />
+
+
         <Route
           path="/sign-up"
           element={<SignUpPage />}
         />
+
+
         <Route />
         <Route
           path="/memories"
@@ -79,6 +85,21 @@ const ClerkProviderWithRoutes = () => {
             </>
           }
         />
+
+        <Route
+          path="/specialists"
+          element={
+            <>
+              <SignedIn>
+                <SpecialistsPage />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+
       </Routes>
       <Footer />
     </ClerkProvider>
