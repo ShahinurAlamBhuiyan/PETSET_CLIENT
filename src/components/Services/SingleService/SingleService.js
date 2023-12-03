@@ -1,6 +1,7 @@
 import React from 'react';
 import './SingleService.css';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SingleService = ({ service }) => {
     const truncateText = (text, maxLength) => {
@@ -13,7 +14,9 @@ const SingleService = ({ service }) => {
                 <div className="text-content">
                     <div className="card-title">{service.slug}</div>
                     <div className="card-details">{truncateText(service.content, 160)}...</div>
-                    <Button variant="outline-primary">Details</Button>
+                    <Link to={`/services/${service.slug}`}>
+                        <Button variant="outline-primary">Details</Button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -18,9 +18,9 @@ const ServicesPage = () => {
     }, []);
     console.log(services)
 
-  
+
     return (
-        <div className='container mt-3 centering_items_flex' style={{flexDirection:'column'}}>
+        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column' }}>
             <h3>Our services for your PET</h3>
             <div className='centering_items_flex'>
                 {services &&

@@ -25,6 +25,7 @@ import Footer from './components/Shared/Footer/Footer';
 import MemoriesPage from './pages/MemoriesPage/MemoriesPage';
 import MemoryDetailsPage from './pages/MemoriesPage/MemoryDetailsPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
+import SpecialistsPage from './pages/ServicesPage/SpecialistsPage/SpecialistsPage';
 
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -92,6 +93,19 @@ const ClerkProviderWithRoutes = () => {
             <>
               <SignedIn>
                 <ServicesPage />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/services/:serviceName"
+          element={
+            <>
+              <SignedIn>
+                <SpecialistsPage />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
