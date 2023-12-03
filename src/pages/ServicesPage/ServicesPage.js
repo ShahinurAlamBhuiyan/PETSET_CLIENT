@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SingleService from '../../components/Services/SingleService/SingleService';
+import { Spinner } from 'react-bootstrap';
 
 const ServicesPage = () => {
     const [services, setServices] = useState(null)
@@ -16,17 +17,20 @@ const ServicesPage = () => {
 
         fetchData();
     }, []);
-    console.log(services)
-
 
     return (
-        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column',flexWrap:'nowrap' }}>
+        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
             <h3>Our services for your PET</h3>
             <div className='centering_items_flex' >
                 {services &&
                     services.map((service) => (
                         <SingleService service={service} key={service.id} />
                     ))
+                }
+                {!services &&
+                    <div className='centering_items_flex'>
+                        <Spinner animation='border' />
+                    </div>
                 }
             </div>
         </div>
