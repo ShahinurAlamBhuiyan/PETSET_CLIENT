@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Card, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const SingleSpecialistCard = ({ specialist }) => {
     const [showDoctorDetails, setShowDoctorDetails] = useState(false);
@@ -48,7 +47,7 @@ const SingleSpecialistCard = ({ specialist }) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <Button variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
+                <Button href={`/appointment/${specialist.id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );

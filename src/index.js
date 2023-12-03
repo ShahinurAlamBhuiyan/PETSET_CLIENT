@@ -26,6 +26,7 @@ import MemoriesPage from './pages/MemoriesPage/MemoriesPage';
 import MemoryDetailsPage from './pages/MemoriesPage/MemoryDetailsPage';
 import ServicesPage from './pages/ServicesPage/ServicesPage';
 import SpecialistsPage from './pages/ServicesPage/SpecialistsPage/SpecialistsPage';
+import DoctorAppointment from './pages/ServicesPage/DoctorAppointment/DoctorAppointment';
 
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -106,6 +107,19 @@ const ClerkProviderWithRoutes = () => {
             <>
               <SignedIn>
                 <SpecialistsPage />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/appointment/:id"
+          element={
+            <>
+              <SignedIn>
+                <DoctorAppointment />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
