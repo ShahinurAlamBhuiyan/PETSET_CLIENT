@@ -20,9 +20,9 @@ const ServicesPage = () => {
 
 
     return (
-        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column' }}>
+        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column',flexWrap:'nowrap' }}>
             <h3>Our services for your PET</h3>
-            <div className='centering_items_flex'>
+            <div className='centering_items_flex' >
                 {services &&
                     services.map((service) => (
                         <SingleService service={service} key={service.id} />

@@ -62,3 +62,30 @@
 .service_card-button:hover {
   background-color: #2980b9;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .service_card {
+    width: 100%; /* Make the card full width on small screens */
+    height: auto; /* Allow the height to adjust based on content */
+    flex-direction: column; /* Stack the content vertically */
+  }
+
+  .service_card-content {
+    flex-direction: column; /* Stack the image and text content vertically */
+  }
+
+  .service_card-image {
+    width: 100%; /* Make the image full width */
+    height: 200px; /* Set a specific height for the image */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 0; /* Remove bottom-left border radius */
+    margin-bottom: 10px; /* Add some spacing between image and text on small screens */
+  }
+
+  .text-content {
+    width: 100%; /* Make the text content full width */
+    padding: 10px; /* Adjust padding for better spacing on small screens */
+    box-sizing: border-box;
+  }
+}
