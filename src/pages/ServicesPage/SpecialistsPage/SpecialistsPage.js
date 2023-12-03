@@ -47,7 +47,7 @@ const SpecialistsPage = () => {
         <p className='text-justify' style={{height:'50%', width:'60%'}}>{service?.content}</p>
       </div>
       <div className=' mt-5'>
-        <h2>Specialist for {service?.slug}</h2>
+        <h3>Specialist for {service?.slug}</h3>
         <div className='centering_items_flex mt-3'>
           {specialists &&
             specialists.slice(0, 8).map((specialist) => (

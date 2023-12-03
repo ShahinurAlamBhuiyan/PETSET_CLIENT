@@ -18,6 +18,7 @@ const SingleSpecialistCard = ({ specialist }) => {
                     <Card.Text style={{ textAlign: 'justify', color: '#555' }}>Degrees: {specialist?.company?.bs}</Card.Text>
                 </div>
                 <Button variant="outline-primary" style={{ alignSelf: 'flex-end' }}>Details</Button>
+                <Button variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );
