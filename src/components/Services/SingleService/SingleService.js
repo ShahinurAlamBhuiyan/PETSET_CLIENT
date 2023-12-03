@@ -14,7 +14,7 @@ const SingleService = ({ service }) => {
                 <div className="text-content">
                     <div className="card-title">{service.slug}</div>
                     <div className="card-details">{truncateText(service.content, 160)}...</div>
-                    <Link to={`/services/${service.slug}`}>
+                    <Link to={`/services/${service.id}`}>
                         <Button variant="outline-primary">Details</Button>
                     </Link>
                 </div>

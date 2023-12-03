@@ -101,7 +101,7 @@ const ClerkProviderWithRoutes = () => {
           }
         />
         <Route
-          path="/services/:serviceName"
+          path="/services/:id"
           element={
             <>
               <SignedIn>
