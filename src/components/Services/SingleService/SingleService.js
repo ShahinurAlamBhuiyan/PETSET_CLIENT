@@ -8,12 +8,12 @@ const SingleService = ({ service }) => {
         return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
     };
     return (
-        <div className="card">
-            <div className="card-content">
-                <img src={service.image} alt="Service Icon" className="card-image" />
+        <div className="service_card">
+            <div className="service_card-content">
+                <img src={service.image} alt="Service Icon" className="service_card-image" />
                 <div className="text-content">
-                    <div className="card-title">{service.slug}</div>
-                    <div className="card-details">{truncateText(service.content, 160)}...</div>
+                    <div className="service_card-title">{service.slug}</div>
+                    <div className="service_card-details">{truncateText(service.content, 160)}...</div>
                     <Link to={`/services/${service.id}`}>
                         <Button variant="outline-primary">Details</Button>
                     </Link>
