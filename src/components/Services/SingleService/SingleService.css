@@ -1,0 +1,64 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 8px rgba(249, 90, 17, 0.2);
+  overflow: hidden;
+  width: 500px; /* Set a specific width */
+  height: 250px; /* Set a specific height */
+  /* margin: 10px; Add some margin for spacing */
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.3s ease-in-out; /* Added animation */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Added animation effect on hover */
+}
+
+.card-content {
+  display: flex;
+}
+
+.card-image {
+  width: 50%; /* 50% of card width */
+  height: 100%; /* Full height of card */
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.text-content {
+  width: 50%; /* 50% of card width */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-title {
+  font-size: 18px; /* Adjusted font size */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-details {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.card-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #2980b9;
+}

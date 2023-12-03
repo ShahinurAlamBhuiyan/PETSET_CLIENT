@@ -46,6 +46,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+.centering_items_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 body {
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
