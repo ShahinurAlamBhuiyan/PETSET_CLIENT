@@ -52,7 +52,7 @@ const DoctorAppointment = () => {
 
     return (
         <div className="container mt-5">
-            <h2>Appointment of Dr.{doctor?.firstname + " " + doctor?.lastname}</h2>
+            <h2>An appointment with Dr.{doctor?.firstname + " " + doctor?.lastname} for {doctor?.company.bs}</h2>
             <form onSubmit={handleAppointmentSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Your Name</label>
