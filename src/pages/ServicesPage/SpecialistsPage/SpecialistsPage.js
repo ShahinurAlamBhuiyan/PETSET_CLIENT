@@ -38,13 +38,14 @@ const SpecialistsPage = () => {
 
 
 
+
   return (
     <div className='container mt-5'>
       <h2>Service Name:  {service?.slug}</h2>
       <div className='centering_items_flex'>
         <img width={375} height={300} src="https://img.freepik.com/free-vector/tiny-veterinarians-examining-dog-flat-vector-illustration-doctor-treating-huge-animal-vet-clinic-taking-care-health-determining-diagnosis-hospital-medical-pet-service-veterinary-concept_74855-25368.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699660800&semt=ais" alt="hello" />
 
-        <p className='text-justify' style={{height:'50%', width:'60%'}}>{service?.content}</p>
+        <p className='text-justify' style={{ height: '50%', width: '60%' }}>{service?.content}</p>
       </div>
       <div className=' mt-5'>
         <h3>Specialist for {service?.slug}</h3>
