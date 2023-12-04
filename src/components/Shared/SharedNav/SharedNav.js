@@ -34,7 +34,7 @@ const SharedNav = () => {
                             <>
                                 <a href="/" className="nav-item nav-link">Home</a>
                                 <a href="/memories" className="nav-item nav-link">Memories</a>
-                                <a href="about.html" className="nav-item nav-link">Adaptation</a>
+                                <a href="/adaptation" className="nav-item nav-link">Adaptation</a>
                                 <a href="service.html" className="nav-item nav-link">Lost & Found</a>
                                 <a href="/services" className="nav-item nav-link">Services</a>
                                 <div className="nav-item dropdown">
