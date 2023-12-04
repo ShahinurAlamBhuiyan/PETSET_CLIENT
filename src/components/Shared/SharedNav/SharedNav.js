@@ -37,13 +37,14 @@ const SharedNav = () => {
                                 <a href="/adaptation" className="nav-item nav-link">Adaptation</a>
                                 <a href="/lost&found" className="nav-item nav-link">Lost & Found</a>
                                 <a href="/services" className="nav-item nav-link">Services</a>
-                                <div className="nav-item dropdown">
+                                <a href="/store" className="nav-item nav-link">Store</a>
+                                {/* <div className="nav-item dropdown">
                                     <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Store</a>
                                     <div className="dropdown-menu rounded-0 m-0">
-                                        <a href="blog.html" className="dropdown-item">Medicine</a>
-                                        <a href="single.html" className="dropdown-item">Toy</a>
+                                        <a href="/store/medicine" className="dropdown-item">Medicine</a>
+                                        <a href="/store/food" className="dropdown-item">Food</a>
                                     </div>
-                                </div>
+                                </div> */}
                             </>
                             <div className={` ${navItemClass}`}>
                                 <SignedIn>

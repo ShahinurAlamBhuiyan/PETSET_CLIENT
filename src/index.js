@@ -29,6 +29,7 @@ import SpecialistsPage from './pages/ServicesPage/SpecialistsPage/SpecialistsPag
 import DoctorAppointment from './pages/ServicesPage/DoctorAppointment/DoctorAppointment';
 import AdaptationPage from './pages/AdaptationPage/AdaptationPage';
 import LostAndFoundPage from './pages/LostAndFoundPage/LostAndFoundPage';
+import StorePage from './pages/StorePage/StorePage';
 
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
@@ -156,7 +157,19 @@ const ClerkProviderWithRoutes = () => {
             </>
           }
         />
-
+        <Route
+          path="/store"
+          element={
+            <>
+              <SignedIn>
+                <StorePage />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
       </Routes>
       <Footer />
     </ClerkProvider>
