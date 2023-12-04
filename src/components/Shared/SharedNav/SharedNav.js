@@ -32,12 +32,12 @@ const SharedNav = () => {
                     <div className="collapse navbar-collapse justify-content-between px-2" id="navbarCollapse">
                         <div className="navbar-nav mr-auto py-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                             <>
-                                <a href="/" className="nav-item nav-link" style={{padding:'20px 20px'}}>Home</a>
-                                <a href="/memories" className="nav-item nav-link" style={{padding:'20px 20px'}}>Memories</a>
-                                <a href="/adaptation" className="nav-item nav-link" style={{padding:'20px 20px'}}>Adaptation</a>
-                                <a href="/lost&found" className="nav-item nav-link" style={{padding:'20px 20px'}}>Lost & Found</a>
-                                <a href="/services" className="nav-item nav-link" style={{padding:'20px 20px'}}>Services</a>
-                                <a href="/store" className="nav-item nav-link" style={{padding:'20px 20px'}}>Store</a>
+                                <a href="/" className="nav-item nav-link" >Home</a>
+                                <a href="/memories" className="nav-item nav-link" >Memories</a>
+                                <a href="/adaptation" className="nav-item nav-link" >Adaptation</a>
+                                <a href="/lost&found" className="nav-item nav-link" >Lost & Found</a>
+                                <a href="/services" className="nav-item nav-link" >Services</a>
+                                <a href="/store" className="nav-item nav-link" >Store</a>
                                 {/* <div className="nav-item dropdown">
                                     <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Store</a>
                                     <div className="dropdown-menu rounded-0 m-0">
