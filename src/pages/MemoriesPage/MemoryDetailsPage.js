@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Spinner } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
@@ -16,40 +17,53 @@ const dummyImages = [
 ]
 
 const MemoryDetailsPage = () => {
-    const { id } = useParams();
-    const [memory, setMemory] = useState(null);
+    const { m_id } = useParams();
+    const [memory, setMemory] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchMemoryDetails = async () => {
+    //         try {
+    //             const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    //             setMemory(res.data);
+    //         } catch (error) {
+    //             console.error('Error fetching memory details:', error);
+    //         }
+    //     };
+
+    //     fetchMemoryDetails();
+    // }, [id]);
 
     useEffect(() => {
         const fetchMemoryDetails = async () => {
             try {
-                const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-                const memoryData = await response.json();
-                setMemory(memoryData);
+                const res = await axios.get(`http://localhost:8800/memories/${m_id}`);
+
+                setMemory(res.data);
             } catch (error) {
                 console.error('Error fetching memory details:', error);
             }
         };
 
         fetchMemoryDetails();
-    }, [id]);
+    }, [m_id]);
 
     console.log(dummyImages[0].imageUrl)
     return (
         <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-            {!memory && <Spinner animation='border' />}
-            {memory &&
+            {!memory[0] && <Spinner animation='border' />}
+            {memory[0] &&
                 <div>
                     <Link to={'/memories'}>
                         <Button variant="outline-primary" className='mt-2'>{'<'} back</Button>
                     </Link>
                     <Card className="mt-1" style={{ maxWidth: '500px' }} >
-                        <Card.Img variant="top" src="https://cms-lc.bestfriendspetcare.com/wp-content/uploads/2020/09/keep-your-pet-memories-alive-blog-featured.jpg" />
+                        <Card.Img variant="top" src={memory[0].img_URL} />
                         <Card.Body>
-                            <Card.Title>{memory.title}</Card.Title>
+                            <Card.Title>{memory[0].title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">Shared by {memory.creatorName || 'Shahinur Alam Bhuiyan'}</Card.Subtitle>
-                            <Card.Text>{memory.body}</Card.Text>
+                            <Card.Text>{memory[0].details}</Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted">Shared on {memory.createdDate || '02 November, 2023'}</Card.Footer>
+                        <Card.Footer className="text-muted">Shared on {memory[0].createdDate || '02 November, 2023'}</Card.Footer>
                     </Card>
                 </div>
             }

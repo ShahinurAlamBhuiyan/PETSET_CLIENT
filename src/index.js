@@ -78,7 +78,7 @@ const ClerkProviderWithRoutes = () => {
           }
         />
         <Route
-          path="/memories/:id"
+          path="/memories/:m_id"
           element={
             <>
               <SignedIn>
