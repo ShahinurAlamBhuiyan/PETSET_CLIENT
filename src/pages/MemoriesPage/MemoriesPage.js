@@ -27,7 +27,7 @@ const MemoriesPage = () => {
             }
         }
         fetchAllMemories( )
-    },[memories])
+    },[memories.length])
 
     // Pagination part --->
     const totalPages = Math.ceil(memories.length / itemsPerPage);
