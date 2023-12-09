@@ -4,7 +4,8 @@ import { Button, Card } from 'react-bootstrap';
 import './Memories.css';
 import { Link } from 'react-router-dom';
 
-const MemoryCard = ({ data, currentPage, itemsPerPage }) => {
+const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
+    console.log(memories)
     const truncateText = (text, maxLength) => {
         return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
     };
@@ -14,14 +15,14 @@ const MemoryCard = ({ data, currentPage, itemsPerPage }) => {
 
     return (
         <div className='memories_container'>
-            {data.slice(startIndex, endIndex).map((post) => (
-                <div key={post.id} className='memory_card'>
+            {memories && memories.slice(startIndex, endIndex).map((post) => (
+                <div key={post.m_id} className='memory_card'>
                     <Card>
-                        <Card.Img variant="top" src="https://cms-lc.bestfriendspetcare.com/wp-content/uploads/2020/09/keep-your-pet-memories-alive-blog-featured.jpg" />
+                        <Card.Img variant="top" src={post.img_URL} />
                         <Card.Body>
-                            <Card.Title>{truncateText(post.title, 30)}...</Card.Title>
-                            <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.body, 90)}...</Card.Text>
-                            <Link to={`/memories/${post.id}`}>
+                            <Card.Title>{truncateText(post.details, 30)}...</Card.Title>
+                            <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.details, 90)}...</Card.Text>
+                            <Link to={`/memories/${post.m_id}`}>
                                 <Button variant="outline-primary">Details</Button>
                             </Link>
                         </Card.Body>

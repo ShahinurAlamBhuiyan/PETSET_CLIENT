@@ -1,18 +1,27 @@
-import { useUser } from '@clerk/clerk-react';
 import React, { useState } from 'react';
+import axios from 'axios'
+import { useUser } from '@clerk/clerk-react';
 import { Button, Form } from 'react-bootstrap';
 
 const MemoriesForm = ({ setShowForm }) => {
     const { user } = useUser();
-
     const [newMemory, setNewMemory] = useState({
+        m_id: '',
+        u_id: user.id,
         title: '',
-        body: '',
-        imageUrl: '',
-        sharedBy: user.fullName,
-        userID: user.id,
-        sharedDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        details: '',
+        img_URL: '',
+        created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     });
+
+    const generateMemoryId = () => {
+        const timestamp = new Date().getTime();
+
+        const uniqueID = `${timestamp}${user.id}`;
+
+        return uniqueID;
+    }
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -37,9 +46,11 @@ const MemoriesForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
+            const memory_id = generateMemoryId()
             setNewMemory({
                 ...newMemory,
-                imageUrl: responseData.data.display_url,
+                img_URL: responseData.data.display_url,
+                m_id: memory_id,
             })
 
         } catch (error) {
@@ -52,12 +63,17 @@ const MemoriesForm = ({ setShowForm }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         setShowForm(false); // from upper level
-        console.log({ newMemory })
-        alert('Memory posted!');
+        try {
+            console.log(newMemory)
+            await axios.post("http://localhost:8800/memories", newMemory)
+            alert('Memory posted!');
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     const isFormComplete = () => {
-        if (newMemory.title && newMemory.imageUrl && newMemory.body && newMemory.sharedBy && newMemory.sharedDate) {
+        if (newMemory.title && newMemory.img_URL && newMemory.details && newMemory.created_date) {
             return true
         } else {
             return false
@@ -82,8 +98,8 @@ const MemoriesForm = ({ setShowForm }) => {
                         as="textarea"
                         rows={3}
                         placeholder="Enter your memory"
-                        name="body"
-                        value={newMemory.body}
+                        name="details"
+                        value={newMemory.details}
                         onChange={handleInputChange}
                     />
                 </Form.Group>
