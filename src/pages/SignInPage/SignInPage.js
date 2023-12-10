@@ -1,9 +1,10 @@
 
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const SignInPage = ({setAuthenticated}) => {
+const SignInPage = ({ setAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,16 +15,26 @@ const SignInPage = ({setAuthenticated}) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add your sign-in logic here
     console.log('Sign In form data submitted:', formData);
+
+    try {
+      // Send a POST request to the sign-in API
+      const res = await axios.post("http://localhost:8800/sign-in", formData)
+      console.log(res)
+      setAuthenticated(true)
+    } catch (error) {
+      console.log(error)
+      alert('Error during sign-in: '+ error.response.data);
+    }
+
     // Reset form after submission
     setFormData({
       email: '',
       password: '',
     });
-    setAuthenticated(true);
   };
 
   return (
