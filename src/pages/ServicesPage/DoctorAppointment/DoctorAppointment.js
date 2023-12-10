@@ -1,10 +1,10 @@
-import { useUser } from '@clerk/clerk-react';
+// import { useUser } from '@clerk/clerk-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const DoctorAppointment = () => {
     const navigate = useNavigate();
-    const { user } = useUser();
+    // const { user } = useUser();
     const { id } = useParams();
     const [doctor, setDoctor] = useState(null)
 
@@ -24,8 +24,8 @@ const DoctorAppointment = () => {
     }, [id]);
 
     const [appointmentDetails, setAppointmentDetails] = useState({
-        name: user.fullName,
-        email: user.primaryEmailAddress.emailAddress,
+        // name: user.fullName,
+        // email: user.primaryEmailAddress.emailAddress,
         contact: '',
         appointmentDate: '',
         fee: '500',

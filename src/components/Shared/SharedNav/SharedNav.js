@@ -3,7 +3,7 @@ import logo from '../../../assets/petsetlogo.png'
 
 import './SharedNav.css'
 import Topbar from './Topbar'
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
+// import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 
 const SharedNav = () => {
     const [isCollapseActive, setIsCollapseActive] = useState(false);
@@ -47,12 +47,12 @@ const SharedNav = () => {
                                 </div> */}
                             </>
                             <div className={` ${navItemClass}`}>
-                                <SignedIn>
+                                {/* <SignedIn>
                                     <UserButton afterSignOutUrl='/home' />
                                 </SignedIn>
                                 <SignedOut>
                                     <a href="/sign-in" className="btn btn-lg btn-outline-primary px-3 d-lg-block">Login</a>
-                                </SignedOut>
+                                </SignedOut> */}
                             </div>
                         </div>
                     </div>

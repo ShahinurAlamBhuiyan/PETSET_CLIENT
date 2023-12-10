@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useUser } from '@clerk/clerk-react';
+// import { useUser } from '@clerk/clerk-react';
 import { Button, Form } from 'react-bootstrap';
 
 const MemoriesForm = ({ setShowForm }) => {
-    const { user } = useUser();
+    // const { user } = useUser();
     const [newMemory, setNewMemory] = useState({
         m_id: '',
-        u_id: user.id,
+        // u_id: user.id,
         title: '',
         details: '',
         img_URL: '',
@@ -17,9 +17,9 @@ const MemoriesForm = ({ setShowForm }) => {
     const generateMemoryId = () => {
         const timestamp = new Date().getTime();
 
-        const uniqueID = `${timestamp}${user.id}`;
+        // const uniqueID = `${timestamp}${user.id}`;
 
-        return uniqueID;
+        // return uniqueID;
     }
 
 

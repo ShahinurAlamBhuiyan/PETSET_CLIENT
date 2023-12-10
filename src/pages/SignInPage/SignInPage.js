@@ -1,10 +1,13 @@
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const SignInPage = ({ setAuthenticated }) => {
+const SignInPage = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,11 +26,15 @@ const SignInPage = ({ setAuthenticated }) => {
     try {
       // Send a POST request to the sign-in API
       const res = await axios.post("http://localhost:8800/sign-in", formData)
-      console.log(res)
-      setAuthenticated(true)
+      sessionStorage.setItem('user', JSON.stringify(res.data[0]))
+      // Redirect to the intended destination or a default page
+      const redirectTo = location.state.from || '/';
+      navigate(redirectTo);
+      window.location.reload(); // bug
+
     } catch (error) {
       console.log(error)
-      alert('Error during sign-in: '+ error.response.data);
+      alert('Error during sign-in: ' + error.response.data);
     }
 
     // Reset form after submission

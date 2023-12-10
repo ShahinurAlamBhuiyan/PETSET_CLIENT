@@ -2,10 +2,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     role: 'user',
     firstName: '',
@@ -28,7 +29,8 @@ const SignUpPage = () => {
       try {
         await axios.post("http://localhost:8800/sign-up", formData)
         alert('sign-up successfully !');
-        // navigate('/');
+        // navigate('/sign-in');
+        redirect('/sign-in')
       } catch (error) {
         alert(error.response.data)
       }
