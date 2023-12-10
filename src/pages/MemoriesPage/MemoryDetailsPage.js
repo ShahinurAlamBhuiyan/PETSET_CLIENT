@@ -4,35 +4,10 @@ import { Button, Card, Spinner } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 
-const dummyImages = [
-    {
-        "imageUrl": "https://cms-lc.bestfriendspetcare.com/wp-content/uploads/2020/09/keep-your-pet-memories-alive-blog-featured.jpg",
-    },
-    {
-        "imageUrl": "https://www.veterinarians.org/wp-content/uploads/2022/10/how-to-find-a-lost-dog.jpg",
-    },
-    {
-        "imageUrl": "https://cms-lc.bestfriendspetcare.com/wp-content/uploads/2020/09/keep-your-pet-memories-alive-blog-featured.jpg",
-    },
-]
-
 const MemoryDetailsPage = () => {
     const { m_id } = useParams();
     const [memory, setMemory] = useState([]);
-
-    // useEffect(() => {
-    //     const fetchMemoryDetails = async () => {
-    //         try {
-    //             const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    //             setMemory(res.data);
-    //         } catch (error) {
-    //             console.error('Error fetching memory details:', error);
-    //         }
-    //     };
-
-    //     fetchMemoryDetails();
-    // }, [id]);
-
+    console.log(memory)
     useEffect(() => {
         const fetchMemoryDetails = async () => {
             try {
@@ -46,8 +21,7 @@ const MemoryDetailsPage = () => {
 
         fetchMemoryDetails();
     }, [m_id]);
-
-    console.log(dummyImages[0].imageUrl)
+    console.log(memory)
     return (
         <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
             {!memory[0] && <Spinner animation='border' />}

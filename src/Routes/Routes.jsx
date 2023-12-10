@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoutes'
 import MemoriesPage from '../pages/MemoriesPage/MemoriesPage'
 import ErrorPage from '../components/Shared/ErrorPage/ErrorPage'
 import AdaptationPage from '../pages/AdaptationPage/AdaptationPage'
+import MemoryDetailsPage from '../pages/MemoriesPage/MemoryDetailsPage'
 
 const router = createBrowserRouter([
   {
@@ -27,16 +28,28 @@ const router = createBrowserRouter([
       },
       {
         path: 'adaptation',
-        element: <AdaptationPage />
+        element: (
+          <PrivateRoute path='/adaptation'>
+            <AdaptationPage />
+          </PrivateRoute>
+        )
       },
       {
         path: 'memories',
         element: (
-        <PrivateRoute path='/memories'>
+          <PrivateRoute path='/memories'>
             <MemoriesPage />
           </PrivateRoute>
         )
-      }
+      },
+      {
+        path: 'memories/:m_id',
+        element: (
+          <PrivateRoute >
+            <MemoryDetailsPage />
+          </PrivateRoute>
+        )
+      },
       //   {
       //     path: 'updateToys/:id',
       //     element: (
