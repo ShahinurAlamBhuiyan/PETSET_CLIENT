@@ -8,6 +8,8 @@ import MemoriesPage from '../pages/MemoriesPage/MemoriesPage'
 import ErrorPage from '../components/Shared/ErrorPage/ErrorPage'
 import AdaptationPage from '../pages/AdaptationPage/AdaptationPage'
 import MemoryDetailsPage from '../pages/MemoriesPage/MemoryDetailsPage'
+import ServicesPage from '../pages/ServicesPage/ServicesPage'
+import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPage'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,21 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute >
             <MemoryDetailsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'services',
+        element: (
+          <PrivateRoute path='/services'>
+            <ServicesPage />
+          </PrivateRoute>
+        )
+      },{
+        path: 'services/:s_id',
+        element: (
+          <PrivateRoute >
+            <SpecialistsPage />
           </PrivateRoute>
         )
       },

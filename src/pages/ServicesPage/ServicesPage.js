@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import SingleService from '../../components/Services/SingleService/SingleService';
 import { Spinner } from 'react-bootstrap';
+import axios from 'axios';
 
 const ServicesPage = () => {
-    const [services, setServices] = useState(null)
+    const [services, setServices] = useState([])
+    // Fetching all memories --->
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchAllMemories = async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.org/posts');
-                const jsonData = await response.json();
-                setServices(jsonData);
+                const res = await axios.get("http://localhost:8800/services")
+                setServices(res.data)
+                // console.log(res.data)
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.log(error)
             }
-        };
-
-        fetchData();
-    }, []);
-
+        }
+        fetchAllMemories()
+    }, [services.length])
     return (
         <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
             <h3>Our services for your PET</h3>
             <div className='centering_items_flex' >
                 {services &&
                     services.map((service) => (
-                        <SingleService service={service} key={service.id} />
+                        <SingleService service={service} key={service.s_id} />
                     ))
                 }
                 {!services &&

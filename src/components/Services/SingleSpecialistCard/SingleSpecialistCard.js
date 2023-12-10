@@ -3,7 +3,7 @@ import { Button, Card, Modal } from 'react-bootstrap';
 
 const SingleSpecialistCard = ({ specialist }) => {
     const [showDoctorDetails, setShowDoctorDetails] = useState(false);
-
+    console.log(specialist)
     // Function to show the dr. details modal
     const handleShowDoctorDetails = () => {
         setShowDoctorDetails(true);
@@ -13,7 +13,6 @@ const SingleSpecialistCard = ({ specialist }) => {
     const handleCloseDoctorDetails = () => {
         setShowDoctorDetails(false);
     };
-    console.log(specialist)
 
     return (
         <Card style={{ width: '300px', height: '400px', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
@@ -24,22 +23,25 @@ const SingleSpecialistCard = ({ specialist }) => {
             />
             <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
-                    <Card.Title style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Dr. {specialist?.firstname + " " + specialist.lastname}</Card.Title>
-                    <Card.Text style={{ textAlign: 'justify', color: '#555' }}>Degrees: {specialist?.company?.bs}</Card.Text>
+                    <div className='centering_items_flex' style={{ justifyContent: 'space-between' }}>
+                        <Card.Title style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{specialist?.dr_name}</Card.Title>
+                        <p >fees $50</p>
+                    </div>
+                    <Card.Text style={{ textAlign: 'justify', color: '#555' }}>Degrees: {specialist?.specialise}</Card.Text>
                 </div>
                 <Button onClick={handleShowDoctorDetails} variant="outline-primary" style={{ alignSelf: 'flex-end' }}>Details</Button>
                 <Modal show={showDoctorDetails} onHide={handleCloseDoctorDetails}>
                     <Modal.Header closeLabel='cancel'>
-                        <Modal.Title>Dr. {specialist?.firstname + " " + specialist.lastname}</Modal.Title>
+                        <Modal.Title>Details of {specialist?.dr_name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div>
-                            <p>Degrees: {specialist?.company?.bs}</p>
-                            <p>Address: {specialist?.address.street}, {specialist?.address.city}</p>
-                            <p>Email: {specialist.email}</p>
-                            <p>Phone: {specialist.phone}</p>
-                            <p>Website: {specialist.website}</p>
-                        </div>
+                        <>
+                            <p>Degrees:{specialist?.specialise} </p>
+                            <p>Address: {specialist?.dr_address}</p>
+                            <p>Email: {specialist?.dr_email} </p>
+                            <p>Phone: {specialist?.dr_contact}</p>
+                            <p>Website: www.{(specialist?.dr_name).toLowerCase()}.com</p>
+                        </>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseDoctorDetails}>

@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
   const handleSession = data => {
     setLoggedInUser(data)
   }
-  console.log(loggedInUser)
 
   return (
     <AuthContext.Provider value={{ loggedInUser, setLoggedInUser }}>

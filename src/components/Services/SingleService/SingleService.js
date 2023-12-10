@@ -10,11 +10,11 @@ const SingleService = ({ service }) => {
     return (
         <div className="service_card">
             <div className="service_card-content">
-                <img src={service.image} alt="Service Icon" className="service_card-image" />
+                <img src={service.img_URL} alt="Service Icon" className="service_card-image" />
                 <div className="text-content">
-                    <div className="service_card-title">{service.slug}</div>
-                    <div className="service_card-details">{truncateText(service.content, 160)}...</div>
-                    <Link to={`/services/${service.id}`}>
+                    <div className="service_card-title">{service.title}</div>
+                    <div className="service_card-details">{truncateText(service.details, 160)}...</div>
+                    <Link to={`/services/${service.s_id}`}>
                         <Button variant="outline-primary">Details</Button>
                     </Link>
                 </div>
