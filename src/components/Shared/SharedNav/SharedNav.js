@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../../assets/petsetlogo.png'
 
 import './SharedNav.css'
 import Topbar from './Topbar'
-// import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
+import { AuthContext } from '../../../Providers/AuthProvider'
 
 const SharedNav = () => {
+    const { loggedInUser, setLoggedInUser } = useContext(AuthContext)
     const [isCollapseActive, setIsCollapseActive] = useState(false);
 
     const toggleCollapse = () => {
         setIsCollapseActive(!isCollapseActive);
     };
     const navItemClass = `nav-item${isCollapseActive ? '' : ' ml-auto'}`;
+    const handleLogout = () => {
+        sessionStorage.removeItem('user');
+        setLoggedInUser({});
+    }
     return (
         <>
             <Topbar />
@@ -47,12 +52,10 @@ const SharedNav = () => {
                                 </div> */}
                             </>
                             <div className={` ${navItemClass}`}>
-                                {/* <SignedIn>
-                                    <UserButton afterSignOutUrl='/home' />
-                                </SignedIn>
-                                <SignedOut>
-                                    <a href="/sign-in" className="btn btn-lg btn-outline-primary px-3 d-lg-block">Login</a>
-                                </SignedOut> */}
+                                {loggedInUser.u_id
+                                    ? <button onClick={handleLogout} className="btn btn-lg btn-outline-primary px-3 d-lg-block">Log out</button>
+                                    : <a href="/sign-in" className="btn btn-lg btn-outline-primary px-3 d-lg-block">Login</a>
+                                }
                             </div>
                         </div>
                     </div>

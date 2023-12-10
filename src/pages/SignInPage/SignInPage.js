@@ -20,21 +20,16 @@ const SignInPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your sign-in logic here
-    console.log('Sign In form data submitted:', formData);
-
     try {
       // Send a POST request to the sign-in API
       const res = await axios.post("http://localhost:8800/sign-in", formData)
       sessionStorage.setItem('user', JSON.stringify(res.data[0]))
-      // Redirect to the intended destination or a default page
-      const redirectTo = location.state.from || '/';
-      navigate(redirectTo);
+      const redirectPath = (location.state && location.state.from && location.state.from !== '/sign-in') ? (location.state.from) : '/';
+      navigate(redirectPath)
       window.location.reload(); // bug
-
     } catch (error) {
-      console.log(error)
-      alert('Error during sign-in: ' + error.response.data);
+      console.log(error.response.data)
+      alert(error.response.data)
     }
 
     // Reset form after submission

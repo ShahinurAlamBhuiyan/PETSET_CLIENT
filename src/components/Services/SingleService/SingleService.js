@@ -10,7 +10,7 @@ const SingleService = ({ service }) => {
     return (
         <div className="service_card">
             <div className="service_card-content">
-                <img src={service.img_URL} alt="Service Icon" className="service_card-image" />
+                <img src={service.img_URL ? service.img_URL : 'https://www.petofy.com/images/ServiceImages/PetFriendlyPlaces.jpg'} alt="Service Icon" className="service_card-image" />
                 <div className="text-content">
                     <div className="service_card-title">{service.title}</div>
                     <div className="service_card-details">{truncateText(service.details, 160)}...</div>
