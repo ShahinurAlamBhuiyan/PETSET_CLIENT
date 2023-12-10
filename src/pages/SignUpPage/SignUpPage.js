@@ -1,18 +1,135 @@
-import { ClerkLoaded, ClerkLoading, SignUp } from '@clerk/clerk-react'
-import React from 'react'
-import { Spinner } from 'react-bootstrap'
+
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 const SignUpPage = () => {
-  return (
-    <div className='p-5' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <ClerkLoaded>
-        <SignUp signInUrl='/sign-in' />
-      </ClerkLoaded>
-      <ClerkLoading>
-        <Spinner animation="border" />
-      </ClerkLoading>
-    </div>
-  )
-}
+  const [formData, setFormData] = useState({
+    role: 'user',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    image_URL: 'https://www.westridgehilton.org.in/img/dd.jpg'
+  });
+  
+  const [confirmPass, setConfirmPass] = useState('')
 
-export default SignUpPage
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (confirmPass === formData.password) {
+      try {
+        await axios.post("http://localhost:8800/sign-up", formData)
+        alert('sign-up successfully !');
+        // navigate('/');
+      } catch (error) {
+        alert(error.response.data)
+      }
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        role: '',
+        image_URL: ''
+      });
+      setConfirmPass('');
+
+    } else {
+      alert('password not matched!')
+    }
+
+  };
+
+  return (
+    <Container>
+      <Row className="justify-content-md-center mt-5">
+        <Col md={6}>
+          <Card>
+            <Card.Body>
+              <Card.Title className="text-center">Sign Up</Card.Title>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formFirstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter first name"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formLastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter last name"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formConfirmPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="mt-3">
+                  Sign Up
+                </Button>
+              </Form>
+              <div className="mt-3 text-center">
+                <span>Already have an account?</span>{' '}
+                <Link to="/sign-in">Sign In</Link>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+export default SignUpPage;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -39,6 +39,7 @@ const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
 
 const ClerkProviderWithRoutes = () => {
+  const [authenticated, setAuthenticated] = useState(false)
   const navigate = useNavigate();
 
   return (
@@ -64,7 +65,7 @@ const ClerkProviderWithRoutes = () => {
 
 
         <Route />
-        <Route
+        {/* <Route
           path="/memories"
           element={
             <>
@@ -76,6 +77,18 @@ const ClerkProviderWithRoutes = () => {
               </SignedOut>
             </>
           }
+        /> */}
+        <Route
+          path="/memories"
+          element={authenticated ? <MemoriesPage /> : <SignInPage setAuthenticated={setAuthenticated} />}
+        // <PrivateRoute
+        //   element={
+        //     <MemoriesPage />
+        //   }
+        //   authenticated={true}
+        //   redirectPath="/sign-in"  // Customize the redirect path if needed
+        // />
+        // }
         />
         <Route
           path="/memories/:m_id"
