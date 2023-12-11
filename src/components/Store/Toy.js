@@ -1,8 +1,31 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import ProductCard from './ProductCard';
 
 const Toy = () => {
+    const [toys, setToys] = useState([]);
+    useEffect(() => {
+        const fetchingToyProduct = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8800/product?product_type=Pet Toy`);
+                setToys(response.data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        }
+        fetchingToyProduct();
+    }, [])
+
+
     return (
-        <div>Toy</div>
+        <div className='centering_items_flex'>
+            {toys &&
+                toys.map((Toy, index) => (
+                    <ProductCard key={index} product={Toy} />
+                ))
+
+            }
+        </div>
     )
 }
 

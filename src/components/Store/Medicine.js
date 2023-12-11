@@ -21,7 +21,7 @@ const Medicine = () => {
     <div className='centering_items_flex'>
       {medicines &&
         medicines.map((medicine, index) => (
-          <ProductCard key={index} medicine={medicine} />
+          <ProductCard key={index} product={medicine} />
         ))
 
       }
