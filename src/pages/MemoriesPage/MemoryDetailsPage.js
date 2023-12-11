@@ -41,18 +41,6 @@ const MemoryDetailsPage = () => {
                     </Card>
                 </div>
             }
-
-            {/* {dummyImages && (
-                <>
-                    <h4>Images</h4>
-                    <div className="image-container">
-                        <ImageSlider dummyImages={dummyImages} />
-                    </div>
-                </>
-            )} */}
-
-
-
         </div>
     );
 };
