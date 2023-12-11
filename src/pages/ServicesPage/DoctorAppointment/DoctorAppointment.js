@@ -1,44 +1,91 @@
-// import { useUser } from '@clerk/clerk-react';
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const DoctorAppointment = () => {
-    const navigate = useNavigate();
-    // const { user } = useUser();
-    const { id } = useParams();
-    const [doctor, setDoctor] = useState(null)
+    const { loggedInUser } = useContext(AuthContext);
 
-    // taking doctor's details
+    const navigate = useNavigate();
+    const { dr_id, s_id } = useParams();
+    const [doctor, setDoctor] = useState({})
+    const [service, setService] = useState({})
+
+
+
+    // fetching doctor details
+    useEffect(() => {
+        const fetchDoctorDetails = async () => {
+            try {
+                const res = await axios.get(`http://localhost:8800/doctor/${dr_id}`);
+
+                setDoctor(res.data[0]);
+            } catch (error) {
+                console.error('Error fetching memory details:', error);
+            }
+        };
+
+        fetchDoctorDetails();
+    }, [dr_id]);
+
+    // fetching service details
     useEffect(() => {
         const fetchServiceDetails = async () => {
             try {
-                const response = await fetch(`https://jsonplaceholder.org/users/${id}`);
-                const doctorData = await response.json();
-                setDoctor(doctorData);
+                const res = await axios.get(`http://localhost:8800/service/${s_id}`);
+
+                setService(res.data[0]);
             } catch (error) {
-                console.error('Error fetching Service details:', error);
+                console.error('Error fetching memory details:', error);
             }
         };
 
         fetchServiceDetails();
-    }, [id]);
+    }, [s_id]);
 
+
+    const generateAppointmentId = () => {
+        const timestamp = new Date().getTime();
+
+        const uniqueID = `appointment${timestamp}`;
+
+        return uniqueID;
+    }
     const [appointmentDetails, setAppointmentDetails] = useState({
-        // name: user.fullName,
-        // email: user.primaryEmailAddress.emailAddress,
-        contact: '',
-        appointmentDate: '',
-        fee: '500',
+        u_id: loggedInUser.u_id,
+        dr_id: dr_id,
+        a_id: generateAppointmentId(),
+        appointment_date: '',
+        s_id: s_id,
+        owner_name: loggedInUser?.full_name,
+        owner_email: loggedInUser?.email,
+        contact: '+880',
+        fee: '',
     });
-    const handleAppointmentSubmit = (e) => {
-        e.preventDefault();
 
+    useEffect(() => {
+        setAppointmentDetails((prevDetails) => ({
+            ...prevDetails,
+            fee: doctor?.visiting_fees,
+        }));
+    }, [doctor]);
+
+
+
+
+    const handleAppointmentSubmit = async (e) => {
+        e.preventDefault();
         const isAppointmentSuccessful = handleFormSubmission();
 
+        // booking appointment...
         if (isAppointmentSuccessful) {
-            alert('Appointment booked successfully! Assistant will contact you soon.');
-            console.log('Appointment Details:', appointmentDetails);
-            navigate('/services');
+            try {
+                await axios.post("http://localhost:8800/appointment", appointmentDetails)
+                alert('Appointment booked successfully! Assistant will contact you soon.');
+                navigate('/services');
+            } catch (error) {
+                alert(error)
+            }
         } else {
             alert('Error booking appointment. Please try again.');
         }
@@ -52,35 +99,39 @@ const DoctorAppointment = () => {
 
     return (
         <div className="container mt-5">
-            <h2>An appointment with Dr.{doctor?.firstname + " " + doctor?.lastname} for {doctor?.company.bs}</h2>
+            <h2>An appointment with {doctor?.dr_name}</h2>
             <form onSubmit={handleAppointmentSubmit}>
                 <div className="mb-3">
+                    <label htmlFor="fee" className="form-label">Service Name</label>
+                    <input disabled type="text" className="form-control" id="service_name" value={service?.title} />
+                </div>
+                <div className="mb-3">
                     <label htmlFor="name" className="form-label">Your Name</label>
-                    <input type="text" className="form-control" id="name" value={appointmentDetails.name} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, name: e.target.value }))} required />
+                    <input type="text" className="form-control" id='owner_name' value={appointmentDetails.owner_name} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, owner_name: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="contact" className="form-label">Your Contact</label>
-                    <input placeholder='+880' type='number' className="form-control" id="contact" value={appointmentDetails.contact} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, contact: e.target.value }))} required />
+                    <input type='tel' className="form-control" id="contact" value={appointmentDetails.contact} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, contact: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="email" value={appointmentDetails.email} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, email: e.target.value }))} required />
+                    <input type="email" className="form-control" id="owner_email" value={appointmentDetails.owner_email} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, owner_email: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="appointmentDate" className="form-label">Appointment Date</label>
-                    <input type="date" className="form-control" id="appointmentDate" value={appointmentDetails.appointmentDate} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, appointmentDate: e.target.value }))} required />
+                    <label htmlFor="appointment_date" className="form-label">Appointment Date</label>
+                    <input type="date" className="form-control" id="appointment_date" value={appointmentDetails.appointment_date} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, appointment_date: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="fee" className="form-label">Consultation Fee</label>
-                    <input disabled type="text" className="form-control" id="fee" value={appointmentDetails.fee} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, fee: e.target.value }))} required />
+                    <input disabled type="text" className="form-control" id="fee" value={`$ ${doctor?.visiting_fees}`} />
+
                 </div>
                 <button type="submit" className="btn btn-primary">Submit Appointment</button>
             </form>
 
             <div className="mt-4">
                 <h4>Hospital Information</h4>
-                <p>Hospital Name: XYZ Hospital</p>
-                <p>Address: 123 Main Street, Cityville</p>
+                <p>Address: {doctor.dr_address}</p>
             </div>
         </div>
     );

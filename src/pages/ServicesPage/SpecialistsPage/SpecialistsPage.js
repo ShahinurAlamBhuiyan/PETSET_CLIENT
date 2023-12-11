@@ -6,23 +6,21 @@ import axios from 'axios';
 
 const SpecialistsPage = () => {
   const [service, setService] = useState([]);
-  const [specialists, setSpecialists] = useState(null)
   const { s_id } = useParams();
 
 
   useEffect(() => {
-    const fetchMemoryDetails = async () => {
+    const fetchServiceDetails = async () => {
       try {
         const res = await axios.get(`http://localhost:8800/services/${s_id}`);
         setService(res.data);
       } catch (error) {
-        console.error('Error fetching memory details:', error);
+        console.error('Error fetching Service details:', error);
       }
     };
 
-    fetchMemoryDetails();
+    fetchServiceDetails();
   }, [s_id]);
-  console.log({ service })
 
 
   return (
@@ -32,7 +30,9 @@ const SpecialistsPage = () => {
       <div className='centering_items_flex'>
         <img width={375} height={300} src="https://img.freepik.com/free-vector/tiny-veterinarians-examining-dog-flat-vector-illustration-doctor-treating-huge-animal-vet-clinic-taking-care-health-determining-diagnosis-hospital-medical-pet-service-veterinary-concept_74855-25368.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699660800&semt=ais" alt="hello" />
 
-        <p className='text-justify' style={{ height: '50%', width: '60%' }}>{service[0]?.details} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, commodi animi distinctio cumque temporibus accusamus minima repudiandae voluptas? Neque tenetur nam quaerat porro ea dignissimos enim ut in quo reprehenderit, pariatur optio voluptas ab ipsum est accusantium. Voluptatum, vel modi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis quis doloremque id repellat maiores necessitatibus deserunt officia magni, dolore culpa cumque nobis porro provident veniam.</p>
+        <p className='text-justify' style={{ height: '50%', width: '60%' }}>
+          {service[0]?.details} 
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, commodi animi distinctio cumque temporibus accusamus minima repudiandae voluptas? Neque tenetur nam quaerat porro ea dignissimos enim ut in quo reprehenderit, pariatur optio voluptas ab ipsum est accusantium. Voluptatum, vel modi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis quis doloremque id repellat maiores necessitatibus deserunt officia magni, dolore culpa cumque nobis porro provident veniam.</p>
       </div>
 
       {/* Specialist of this service */}
@@ -41,7 +41,7 @@ const SpecialistsPage = () => {
         <div className='centering_items_flex mt-3'>
           {service &&
             service.map((specialist, index) => (
-              <SingleSpecialistCard key={index} specialist={specialist} />
+              <SingleSpecialistCard key={index} specialist={specialist} serviceId={service[0]?.s_id} />
             ))
           }
           {!service &&

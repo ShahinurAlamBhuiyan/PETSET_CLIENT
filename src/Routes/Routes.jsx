@@ -10,6 +10,8 @@ import AdaptationPage from '../pages/AdaptationPage/AdaptationPage'
 import MemoryDetailsPage from '../pages/MemoriesPage/MemoryDetailsPage'
 import ServicesPage from '../pages/ServicesPage/ServicesPage'
 import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPage'
+import StorePage from '../pages/StorePage/StorePage'
+import DoctorAppointment from '../pages/ServicesPage/DoctorAppointment/DoctorAppointment'
 
 const router = createBrowserRouter([
   {
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: 'memories/:m_id',
         element: (
-          <PrivateRoute >
+          <PrivateRoute>
             <MemoryDetailsPage />
           </PrivateRoute>
         )
@@ -59,14 +61,31 @@ const router = createBrowserRouter([
             <ServicesPage />
           </PrivateRoute>
         )
-      },{
+      },
+      {
         path: 'services/:s_id',
         element: (
-          <PrivateRoute >
+          <PrivateRoute>
             <SpecialistsPage />
           </PrivateRoute>
         )
       },
+      {
+        path: 'appointment/:s_id/:dr_id',
+        element: (
+          <PrivateRoute>
+            <DoctorAppointment />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'store',
+        element: (
+          <PrivateRoute path='/store'>
+            <StorePage />
+          </PrivateRoute>
+        )
+      }
       //   {
       //     path: 'updateToys/:id',
       //     element: (

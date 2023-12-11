@@ -23,8 +23,8 @@ const ServicesPage = () => {
             <h3>Our services for your PET</h3>
             <div className='centering_items_flex' >
                 {services &&
-                    services.map((service) => (
-                        <SingleService service={service} key={service.s_id} />
+                    services.map((service, index) => (
+                        <SingleService service={service} key={index} />
                     ))
                 }
                 {!services &&

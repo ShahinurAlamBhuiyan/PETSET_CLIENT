@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 // import axios from 'axios';
 
 const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
-    console.log(memories)
     const truncateText = (text, maxLength) => {
         return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
     };

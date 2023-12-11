@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Card, Modal } from 'react-bootstrap';
 
-const SingleSpecialistCard = ({ specialist }) => {
+const SingleSpecialistCard = ({ specialist, serviceId }) => {
     const [showDoctorDetails, setShowDoctorDetails] = useState(false);
-    console.log(specialist)
+    
     // Function to show the dr. details modal
     const handleShowDoctorDetails = () => {
         setShowDoctorDetails(true);
@@ -13,6 +13,7 @@ const SingleSpecialistCard = ({ specialist }) => {
     const handleCloseDoctorDetails = () => {
         setShowDoctorDetails(false);
     };
+
 
     return (
         <Card style={{ width: '300px', height: '400px', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
@@ -49,7 +50,7 @@ const SingleSpecialistCard = ({ specialist }) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <Button href={`/appointment/${specialist.id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
+                <Button href={`/appointment/${serviceId}/${specialist?.dr_id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );
