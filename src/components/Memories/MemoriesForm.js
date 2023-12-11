@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios'
-// import { useUser } from '@clerk/clerk-react';
 import { Button, Form } from 'react-bootstrap';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const MemoriesForm = ({ setShowForm }) => {
-    // const { user } = useUser();
+    const { loggedInUser } = useContext(AuthContext);
     const [newMemory, setNewMemory] = useState({
         m_id: '',
-        // u_id: user.id,
+        u_id: loggedInUser?.u_id,
         title: '',
         details: '',
         img_URL: '',
@@ -17,9 +17,9 @@ const MemoriesForm = ({ setShowForm }) => {
     const generateMemoryId = () => {
         const timestamp = new Date().getTime();
 
-        // const uniqueID = `${timestamp}${user.id}`;
+        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
 
-        // return uniqueID;
+        return uniqueID;
     }
 
 
@@ -34,6 +34,7 @@ const MemoriesForm = ({ setShowForm }) => {
     };
 
 
+    // uploading image to the imgbb
     const handleImageUpload = async (event) => {
         const file = event.target.files[0]
         const data = new FormData();

@@ -35,16 +35,20 @@ const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
         <div className='memories_container'>
             {memories && memories.slice(startIndex, endIndex).map((post) => (
                 <div key={post.m_id} className='memory_card'>
-                    <Card>
-                        <Card.Img  style={{objectFit:'cover'}} height={200} variant="top" src={post.img_URL} />
+                    <Card style={{ height: '100%' }}>
+                        <Card.Img style={{ objectFit: 'cover' }} height={200} variant="top" src={post.img_URL} />
                         <Card.Body>
                             <Card.Title>{truncateText(post.details, 30)}...</Card.Title>
                             <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.details, 90)}...</Card.Text>
-                            <Link to={`/memories/${post.m_id}`}>
-                                <Button variant="outline-primary">Details</Button>
-                            </Link>
+
                             {/* <Button onClick={() => handleDelete(post.m_id)} variant="outline-primary">Delete</Button> */}
                         </Card.Body>
+                        <Card.Footer >
+                            <Link to={`/memories/${post.m_id}`}>
+                                <Button variant="outline-primary ">Details</Button>
+                            </Link>
+                            {/* details */}
+                        </Card.Footer>
                     </Card>
                 </div>
             ))}
