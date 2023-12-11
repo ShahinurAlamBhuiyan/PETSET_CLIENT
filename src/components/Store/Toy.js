@@ -23,7 +23,6 @@ const Toy = () => {
                 toys.map((Toy, index) => (
                     <ProductCard key={index} product={Toy} />
                 ))
-
             }
         </div>
     )

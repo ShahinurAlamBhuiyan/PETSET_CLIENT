@@ -1,23 +1,37 @@
-import React, { useState } from 'react'
-import './Store.css'
+import React, { useState } from 'react';
+import './Store.css';
 
-const SearchStoreProduct = () => {
-    const [searchQuery, setSearchQuery] = useState('');
+const SearchStoreProduct = ({ handleSearch, handleClear, searchQuery, setSearchResults }) => {
+    const [localSearchQuery, setLocalSearchQuery] = useState('');
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
+    const handleLocalSearchChange = (event) => {
+        setLocalSearchQuery(event.target.value);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleSearch(localSearchQuery);
+    };
+
     return (
         <div className="search-container">
-            <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="search-input"
-            />
+            <form onSubmit={handleSubmit} className="search-form">
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    value={localSearchQuery}
+                    onChange={handleLocalSearchChange}
+                    className="search-input"
+                />
+                <button type="submit" className="search-button">
+                    Search
+                </button>
+                <button type="button" onClick={handleClear} className="clear-button">
+                    Clear
+                </button>
+            </form>
         </div>
-    )
-}
+    );
+};
 
-export default SearchStoreProduct
+export default SearchStoreProduct;
