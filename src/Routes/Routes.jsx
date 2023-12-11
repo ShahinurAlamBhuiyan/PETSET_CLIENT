@@ -93,11 +93,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'store',
-        element: (
-          // <PrivateRoute path='/store'>
-          <StorePage />
-          // </PrivateRoute>
-        )
+        element: <StorePage />
       }
       //   {
       //     path: 'updateToys/:id',

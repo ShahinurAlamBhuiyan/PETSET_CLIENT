@@ -3,23 +3,6 @@
   text-align: center;
 }
 
-.search-container {
-  margin-bottom: 20px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  outline: none;
-}
-
-.search-input::placeholder {
-  color: #aaa;
-}
-
 /* Custom background color for tabs */
 .custom-tabs .nav-link {
   background-color: #ED6436; /* Light blue color */
