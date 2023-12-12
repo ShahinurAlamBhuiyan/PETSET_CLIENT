@@ -42,30 +42,14 @@ const router = createBrowserRouter([
         path: 'memories',
         element: <MemoriesPage />
       },
-      // {
-      //   path: 'memories',
-      //   element: (
-      //     <PrivateRoute path='/memories'>
-      //       <MemoriesPage />
-      //     </PrivateRoute>
-      //   )
-      // },
       {
         path: 'memories/:m_id',
         element: (
-          <PrivateRoute>
+          <PrivateRoute path='/memories/:m_id'>
             <MemoryDetailsPage />
           </PrivateRoute>
         )
       },
-      // {
-      //   path: 'services',
-      //   element: (
-      //     <PrivateRoute path='/services'>
-      //       <ServicesPage />
-      //     </PrivateRoute>
-      //   )
-      // },
       {
         path: 'services',
         element: <ServicesPage />
@@ -74,15 +58,6 @@ const router = createBrowserRouter([
         path: 'services/:s_id',
         element: <SpecialistsPage />
       },
-
-      // {
-      //   path: 'services/:s_id',
-      //   element: (
-      //     <PrivateRoute>
-      //       <SpecialistsPage />
-      //     </PrivateRoute>
-      //   )
-      // },
       {
         path: 'appointment/:s_id/:dr_id',
         element: (
@@ -94,7 +69,7 @@ const router = createBrowserRouter([
       {
         path: 'store',
         element: <StorePage />
-      }
+            }
       //   {
       //     path: 'updateToys/:id',
       //     element: (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import axios from 'axios';
-import './StorePage.css';
+import '../../components/Store/Store.css';
 import Medicine from '../../components/Store/Medicine';
 import Food from '../../components/Store/Food';
 import Toy from '../../components/Store/Toy';
