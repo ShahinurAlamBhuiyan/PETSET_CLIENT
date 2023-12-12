@@ -8,13 +8,13 @@ const ProductCard = ({ product }) => {
         return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
     };
     return (
-        <div className="card">
+        <div className="product_card">
             <img
                 src="https://via.placeholder.com/150"
                 alt="Product"
                 className="product-image"
             />
-            <div className="card-content">
+            <div className="product_card-content">
                 <div className="product-name centering_items_flex" style={{ justifyContent: 'space-between' }}>
                     {truncateText(product.product_name, 22)}
                     <div className="product-details">
