@@ -86,7 +86,7 @@ const router = createBrowserRouter([
       {
         path: 'appointment/:s_id/:dr_id',
         element: (
-          <PrivateRoute>
+          <PrivateRoute path='/appointment/:s_id/:dr_id'>
             <DoctorAppointment />
           </PrivateRoute>
         )

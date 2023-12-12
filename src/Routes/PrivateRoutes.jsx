@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Providers/AuthProvider'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 const PrivateRoute = ({ children, path }) => {
+  const { s_id, dr_id } = useParams()
   const { loggedInUser } = useContext(AuthContext)
   const [delayedRedirect, setDelayedRedirect] = useState(false)
 
@@ -13,11 +14,13 @@ const PrivateRoute = ({ children, path }) => {
       const timeoutId = setTimeout(() => {
         setDelayedRedirect(true)
       }, delay)
-
       return () => clearTimeout(timeoutId)
     }
   }, [loggedInUser])
-
+  if (path === '/appointment/:s_id/:dr_id') {
+    path = `/appointment/${s_id}/${dr_id}`
+  }
+  console.log(path)
   if (loggedInUser && loggedInUser.u_id) {
     return children
   } else if (delayedRedirect) {

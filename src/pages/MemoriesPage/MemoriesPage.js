@@ -87,7 +87,7 @@ const MemoriesPage = () => {
                         totalPages={totalPages}
                         handlePageChange={handlePageChange}
                     />
-                    <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>
+                    {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>}
                 </div>
             )}
         </>
