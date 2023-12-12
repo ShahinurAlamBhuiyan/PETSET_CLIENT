@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,41 +25,36 @@ const SimpleCardForm = ({ handlePayment }) => {
             card: cardElement,
         });
 
-        if (error) {
-            setPaymentError(error.message)
-            setPaymentSuccess(null);
-            console.log(error);
-        } else {
+        if (!error) {
             setPaymentSuccess(true)
             setPaymentError(null);
             handlePayment(paymentMethod.id)
             setProcessing(false);
+        } else {
+            setPaymentError(error?.message)
         }
+
     };
-    if (paymentSuccess) {
-        alert(
-            'Great! Your order has been saved!'
-        )
-        navigate('/store')
-    }
+
+    useEffect(() => {
+        if (paymentSuccess && !processing) {
+            alert(
+                'Congratulation! Your order has been saved!'
+            )
+            navigate('/store')
+        } else if (!processing && paymentError) {
+            alert(paymentError)
+        }
+    }, [paymentSuccess, paymentError, processing])
+
 
     return (
         <div >
             <form onSubmit={handleSubmit}>
-                {/* <div className=""> */}
                 <CardElement id="card-element" />
-                {/* </div> */}
-
                 <hr class="my-4" />
-
-                <button class="w-100 btn btn-primary btn-lg" type="submit"><span>{processing ? "Processing..." : "Continue to Checkout"}</span></button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Order</button>
             </form >
-            {
-                paymentError && <p style={{ fontSize: '20px', fontWeight: 'bold', color: 'red' }}>{paymentError}</p>
-            }
-            {
-                paymentSuccess && <p style={{ fontSize: '20px', fontWeight: 'bold', color: 'green' }}>Your Payment is successful</p>
-            }
         </div>
     );
 };
