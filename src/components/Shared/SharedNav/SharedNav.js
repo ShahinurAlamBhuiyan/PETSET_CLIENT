@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
-import logo from '../../../assets/petsetlogo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './SharedNav.css'
 import Topbar from './Topbar'
+import logo from '../../../assets/petsetlogo.png'
 import { AuthContext } from '../../../Providers/AuthProvider'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const SharedNav = () => {
     const { loggedInUser, setLoggedInUser } = useContext(AuthContext)
@@ -43,18 +45,16 @@ const SharedNav = () => {
                                 <a href="/lost&found" className="nav-item nav-link" >Lost & Found</a>
                                 <a href="/services" className="nav-item nav-link" >Services</a>
                                 <a href="/store" className="nav-item nav-link" >Store</a>
-                                {/* <div className="nav-item dropdown">
-                                    <a href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">Store</a>
-                                    <div className="dropdown-menu rounded-0 m-0">
-                                        <a href="/store/medicine" className="dropdown-item">Medicine</a>
-                                        <a href="/store/food" className="dropdown-item">Food</a>
-                                    </div>
-                                </div> */}
                             </>
                             <div className={` ${navItemClass}`}>
                                 {loggedInUser.u_id
-                                    ? <button onClick={handleLogout} className="btn btn-lg btn-outline-primary px-3 d-lg-block">Log out</button>
-                                    : <a href="/sign-in" className="btn btn-lg btn-outline-primary px-3 d-lg-block">Login</a>
+                                    ?
+                                    <div className='centering_items_flex'>
+                                        <a href='/dashboard' className="btn btn-lg btn-outline-primary px-3 d-lg-block">Dashboard</a>
+                                        <FontAwesomeIcon size='lg' title='Logout' style={{ cursor: 'pointer' }} color='gray' onClick={handleLogout} icon={faRightFromBracket} />
+                                    </div>
+                                    :
+                                    <a href="/sign-in" className="btn btn-lg btn-outline-primary px-3 d-lg-block">Login</a>
                                 }
                             </div>
                         </div>

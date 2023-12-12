@@ -13,6 +13,7 @@ import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPa
 import StorePage from '../pages/StorePage/StorePage'
 import DoctorAppointment from '../pages/ServicesPage/DoctorAppointment/DoctorAppointment'
 import Shipment from '../pages/StorePage/Shipment'
+import DashboardPage from '../pages/DashboardPage/DashboardPage'
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute path='/payment/:product_id'>
             <Shipment />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <PrivateRoute path='/dashboard'>
+            <DashboardPage />
           </PrivateRoute>
         )
       }
