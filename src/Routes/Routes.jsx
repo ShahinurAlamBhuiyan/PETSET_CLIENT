@@ -12,6 +12,7 @@ import ServicesPage from '../pages/ServicesPage/ServicesPage'
 import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPage'
 import StorePage from '../pages/StorePage/StorePage'
 import DoctorAppointment from '../pages/ServicesPage/DoctorAppointment/DoctorAppointment'
+import Shipment from '../pages/StorePage/Shipment'
 
 const router = createBrowserRouter([
   {
@@ -69,7 +70,15 @@ const router = createBrowserRouter([
       {
         path: 'store',
         element: <StorePage />
-            }
+      },
+      {
+        path: 'payment/:product_id',
+        element: (
+          <PrivateRoute path='/payment/:product_id'>
+            <Shipment />
+          </PrivateRoute>
+        )
+      }
       //   {
       //     path: 'updateToys/:id',
       //     element: (

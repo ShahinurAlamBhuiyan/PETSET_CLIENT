@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
                     </button>
                 </div>
                 <div className="product-price">$ {product.product_price}</div>
-                <a href="/product_details" className="buy-btn">
+                <a href={`payment/${product.product_id}`} className="buy-btn">
                     Buy Now
                 </a>
             </div>
