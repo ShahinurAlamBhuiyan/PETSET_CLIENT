@@ -14,11 +14,11 @@ const SearchStoreProduct = ({ handleSearch, handleClear, searchQuery, setSearchR
     };
 
     return (
-        <div className="search-container">
+        <div className="container mt-2 mb-2">
             <form onSubmit={handleSubmit} className="search-form">
                 <input
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Search Product..."
                     value={localSearchQuery}
                     onChange={handleLocalSearchChange}
                     className="search-input"
