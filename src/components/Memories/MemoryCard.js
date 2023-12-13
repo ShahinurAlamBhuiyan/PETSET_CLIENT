@@ -13,24 +13,6 @@ const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    // Dashboard functions
-    // const handleDelete = async (id) => {
-    //     try {
-    //         await axios.delete(`http://localhost:8800/memories/${id}`)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // const handleUpdate = async e => {
-    //     e.preventDefault();
-    //     try {
-    //         await axios.put(`http://localhost:8800/memories/${id}`, updatedMemory)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
     return (
         <div className='memories_container'>
             {memories && memories.slice(startIndex, endIndex).map((post) => (

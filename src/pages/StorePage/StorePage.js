@@ -19,7 +19,7 @@ const StorePage = () => {
     const handleSearch = async (query) => {
         try {
             const response = await axios.get(`http://localhost:8800/search?query=${query}`);
-
+            console.log(response.data)
             setSearchResults(response.data);
         } catch (error) {
             console.error('Error searching products:', error);
