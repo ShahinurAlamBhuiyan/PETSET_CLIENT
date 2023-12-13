@@ -9,15 +9,15 @@ const AboutUs = () => {
             <div className="row py-5">
                 <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
                     <h4 className="text-secondary mb-3">About Us</h4>
-                    <h1 className="display-4 mb-4"><span className="text-primary">Boarding</span> & <span className="text-secondary">Daycare</span></h1>
-                    <h5 className="text-muted mb-3">Tailored care for cherished companions - where every day is a vacation at PetSet Boarding & Daycare.</h5>
-                    <p className="mb-4">At PetSet, our Boarding & Daycare services go beyond the ordinary, providing a home away from home for your cherished pets. Our dedicated team ensures a safe and nurturing environment where furry friends can play, relax, and receive personalized attention. Trust us to make every tail wag with joy, offering peace of mind for pet parents and a vacation haven for their beloved companions</p>
+                    <h1 className="display-4 mb-4"><span className="text-primary">A Comprehensive </span><span className="text-secondary">Pet Haven</span></h1>
+                    <h5 className="text-muted mb-3">Beyond Care: Tailored Services for Every Pet's Needs</h5>
+                    <p className="mb-4">Embark on a journey with PetSet, where our commitment goes beyond traditional pet care. Explore the array of specialized services designed to cater to every facet of your furry companion's life.</p>
                     <ul className="list-inline">
-                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Best In Industry</h5></li>
-                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Emergency Services</h5></li>
-                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>24/7 Customer Support</h5></li>
+                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Memory Storing</h5></li>
+                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Lost Pet Assistance</h5></li>
+                        <li><h5><i className="fa fa-check-double text-secondary mr-3"></i>Gourmet Cuisine and Enriching Toys</h5></li>
                     </ul>
-                    <a href="/" className="btn btn-lg btn-primary mt-3 px-4">Learn More</a>
+                    {/* <a href="/" className="btn btn-lg btn-primary mt-3 px-4">Learn More</a> */}
                 </div>
                 <div className="col-lg-5">
                     <div className="row px-3">
