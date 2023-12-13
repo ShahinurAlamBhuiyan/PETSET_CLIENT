@@ -1,9 +1,9 @@
-.container{
+.RightContainer{
     margin-left: 300px;
     transition: margin-left .2s ease-in;
     padding: 50px;
   }
   
-  .container.inactive{
+  .RightContainer.inactive{
     margin-left: 80px;
   }

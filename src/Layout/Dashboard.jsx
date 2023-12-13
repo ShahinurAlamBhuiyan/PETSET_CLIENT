@@ -13,7 +13,8 @@ const Dashboard = () => {
           setInactive(inactive)
         }}
       />
-      <div className={`container ${inactive ? 'inactive' : ""} `}>
+      <div className={`RightContainer ${inactive ? 'inactive' : ""} `}>
+        
         <Outlet />
       </div>
     </div>
