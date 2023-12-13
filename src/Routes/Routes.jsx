@@ -104,11 +104,11 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/dashboard',
+    path: '/',
     element: <Dashboard />,
     children: [
       {
-        path: '',
+        path: 'dashboard',
         element: <h1>Welcome to my fancy dashboard</h1>
       },
       {
@@ -120,9 +120,9 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: 'product',
+        path: 'content',
         element: (
-          <PrivateRoute path='/product'>
+          <PrivateRoute path='/content'>
             <div>
               this is product <br />
               <a href='/dashboard/user'>go user</a>

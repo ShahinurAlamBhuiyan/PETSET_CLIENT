@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SideMenu.css';
-// import logo from '../../assets/logo/image 9.png';
+import logo from '../../../assets/dashboard/dashUser.png';
 // import UserFooter from './UserFooter/UserFooter';
 import MenuItem from './MenuItem';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const menuItems = [
-    { name: "Dashboard", exact: true, to: "/", iconClassName: 'bi bi-speedometer2' },
+    { name: "Dashboard", exact: true, to: "/dashboard", iconClassName: 'bi bi-speedometer2' },
     {
-        name: "Content", exact: true, to: "/content", iconClassName: 'bi bi-newspaper', subMenus: [{ name: "Courses", to: '/content/courses' }, { name: "Videos", to: '/content/videos' },],
+        name: "Content", exact: true, to: "/content", iconClassName: 'bi bi-newspaper',
     },
     { name: "Design", exact: true, to: "/design", iconClassName: 'bi bi-vector-pen' },
 ];
 
 const SideMenu = (props) => {
+    const { loggedInUser } = useContext(AuthContext)
     const [inactive, setInactive] = useState(false);
+
 
     useEffect(() => {
         if (inactive) {
@@ -30,7 +33,7 @@ const SideMenu = (props) => {
         <div className={`side-menu ${inactive ? "inactive" : ""}`}>
             <div className="top-section">
                 <div className="logo">
-                    {/* <img src={logo} alt="circle" /> */}logo
+                    <img src={logo} alt="circle" />
                 </div>
                 <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
                     {
@@ -51,15 +54,14 @@ const SideMenu = (props) => {
             <div className="divider"></div>
 
             <div className="main-menu">
-                <ul style={{margin:'0', padding:'0'}}>
-                    {
+                <ul style={{ margin: '0', padding: '0' }}>
+                    {menuItems &&
                         menuItems.map((menuItem, index) => (
                             <MenuItem
                                 key={index}
                                 name={menuItem.name}
                                 to={menuItem.to}
                                 exact={menuItem.exact}
-                                subMenus={menuItem.subMenus || []}
                                 iconClassName={menuItem.iconClassName}
                                 onClick={() => {
                                     if (inactive) {
@@ -71,7 +73,15 @@ const SideMenu = (props) => {
                     }
                 </ul>
             </div>
-            {/* <UserFooter /> */}
+            <div className="side-menu-footer">
+                <div className='avatar'>
+                    <img src={loggedInUser.image_URL ? loggedInUser.image_URL : logo} alt="user" />
+                </div>
+                <div className="user-info">
+                    <h5>{loggedInUser.full_name}</h5>
+                    <p>{loggedInUser.email}</p>
+                </div>
+            </div>
         </div>
     );
 };
