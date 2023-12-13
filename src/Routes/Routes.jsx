@@ -14,6 +14,7 @@ import StorePage from '../pages/StorePage/StorePage'
 import DoctorAppointment from '../pages/ServicesPage/DoctorAppointment/DoctorAppointment'
 import Shipment from '../pages/StorePage/Shipment'
 import DashboardPage from '../pages/DashboardPage/DashboardPage'
+import Dashboard from '../Layout/Dashboard'
 
 const router = createBrowserRouter([
   {
@@ -79,14 +80,6 @@ const router = createBrowserRouter([
             <Shipment />
           </PrivateRoute>
         )
-      },
-      {
-        path: 'dashboard',
-        element: (
-          <PrivateRoute path='/dashboard'>
-            <DashboardPage />
-          </PrivateRoute>
-        )
       }
       //   {
       //     path: 'updateToys/:id',
@@ -108,6 +101,43 @@ const router = createBrowserRouter([
       //     loader: ({ params }) =>
       //       fetch(`https://toyland-server-weld.vercel.app/allToys/${params.id}`)
       //   }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+    children: [
+      {
+        path: '',
+        element: <h1>Welcome to my fancy dashboard</h1>
+      },
+      {
+        path: 'user',
+        element: (
+          <PrivateRoute path='/user'>
+            <DashboardPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'product',
+        element: (
+          <PrivateRoute path='/product'>
+            <div>
+              this is product <br />
+              <a href='/dashboard/user'>go user</a>
+            </div>
+          </PrivateRoute>
+        )
+      }
+      // {
+      //   path: 'dashboard',
+      //   element: (
+      //     <PrivateRoute path='/dashboard'>
+      //       <DashboardPage />
+      //     </PrivateRoute>
+      //   )
+      // },
     ]
   },
   {
