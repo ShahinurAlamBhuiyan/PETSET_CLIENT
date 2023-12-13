@@ -10,37 +10,34 @@ import { Link } from 'react-router-dom';
 
 const menuItems = [
     {
-        name: "Dashboard", exact: true, to: "/dashboard", iconClassName: 'bi bi-speedometer2'
-    },
-    {
-        name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-newspaper',
+        name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-people-fill',
     },
     {
         name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen'
     },
     {
-        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-vector-pen'
-    },
-    {
-        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-vector-pen'
-    },
-    {
-        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-vector-pen',
-    },
-    {
-        name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-vector-pen',
+        name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-file-earmark-post',
         subMenus:
             [
-                { name: "Memories", to: '/posts/memories' },
-                { name: "Adoption", to: '/posts/adoptions' },
-                { name: "Lost & Found", to: '/posts/lost&founds' }
+                { name: "Memories", to: '/posts/memories', iconClassName: 'bi bi-emoji-laughing' },
+                { name: "Adoption", to: '/posts/adoptions', iconClassName: 'bi bi-star-fill' },
+                { name: "Lost & Found", to: '/posts/lost&founds', iconClassName: 'bi bi-star-fill' }
             ]
     },
     {
-        name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-vector-pen'
+        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop'
     },
     {
-        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-vector-pen'
+        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill'
+    },
+    {
+        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus',
+    },
+    {
+        name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam'
+    },
+    {
+        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle'
     },
 ];
 
@@ -60,6 +57,7 @@ const SideMenu = (props) => {
 
     }, [inactive])
 
+    console.log(inactive)
     return (
         <div className={`side-menu ${inactive ? "inactive" : ""}`}>
             <div className="top-section">
@@ -67,11 +65,9 @@ const SideMenu = (props) => {
                     <img src={logo} alt="circle" />
                 </div>
                 <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
-                    {
-                        inactive ? <i className="bi bi-arrow-right-square-fill"></i> :
-                            <i className="bi bi-arrow-left-square-fill"></i>
-                    }
+                    <i className={`bi ${inactive ? 'bi-arrow-right-square-fill' : 'bi-arrow-left-square-fill'}`}></i>
                 </div>
+
             </div>
             <div className="search-controller">
                 <div>
@@ -105,7 +101,7 @@ const SideMenu = (props) => {
                     }
                 </ul>
             </div>
-            <Link to={'/dashboard/profile'}  className="side-menu-footer">
+            <Link  to={'/profile'} className="side-menu-footer">
                 <div className='avatar'>
                     <img src={loggedInUser.image_URL ? loggedInUser.image_URL : logo} alt="user" />
                 </div>

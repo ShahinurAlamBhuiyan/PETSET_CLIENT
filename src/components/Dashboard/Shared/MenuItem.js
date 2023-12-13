@@ -17,7 +17,16 @@ const MenuItem = ({ name, iconClassName, to, exact, subMenus }) => {
       {
         subMenus && subMenus.length > 0 ?
           (<ul className={`sub-menu ${expand ? 'active' : ''}`}>
-            {subMenus.map((menu, index) => <li key={index}><NavLink to={menu.to}>{menu.name}</NavLink></li>)
+            {subMenus.map((menu, index) =>
+              <li key={index} style={{ listStyle: 'none' }}>
+                <NavLink to={menu.to}>
+                  <div className='menu-icon'>
+                    <i className={menu.iconClassName}></i>
+                    <span>{menu.name}</span>
+                  </div>
+                </NavLink>
+              </li>
+            )
             }</ul>
           ) : null
 

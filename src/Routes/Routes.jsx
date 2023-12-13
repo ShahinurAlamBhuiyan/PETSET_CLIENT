@@ -112,9 +112,9 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: 'dashboard/profile',
+        path: 'profile',
         element: (
-          <PrivateRoute path='/dashboard/profile'>
+          <PrivateRoute path='/profile'>
             <DProfile />
           </PrivateRoute>
         )
