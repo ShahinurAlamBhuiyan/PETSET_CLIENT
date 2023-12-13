@@ -50,7 +50,7 @@ const SharedNav = () => {
                                 {loggedInUser.u_id
                                     ?
                                     <div className='centering_items_flex'>
-                                        <a href='/dashboard/product' className="btn btn-lg btn-outline-primary px-3 d-lg-block">Dashboard</a>
+                                        <a href='/dashboard' className="btn btn-lg btn-outline-primary px-3 d-lg-block">Dashboard</a>
                                         <FontAwesomeIcon size='lg' title='Logout' style={{ cursor: 'pointer' }} color='gray' onClick={handleLogout} icon={faRightFromBracket} />
                                     </div>
                                     :

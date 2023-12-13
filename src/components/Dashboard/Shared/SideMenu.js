@@ -4,13 +4,44 @@ import logo from '../../../assets/dashboard/dashUser.png';
 // import UserFooter from './UserFooter/UserFooter';
 import MenuItem from './MenuItem';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
+
+
 
 const menuItems = [
-    { name: "Dashboard", exact: true, to: "/dashboard", iconClassName: 'bi bi-speedometer2' },
     {
-        name: "Content", exact: true, to: "/content", iconClassName: 'bi bi-newspaper',
+        name: "Dashboard", exact: true, to: "/dashboard", iconClassName: 'bi bi-speedometer2'
     },
-    { name: "Design", exact: true, to: "/design", iconClassName: 'bi bi-vector-pen' },
+    {
+        name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-newspaper',
+    },
+    {
+        name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen'
+    },
+    {
+        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-vector-pen'
+    },
+    {
+        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-vector-pen'
+    },
+    {
+        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-vector-pen',
+    },
+    {
+        name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-vector-pen',
+        subMenus:
+            [
+                { name: "Memories", to: '/posts/memories' },
+                { name: "Adoption", to: '/posts/adoptions' },
+                { name: "Lost & Found", to: '/posts/lost&founds' }
+            ]
+    },
+    {
+        name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-vector-pen'
+    },
+    {
+        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-vector-pen'
+    },
 ];
 
 const SideMenu = (props) => {
@@ -45,7 +76,7 @@ const SideMenu = (props) => {
             <div className="search-controller">
                 <div>
                     <button className="search-btn">
-                        <i class="bi bi-search"></i>
+                        <i className="bi bi-search"></i>
                     </button>
                 </div>
                 <input type="text" placeholder="search.." />
@@ -63,6 +94,7 @@ const SideMenu = (props) => {
                                 to={menuItem.to}
                                 exact={menuItem.exact}
                                 iconClassName={menuItem.iconClassName}
+                                subMenus={menuItem.subMenus || []}
                                 onClick={() => {
                                     if (inactive) {
                                         setInactive(false);
@@ -73,7 +105,7 @@ const SideMenu = (props) => {
                     }
                 </ul>
             </div>
-            <div className="side-menu-footer">
+            <Link to={'/dashboard/profile'}  className="side-menu-footer">
                 <div className='avatar'>
                     <img src={loggedInUser.image_URL ? loggedInUser.image_URL : logo} alt="user" />
                 </div>
@@ -81,7 +113,7 @@ const SideMenu = (props) => {
                     <h5>{loggedInUser.full_name}</h5>
                     <p>{loggedInUser.email}</p>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 };
