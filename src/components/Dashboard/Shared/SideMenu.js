@@ -4,19 +4,21 @@ import logo from '../../../assets/dashboard/dashUser.png';
 // import UserFooter from './UserFooter/UserFooter';
 import MenuItem from './MenuItem';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
 
 const menuItems = [
     {
-        name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-people-fill',
+        name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-people-fill', role: 'admin'
     },
     {
-        name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen'
+        name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen', role: 'admin'
     },
     {
-        name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-file-earmark-post',
+        name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-file-earmark-post', role: 'all',
         subMenus:
             [
                 { name: "Memories", to: '/posts/memories', iconClassName: 'bi bi-emoji-laughing' },
@@ -25,24 +27,25 @@ const menuItems = [
             ]
     },
     {
-        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop'
+        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop', role: 'admin'
     },
     {
-        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill'
+        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill', role: 'all'
     },
     {
-        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus',
+        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus', role: 'admin'
     },
     {
-        name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam'
+        name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam', role: 'all'
     },
     {
-        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle'
+        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle', role: 'admin'
     },
 ];
 
 const SideMenu = (props) => {
-    const { loggedInUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { loggedInUser, setLoggedInUser } = useContext(AuthContext)
     const [inactive, setInactive] = useState(false);
 
 
@@ -56,7 +59,12 @@ const SideMenu = (props) => {
         props.onCollapse(inactive);
 
     }, [inactive])
-
+    
+    const handleLogout = () => {
+        sessionStorage.removeItem('user');
+        setLoggedInUser({});
+        navigate('/')
+    }
     console.log(inactive)
     return (
         <div className={`side-menu ${inactive ? "inactive" : ""}`}>
@@ -67,7 +75,6 @@ const SideMenu = (props) => {
                 <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
                     <i className={`bi ${inactive ? 'bi-arrow-right-square-fill' : 'bi-arrow-left-square-fill'}`}></i>
                 </div>
-
             </div>
             <div className="search-controller">
                 <div>
@@ -87,6 +94,7 @@ const SideMenu = (props) => {
                             <MenuItem
                                 key={index}
                                 name={menuItem.name}
+                                role={menuItem.role}
                                 to={menuItem.to}
                                 exact={menuItem.exact}
                                 iconClassName={menuItem.iconClassName}
@@ -101,7 +109,11 @@ const SideMenu = (props) => {
                     }
                 </ul>
             </div>
-            <Link  to={'/profile'} className="side-menu-footer">
+            <div className='centering_items_flex' style={{ justifyContent: 'flex-end' }}>
+                <FontAwesomeIcon onClick={handleLogout} size='lg' title='Logout' style={{ cursor: 'pointer' }} color='gray' icon={faRightFromBracket} />
+            </div>
+            {/* <button href="/sign-in" onClick={handleLogout} className="btn btn-outline-primary  mt-3">Logout </button> */}
+            <Link to={'/profile'} className="side-menu-footer">
                 <div className='avatar'>
                     <img src={loggedInUser.image_URL ? loggedInUser.image_URL : logo} alt="user" />
                 </div>

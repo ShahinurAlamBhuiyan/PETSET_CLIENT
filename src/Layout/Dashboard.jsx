@@ -14,8 +14,8 @@ const Dashboard = () => {
           setInactive(inactive)
         }}
       />
-      <div className={`DashboardTop ${inactive ? 'inactive' : ''} `}>
-        <Topbar />
+      <div  className={`DashboardTop ${inactive ? 'inactive' : ''} `}>
+        <Topbar  />
       </div>
       <div className={`RightContainer ${inactive ? 'inactive' : ''} `}>
         <Outlet />

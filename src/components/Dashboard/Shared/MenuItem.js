@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './MenuItem.css';
-const MenuItem = ({ name, iconClassName, to, exact, subMenus }) => {
+import { AuthContext } from '../../../Providers/AuthProvider';
+const MenuItem = ({ name, iconClassName, to, exact, subMenus, role }) => {
+  const { loggedInUser } = useContext(AuthContext)
   const [expand, setExpand] = useState(false);
   if (subMenus.name) {
     console.log('first')
   }
   return (
-    <li style={{ listStyle: 'none' }}>
+    <li style={{ listStyle: 'none', display:`${(role === loggedInUser.role || role === 'all') ? 'block' : 'none'}` }}>
       <NavLink exact to={to} className='menu-item' onClick={() => setExpand(!expand)}>
         <div className='menu-icon'>
           <i className={iconClassName}></i>
