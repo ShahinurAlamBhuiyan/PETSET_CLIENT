@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './SideMenu.css';
-import logo from '../../../assets/dashboard/dashUser.png';
+import full_logo from '../../../assets/petsetlogo.png';
+import only_logo from '../../../assets/onlylogo.png';
 // import UserFooter from './UserFooter/UserFooter';
 import MenuItem from './MenuItem';
 import { AuthContext } from '../../../Providers/AuthProvider';
@@ -59,7 +60,7 @@ const SideMenu = (props) => {
         props.onCollapse(inactive);
 
     }, [inactive])
-    
+
     const handleLogout = () => {
         sessionStorage.removeItem('user');
         setLoggedInUser({});
@@ -69,9 +70,10 @@ const SideMenu = (props) => {
     return (
         <div className={`side-menu ${inactive ? "inactive" : ""}`}>
             <div className="top-section">
-                <div className="logo">
-                    <img src={logo} alt="circle" />
-                </div>
+                <Link to={'/'} className="logo">
+                    <img src={inactive ? only_logo : full_logo} alt="circle" />
+                </Link>
+
                 <div className="toggle-menu-btn" onClick={() => setInactive(!inactive)}>
                     <i className={`bi ${inactive ? 'bi-arrow-right-square-fill' : 'bi-arrow-left-square-fill'}`}></i>
                 </div>
@@ -115,7 +117,7 @@ const SideMenu = (props) => {
             {/* <button href="/sign-in" onClick={handleLogout} className="btn btn-outline-primary  mt-3">Logout </button> */}
             <Link to={'/profile'} className="side-menu-footer">
                 <div className='avatar'>
-                    <img src={loggedInUser.image_URL ? loggedInUser.image_URL : logo} alt="user" />
+                    <img src={loggedInUser.image_URL ? loggedInUser.image_URL : only_logo} alt="user" />
                 </div>
                 <div className="user-info">
                     <h5>{loggedInUser.full_name}</h5>
