@@ -56,12 +56,9 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
         setNewServiceTitle('')
         setNewServiceDetails('')
         setShowModalEdit(false);
-        alert('service updated!')
-        setNewServiceTitle('')
-        setNewServiceDetails('')
-        setShowModalEdit(false);
       }
 
+      console.log(serviceWithSpecialists[0].img_URL)
       // Fetch add new doctor to the service
       if (newDoctorId !== '') {
           await axios.post(`http://localhost:8800/services`, {
@@ -69,8 +66,8 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           s_id: serviceWithSpecialists[0]?.s_id,
           title: newServiceTitle !== '' ? newServiceTitle : serviceWithSpecialists[0]?.title,
           details: newServiceDetails !== '' ? newServiceDetails : serviceWithSpecialists[0]?.details,
-          img_URL: serviceWithSpecialists[0]?.img_URL,
-          created_date: serviceWithSpecialists[0]?.created_date,
+          img_URL: serviceWithSpecialists[0].img_URL,
+          created_date: serviceWithSpecialists[0].created_date,
         });
         alert('Dr. added to the service!');
         setNewDoctorId('');
