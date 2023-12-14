@@ -7,7 +7,9 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
   const [newServiceTitle, setNewServiceTitle] = useState('');
   const [newServiceDetails, setNewServiceDetails] = useState('');
   const [newDoctorId, setNewDoctorId] = useState('');
+  const [doctors, setDoctors] = useState([])
 
+  // Get service details
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
@@ -19,8 +21,19 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
     };
     fetchServiceDetails();
   }, [serviceId]);
-  console.log(serviceWithSpecialists[0])
-  console.log({ serviceId })
+
+  // Get all doctors...
+  useEffect(() => {
+    const fetchAllDoctors = async () => {
+      try {
+        const res = await axios.get('http://localhost:8800/doctors')
+        setDoctors(res.data)
+      } catch (error) {
+
+      }
+    }
+    fetchAllDoctors();
+  }, [doctors.length])
 
   const handleDeleteDoctor = async (dr_id) => {
     try {
@@ -61,7 +74,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
       console.log(serviceWithSpecialists[0].img_URL)
       // Fetch add new doctor to the service
       if (newDoctorId !== '') {
-          await axios.post(`http://localhost:8800/services`, {
+        await axios.post(`http://localhost:8800/services`, {
           dr_id: newDoctorId,
           s_id: serviceWithSpecialists[0]?.s_id,
           title: newServiceTitle !== '' ? newServiceTitle : serviceWithSpecialists[0]?.title,
@@ -96,11 +109,10 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           {serviceWithSpecialists &&
             serviceWithSpecialists.map((specialist, index) => (
               <div className='centering_items_flex' key={index} style={{ justifyContent: 'space-between' }}>
-                <p>{specialist.dr_id}</p>
                 <p>{specialist.dr_name}</p>
                 <p>{specialist.experience_yr} yrs</p>
                 <p>$ {specialist.visiting_fees}</p>
-                <span onClick={() => handleDeleteDoctor(specialist.dr_id)} className='btn btn-outline-danger'>delete dr.</span>
+                <span onClick={() => handleDeleteDoctor(specialist.dr_id)} className='btn btn-outline-danger'>Delete</span>
               </div>
             ))
           }
@@ -141,16 +153,22 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
             </Form.Group>
           </Form>
           <hr />
-          <p>Add a new doctor:</p>
           <Form>
-            <Form.Group controlId="formDoctorName">
-              <Form.Label>Doctor ID</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter doctor id"
+            <Form.Group controlId="formTitle">
+              <Form.Label>Add new doctor for the service: &nbsp;</Form.Label>
+              <Form.Select
+                name="dr_id"
                 value={newDoctorId}
                 onChange={(e) => setNewDoctorId(e.target.value)}
-              />
+              >
+                <option value="">Select Dr.</option>
+                {doctors &&
+                  doctors.map((doctor, index) => (
+                    <option value={doctor.dr_id}>{doctor.dr_name}</option>
+                  ))
+
+                }
+              </Form.Select>
             </Form.Group>
           </Form>
         </Modal.Body>

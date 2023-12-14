@@ -38,7 +38,7 @@ const DAddDoctorPage = () => {
     event.preventDefault();
     try {
       await axios.post("http://localhost:8800/doctors", newDoctor)
-      alert('Service Added!');
+      alert('Doctor Added!');
       window.location.reload();
     } catch (error) {
       console.log(error)

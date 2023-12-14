@@ -21,7 +21,7 @@ const DDoctorsPage = () => {
 
     fetchAllDoctors();
   }, [doctors.length]);
-  
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -78,8 +78,7 @@ const DDoctorsPage = () => {
                 doctors.slice().reverse().map((doctor, index) => (
                   <tr key={index}>
                     <td >
-                      <img width={30} style={{ borderRadius: '50%' }} height={30} src="" alt="" />
-                      &nbsp;&nbsp;{doctor.dr_name}
+                      {doctor.dr_name}
                     </td>
                     <td>{doctor.specialise}</td>
                     <td>{doctor.dr_degrees}</td>
