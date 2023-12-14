@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
 import ProcessPayment from '../../components/Payment/ProcessPayment';
 import { AuthContext } from '../../Providers/AuthProvider';
+import axios from 'axios';
 
 
 const Shipment = () => {
@@ -23,22 +24,35 @@ const Shipment = () => {
     const year = currentDate.getFullYear();
 
     const formattedDate = `${day}-${month}-${year}`;
+    const generateOrderId = () => {
+        const timestamp = new Date().getTime();
 
-    const handlePaymentSuccess = (paymentId) => {
+        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
+
+        return uniqueID;
+    }
+
+    const handlePaymentSuccess = async (paymentId) => {
         const orderDetails = {
+            order_id: generateOrderId(),
+            product_id,
+            customer_id: loggedInUser.u_id,
+            payment_id: paymentId,
             orderer_name: shippingData.consumerName,
-            orderer_id: loggedInUser.u_id,
             orderer_email: shippingData.consumerEmail,
             orderer_contact: shippingData.phone,
-            product_id,
-            payment_Id: paymentId,
+            order_date: formattedDate,
             shipping_address: shippingData.address + " " + shippingData.district + " " + shippingData.zip + " " + shippingData.division,
             status,
-            order_date: formattedDate
         };
+
+
+        try {
+            await axios.post('http://localhost:8800/order', orderDetails)
+        } catch (error) {
+            console.log(error)
+        }
         console.log({ orderDetails })
-
-
     }
 
 
@@ -85,9 +99,9 @@ const Shipment = () => {
                                     <label for="division" className="form-label">Division</label>
                                     <select name="division" className="form-select" {...register('division', { required: true })} id="division" required>
                                         <option disabled value="">Select Division</option>
+                                        <option>Dhaka</option>
                                         <option>Barishal</option>
                                         <option>Chittagong</option>
-                                        <option>Dhaka</option>
                                         <option>Khulna</option>
                                         <option>Mymensingh</option>
                                         <option>Rajshahi</option>
