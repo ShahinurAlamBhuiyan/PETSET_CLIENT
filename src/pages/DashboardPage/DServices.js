@@ -10,6 +10,7 @@ const DServicesPage = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [showModalView, setShowModalView] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
+  const [serviceId, setServiceId] = useState('');
 
   useEffect(() => {
     const fetchAllServices = async () => {
@@ -46,7 +47,8 @@ const DServicesPage = () => {
     }
   }
 
-  const handleViewUser = (service) => {
+  const handleViewSpecialist = (service) => {
+    setServiceId(service.s_id)
     setSelectedService(service);
     setShowModalView(true);
   };
@@ -65,6 +67,7 @@ const DServicesPage = () => {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th>Service ID.</th>
                 <th>Title</th>
                 <th>Details</th>
                 <th>Specialists</th>
@@ -76,13 +79,14 @@ const DServicesPage = () => {
               {services.length > 0 &&
                 services.slice().reverse().map((service, index) => (
                   <tr key={index}>
+                    <td>{service.s_id}</td>
                     <td>
                       <img width={30} style={{ borderRadius: '50%' }} height={30} src={service.img_URL} alt="" />
                       &nbsp;&nbsp;{service.title}
                     </td>
                     <td>{service.details}</td>
                     <td>
-                      <button onClick={() => handleViewUser(service)} className="btn btn-outline-secondary">
+                      <button onClick={() => handleViewSpecialist(service)} className="btn btn-outline-secondary">
                         View
                       </button>
                     </td>
@@ -108,7 +112,7 @@ const DServicesPage = () => {
         setShowModalView={setShowModalView}
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
-        selectedService={selectedService}
+        serviceId={serviceId}
       />
     </div>
   );

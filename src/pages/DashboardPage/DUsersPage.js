@@ -9,7 +9,7 @@ const DUsersPage = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.delete('http://localhost:8800/users');
+        const response = await axios.get('http://localhost:8800/users');
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,7 +31,7 @@ const DUsersPage = () => {
 
   const handleDeleteUser = async (u_id) => {
     try {
-      const res = await axios.post(`http://localhost:8800/user/${u_id}`)
+      const res = await axios.delete(`http://localhost:8800/user/${u_id}`)
       if (res.data) {
         setUsers(users.filter(user => user.u_id !== u_id));
         alert('user deleted!')
