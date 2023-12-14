@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import './SideMenu.css';
 import full_logo from '../../../assets/petsetlogo.png';
 import only_logo from '../../../assets/onlylogo.png';
-// import UserFooter from './UserFooter/UserFooter';
 import MenuItem from './MenuItem';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,6 +22,20 @@ const menuItems = [
             ]
     },
     {
+        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop', role: 'admin',
+        subMenus:
+            [
+                { name: "Add Product", exact: true, to: "/add_product", iconClassName: 'bi bi-plus-circle' },
+            ]
+    },
+    {
+        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus', role: 'admin',
+        subMenus:
+            [
+                { name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle' },
+            ]
+    },
+    {
         name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-file-earmark-post', role: 'all',
         subMenus:
             [
@@ -32,21 +45,7 @@ const menuItems = [
             ]
     },
     {
-        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop', role: 'admin',
-        subMenus:
-            [
-                { name: "Add Product", exact: true, to: "/add_product", iconClassName: 'bi bi-plus-circle' },
-            ]
-    },
-    {
         name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill', role: 'all'
-    },
-    {
-        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus', role: 'admin',
-        subMenus:
-            [
-                { name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle' },
-            ]
     },
     {
         name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam', role: 'all'
@@ -75,7 +74,7 @@ const SideMenu = (props) => {
         setLoggedInUser({});
         navigate('/')
     }
-    console.log(inactive)
+
     return (
         <div className={`side-menu ${inactive ? "inactive" : ""}`}>
             <div className="top-section">

@@ -6,7 +6,7 @@ const DDoctorsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
+// Get all doctors
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
@@ -33,7 +33,7 @@ const DDoctorsPage = () => {
   const handleDeleteDoctor = async (doctor_id) => {
     try {
       // Delete doctors appointment first....
-      const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/${doctor_id}`)
+      const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/doctor/${doctor_id}`)
       console.log('39')
       if (resDeleteAppointment.data) {
         console.log('41')

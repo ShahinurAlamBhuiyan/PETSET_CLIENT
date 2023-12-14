@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const SignUpPage = () => {
@@ -15,7 +15,7 @@ const SignUpPage = () => {
     password: '',
     image_URL: 'https://www.westridgehilton.org.in/img/dd.jpg'
   });
-  
+
   const [confirmPass, setConfirmPass] = useState('')
 
   const handleInputChange = (e) => {
@@ -29,8 +29,7 @@ const SignUpPage = () => {
       try {
         await axios.post("http://localhost:8800/sign-up", formData)
         alert('sign-up successfully !');
-        // navigate('/sign-in');
-        redirect('/sign-in')
+        navigate('/sign-in');
       } catch (error) {
         alert(error.response.data)
       }
