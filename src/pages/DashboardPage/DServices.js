@@ -6,7 +6,6 @@ const DServicesPage = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedService, setSelectedService] = useState(null);
   const [showModalView, setShowModalView] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [serviceId, setServiceId] = useState('');
@@ -48,7 +47,6 @@ const DServicesPage = () => {
 
   const handleViewSpecialist = (service) => {
     setServiceId(service.s_id)
-    setSelectedService(service);
     setShowModalView(true);
   };
 
