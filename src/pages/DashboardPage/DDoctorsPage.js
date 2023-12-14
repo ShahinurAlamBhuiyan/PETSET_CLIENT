@@ -5,8 +5,6 @@ const DDoctorsPage = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showModalEdit, setShowModalEdit] = useState(false);
-  // const [doctor, setProduct] = useState(null);
 
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const DDoctorsPage = () => {
 
     fetchAllDoctors();
   }, [doctors.length]);
-  // console.log(doctors)
+  
   if (loading) {
     return <p>Loading...</p>;
   }
