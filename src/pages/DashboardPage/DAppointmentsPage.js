@@ -16,8 +16,8 @@ const DAppointmentsPage = () => {
         try {
           let response;
           if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:8800/appointments');
-          if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:8800/appointments/doctor/${loggedInUser?.u_id}`);
-          if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:8800/appointments/user/${loggedInUser?.u_id}`);
+          else if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:8800/appointments/doctor/${loggedInUser?.u_id}`);
+          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:8800/appointments/user/${loggedInUser?.u_id}`);
 
           setAppointments(response.data);
           setLoading(false);
@@ -71,29 +71,6 @@ const DAppointmentsPage = () => {
     } catch (error) {
       console.log(error)
     }
-    // try {
-    //   // Delete doctors appointment first....
-    //   const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/${app_id}`)
-    //   console.log('39')
-    //   if (resDeleteAppointment.data) {
-    //     console.log('41')
-    //     // delete doctors service second...
-    //     const resDeleteDoctorService = await axios.delete(`http://localhost:8800/service/doctor/${app_id}`)
-    //     console.log('44')
-
-    //     if (resDeleteDoctorService.data) {
-    //       // last delete dr. from doctors 
-    //       const res = await axios.delete(`http://localhost:8800/doctor/${app_id}`)
-
-    //       if (res.data) {
-    //         setAppointments(appointments.filter(appointment => appointment.a_id !== app_id));
-    //         alert('doctor deleted!')
-    //       }
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.log(error)
-    // }
   }
 
   return (
