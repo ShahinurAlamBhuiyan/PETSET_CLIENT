@@ -9,7 +9,7 @@ const DUsersPage = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/users');
+        const response = await axios.delete('http://localhost:8800/users');
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -42,40 +42,38 @@ const DUsersPage = () => {
   }
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="table-wrap" >
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.length > 0 &&
-                  users.slice().reverse().map((user, index) => (
-                    <tr key={index}>
+    <div className="row">
+      <div className="col-md-12">
+        <div className="table-wrap" >
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.length > 0 &&
+                users.slice().reverse().map((user, index) => (
+                  <tr key={index}>
 
-                      <td >
-                        <img width={30} style={{ borderRadius: '50%' }} height={30} src={user.image_URL} alt={user.full_name} />
-                        &nbsp;&nbsp;{user.full_name}
-                      </td>
-                      <td>{user.email}</td>
-                      <td>{user.role}</td>
-                      <td>
-                        <button onClick={() => handleDeleteUser(user.u_id)} className='btn btn-outline-primary'>
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
+                    <td >
+                      <img width={30} style={{ borderRadius: '50%' }} height={30} src={user.image_URL} alt={user.full_name} />
+                      &nbsp;&nbsp;{user.full_name}
+                    </td>
+                    <td>{user.email}</td>
+                    <td>{user.role}</td>
+                    <td>
+                      <button onClick={() => handleDeleteUser(user.u_id)} className='btn btn-outline-primary'>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
