@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Modal, Button } from 'react-bootstrap';
 import DServiceModal from '../../components/Dashboard/DServiceModal';
 
 const DServicesPage = () => {

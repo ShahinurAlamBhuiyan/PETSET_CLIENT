@@ -27,6 +27,8 @@ import DAddDoctorPage from '../pages/DashboardPage/DAddDoctorPage'
 import DServices from '../pages/DashboardPage/DServices'
 import DOrders from '../pages/DashboardPage/DOrders'
 import DProfile from '../pages/DashboardPage/DProfile'
+import DAddServicePage from '../pages/DashboardPage/DAddServicePage'
+import DAddProductPage from '../pages/DashboardPage/DAddProductPage'
 
 const router = createBrowserRouter([
   {
@@ -128,6 +130,14 @@ const router = createBrowserRouter([
         )
       },
       {
+        path: 'add_service',
+        element: (
+          <PrivateRoute path='/add_service'>
+            <DAddServicePage />
+          </PrivateRoute>
+        )
+      },
+      {
         path: 'orders',
         element: (
           <PrivateRoute path='/orders'>
@@ -140,6 +150,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute path='/products'>
             <DProductsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'add_product',
+        element: (
+          <PrivateRoute path='/add_product'>
+            <DAddProductPage />
           </PrivateRoute>
         )
       },

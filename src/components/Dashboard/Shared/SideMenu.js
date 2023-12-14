@@ -16,7 +16,11 @@ const menuItems = [
         name: "Users", exact: true, to: "/users", iconClassName: 'bi bi-people-fill', role: 'admin'
     },
     {
-        name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen', role: 'admin'
+        name: "Services", exact: true, to: "/dservices", iconClassName: 'bi bi-vector-pen', role: 'admin',
+        subMenus:
+            [
+                { name: "Add Service", exact: true, to: "/add_service", iconClassName: 'bi bi-plus-circle' },
+            ]
     },
     {
         name: "Posts", exact: true, to: "/posts", iconClassName: 'bi bi-file-earmark-post', role: 'all',
@@ -28,19 +32,24 @@ const menuItems = [
             ]
     },
     {
-        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop', role: 'admin'
+        name: "Products", exact: true, to: "/products", iconClassName: 'bi bi-shop', role: 'admin',
+        subMenus:
+            [
+                { name: "Add Product", exact: true, to: "/add_product", iconClassName: 'bi bi-plus-circle' },
+            ]
     },
     {
         name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill', role: 'all'
     },
     {
-        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus', role: 'admin'
+        name: "Doctors", exact: true, to: "/doctors", iconClassName: 'bi bi-file-plus', role: 'admin',
+        subMenus:
+            [
+                { name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle' },
+            ]
     },
     {
         name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam', role: 'all'
-    },
-    {
-        name: "Add Doctor", exact: true, to: "/add_doctor", iconClassName: 'bi bi-plus-circle', role: 'admin'
     },
 ];
 
