@@ -25,7 +25,7 @@ const DServicesPage = () => {
     };
 
     fetchAllServices();
-  }, [services.length]);
+  }, [services.length, showModalEdit]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -53,8 +53,8 @@ const DServicesPage = () => {
     setShowModalView(true);
   };
 
-  const handleEditUser = () => {
-    // setSelectedService(service);
+  const handleEditUser = (service) => { 
+    setServiceId(service.s_id)
     setShowModalEdit(true);
   };
 
@@ -91,7 +91,7 @@ const DServicesPage = () => {
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => handleEditUser()} className="btn btn-outline-secondary">
+                      <button onClick={() => handleEditUser(service)} className="btn btn-outline-secondary">
                         Edit
                       </button>
                     </td>
