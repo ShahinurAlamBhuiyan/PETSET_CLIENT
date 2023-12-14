@@ -9,7 +9,7 @@ const DProductsPage = () => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [product, setProduct] = useState(null);
 
-
+// getting all products
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -21,10 +21,9 @@ const DProductsPage = () => {
         setLoading(false);
       }
     };
-
     fetchAllProducts();
   }, [products.length]);
-  // console.log(products)
+  
   if (loading) {
     return <p>Loading...</p>;
   }
