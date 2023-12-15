@@ -9,10 +9,11 @@ const AdaptationDetailsPage = () => {
     const [adaptationPost, setAdaptationPost] = useState([]);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
+    console.log(a_id)
 
     const fetchAdaptationPostDetails = async () => {
         try {
-            const res = await axios.get(`http://localhost:8800/adaptation/${a_id}`);
+            const res = await axios.get(`http://localhost:8800/adaption/${a_id}`);
             setAdaptationPost(res.data);
         } catch (error) {
             console.error('Error fetching adoption details:', error);

@@ -10,13 +10,13 @@ const AdaptationForm = ({ setShowForm }) => {
         u_id: loggedInUser?.u_id,
         title: '',
         details: '',
-        img_URL1: '',
+        img_URL: '',
         img_URL2: '',
         img_URL3: '',
         created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     });
 
-    const generateAdaptationId = () => {
+    const generateAdaptionId = () => {
         const timestamp = new Date().getTime();
 
         const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
@@ -49,11 +49,9 @@ const AdaptationForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
-            const adaptation_id = generateAdaptationId()
             setNewAdaptationPost({
                 ...newAdaptationPost,
-                img_URL1: responseData.data.display_url,
-                a_id: adaptation_id,
+                img_URL: responseData.data.display_url,
             })
 
         } catch (error) {
@@ -73,11 +71,9 @@ const AdaptationForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
-            const adaptation_id = generateAdaptationId()
             setNewAdaptationPost({
                 ...newAdaptationPost,
                 img_URL2: responseData.data.display_url,
-                a_id: adaptation_id,
             })
 
         } catch (error) {
@@ -97,11 +93,9 @@ const AdaptationForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
-            const adaptation_id = generateAdaptationId()
             setNewAdaptationPost({
                 ...newAdaptationPost,
                 img_URL3: responseData.data.display_url,
-                a_id: adaptation_id,
             })
 
         } catch (error) {
@@ -113,18 +107,30 @@ const AdaptationForm = ({ setShowForm }) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        setShowForm(false); // from upper level
+        newAdaptationPost.a_id = generateAdaptionId();
         try {
+            await axios.post("http://localhost:8800/adaption", newAdaptationPost)
             console.log(newAdaptationPost)
-            // await axios.post("http://localhost:8800/adaptation", newAdaptationPost)
+            setShowForm(false); // from upper level
             alert('Adaptation post posted!');
+            setNewAdaptationPost({
+                a_id: '',
+                u_id: loggedInUser?.u_id,
+                title: '',
+                details: '',
+                img_URL: '',
+                img_URL2: '',
+                img_URL3: '',
+                created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+            })
+
         } catch (error) {
             console.log(error)
         }
     };
 
     const isFormComplete = () => {
-        if (newAdaptationPost.title && newAdaptationPost.img_URL1 && newAdaptationPost.img_URL2 && newAdaptationPost.img_URL3 && newAdaptationPost.details && newAdaptationPost.created_date) {
+        if (newAdaptationPost.title && newAdaptationPost.img_URL && newAdaptationPost.img_URL2 && newAdaptationPost.img_URL3 && newAdaptationPost.details && newAdaptationPost.created_date) {
             return true
         } else {
             return false
@@ -148,7 +154,7 @@ const AdaptationForm = ({ setShowForm }) => {
                     <Form.Control
                         as="textarea"
                         rows={3}
-                        placeholder="Enter your Adoption Post"
+                        placeholder="Enter your post details"
                         name="details"
                         value={newAdaptationPost.details}
                         onChange={handleInputChange}
@@ -156,15 +162,15 @@ const AdaptationForm = ({ setShowForm }) => {
                 </Form.Group>
                 <Form.Group controlId="formImageUrl">
                     <Form.Label>Image Upload-1</Form.Label>
-                    <input type="file" name='image' id="file" onChange={(e) => handleImageUpload_1(e)} />
+                    <input type="file" name='img_URL' id="file" onChange={(e) => handleImageUpload_1(e)} />
                 </Form.Group>
                 <Form.Group controlId="formImageUrl">
                     <Form.Label>Image Upload-2</Form.Label>
-                    <input type="file" name='image' id="file" onChange={(e) => handleImageUpload_2(e)} />
+                    <input type="file" name='img_URL2' id="file" onChange={(e) => handleImageUpload_2(e)} />
                 </Form.Group>
                 <Form.Group controlId="formImageUrl">
                     <Form.Label>Image Upload-3</Form.Label>
-                    <input type="file" name='image' id="file" onChange={(e) => handleImageUpload_3(e)} />
+                    <input type="file" name='img_URL3' id="file" onChange={(e) => handleImageUpload_3(e)} />
                 </Form.Group>
                 <Button disabled={!isFormComplete()} className="mt-2" variant="primary" type="submit">
                     Add Adoption Post

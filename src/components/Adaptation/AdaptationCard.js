@@ -4,19 +4,12 @@ import { Button, Card, Carousel } from 'react-bootstrap';
 import './Adaptation.css';
 import { Link } from 'react-router-dom';
 
-// Function to shuffle an array
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
+
 
 const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
     
     
-    console.log(adaptationPosts.img_URL)
+    // console.log(adaptationPosts.img_URL)
 
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;

@@ -21,14 +21,14 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/adaptation")
+                const res = await axios.get("http://localhost:8800/adaptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchAllAdaptationPosts()
-    }, [adaptationPosts])
+    }, [adaptationPosts.length])
 
     // Pagination part --->
     const totalPages = Math.ceil(adaptationPosts.length / itemsPerPage);
