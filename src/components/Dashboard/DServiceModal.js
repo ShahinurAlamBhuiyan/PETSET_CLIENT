@@ -71,7 +71,6 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
         setShowModalEdit(false);
       }
 
-      console.log(serviceWithSpecialists[0].img_URL)
       // Fetch add new doctor to the service
       if (newDoctorId !== '') {
         await axios.post(`http://localhost:8800/services`, {

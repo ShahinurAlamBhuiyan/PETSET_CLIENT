@@ -54,7 +54,7 @@ const DServicesPage = () => {
     setServiceId(service.s_id)
     setShowModalEdit(true);
   };
-
+console.log(services)
 
 
   return (
@@ -64,7 +64,7 @@ const DServicesPage = () => {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Service ID.</th>
+                <th>ID.</th>
                 <th>Title</th>
                 <th>Details</th>
                 <th>Specialists</th>
@@ -77,10 +77,7 @@ const DServicesPage = () => {
                 services.slice().reverse().map((service, index) => (
                   <tr key={index}>
                     <td>{service.s_id}</td>
-                    <td>
-                      <img width={30} style={{ borderRadius: '50%' }} height={30} src={service.img_URL} alt="" />
-                      &nbsp;&nbsp;{service.title}
-                    </td>
+                    <td>{service.title}</td>
                     <td>{service.details}</td>
                     <td>
                       <button onClick={() => handleViewSpecialist(service)} className="btn btn-outline-secondary">

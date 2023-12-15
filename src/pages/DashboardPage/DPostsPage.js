@@ -2,7 +2,7 @@ import React from 'react'
 
 const DPostsPage = () => {
   return (
-    <div>DPostsPage</div>
+    <div>This is your memory post page.</div>
   )
 }
 

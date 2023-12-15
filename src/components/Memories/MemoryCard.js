@@ -13,23 +13,7 @@ const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    // Dashboard functions
-    // const handleDelete = async (id) => {
-    //     try {
-    //         await axios.delete(`http://localhost:8800/memories/${id}`)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
-    // const handleUpdate = async e => {
-    //     e.preventDefault();
-    //     try {
-    //         await axios.put(`http://localhost:8800/memories/${id}`, updatedMemory)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     return (
         <div className='memories_container'>
@@ -38,7 +22,7 @@ const MemoryCard = ({ memories, currentPage, itemsPerPage }) => {
                     <Card style={{ height: '100%' }}>
                         <Card.Img style={{ objectFit: 'cover' }} height={200} variant="top" src={post.img_URL} />
                         <Card.Body>
-                            <Card.Title>{truncateText(post.details, 30)}...</Card.Title>
+                            <Card.Title>{truncateText(post.title, 30)}...</Card.Title>
                             <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.details, 90)}...</Card.Text>
 
                             {/* <Button onClick={() => handleDelete(post.m_id)} variant="outline-primary">Delete</Button> */}

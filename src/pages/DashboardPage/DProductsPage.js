@@ -80,7 +80,7 @@ const DProductsPage = () => {
                       <img width={30} style={{ borderRadius: '50%' }} height={30} src={product.product_image} alt={product.product_name} />
                       &nbsp;&nbsp;{product.product_name}
                     </td>
-                    <td>{product.product_price}</td>
+                    <td>${product.product_price}</td>
                     <td>{product.product_type}</td>
                     <td>{product.product_description}</td>
                     <td>

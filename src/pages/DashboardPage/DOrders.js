@@ -5,7 +5,6 @@ import { AuthContext } from '../../Providers/AuthProvider';
 const DOrders = () => {
   const { loggedInUser } = useContext(AuthContext)
   const [orders, setOrders] = useState([]);
-  const [doctorNames, setDoctorNames] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,7 +21,6 @@ const DOrders = () => {
 
   useEffect(() => {
     fetchDataForOrders();
-    console.log(orders)
   }, [orders.length]);
 
 
