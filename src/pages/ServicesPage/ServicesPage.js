@@ -7,7 +7,7 @@ const ServicesPage = () => {
     const [services, setServices] = useState([])
     // Fetching all memories --->
     useEffect(() => {
-        const fetchAllMemories = async () => {
+        const   fetchAllMemories = async () => {
             try {
                 const res = await axios.get("http://localhost:8800/services")
                 setServices(res.data)
