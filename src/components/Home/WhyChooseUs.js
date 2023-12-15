@@ -4,7 +4,7 @@ import featureImg from '../../assets/feature.jpg'
 
 const WhyChooseUs = () => {
     return (
-        <div className="container">
+        <div className="container mt-5">
             <div className="row align-items-center">
                 <div className="col-lg-5">
                     <img className="img-fluid w-100" src={featureImg} alt="Special Care On Pets" />

@@ -15,8 +15,8 @@ const HomeCarousel = () => {
                                     <h3 className="text-white mb-3 d-none d-sm-block">A social media for Pet <span className="text-secondary">Lovers</span></h3>
                                     <h1 className="display-3 text-white mb-3">Be Happy With Your <span className="text-primary">Pet</span></h1>
                                     <h5 className="text-white mb-3 d-none d-sm-block">Share Memories, Post for Adoption, Search for your Lost Pet and So on</h5>
-                                    <a href="/" className="btn btn-lg btn-primary mt-3 mt-md-4 px-4" style={{marginRight:'10px'}}>Post Memories</a>
-                                    <a href="/" className="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Post for Adoption</a>
+                                    <a href="/memories" className="btn btn-lg btn-primary mt-3 mt-md-4 px-4" style={{marginRight:'10px'}}>Post Memories</a>
+                                    <a href="/adaptation" className="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Post for Adoption</a>
                                 </div>
                             </div>
                     </div>
@@ -27,8 +27,8 @@ const HomeCarousel = () => {
                                     <h3 className="text-white mb-3 d-none d-sm-block">Best Pet <span className="text-primary">Services</span> and <span className="text-primary">Store</span></h3>
                                     <h1 className="display-3 text-white mb-3">Book <span className="text-secondary">Specialists</span> and Buy Pet <span className="text-primary">Goods</span></h1>
                                     <h5 className="text-white mb-3 d-none d-sm-block">This is a Place for Your Beloved Pets' Health Care and Buying Foods and Gifting Goods</h5>
-                                    <button href="/" className="btn btn-lg btn-primary mt-3 mt-md-4" style={{marginRight:'10px'}}>Get Services</button>
-                                    <button href="/" className="btn btn-lg btn-secondary mt-3 mt-md-4" >Buy from Store</button>
+                                    <button href="/services" className="btn btn-lg btn-primary mt-3 mt-md-4" style={{marginRight:'10px'}}>Get Services</button>
+                                    <button href="/store" className="btn btn-lg btn-secondary mt-3 mt-md-4" >Buy from Store</button>
                                 </div>
                             </div>
                     </div>

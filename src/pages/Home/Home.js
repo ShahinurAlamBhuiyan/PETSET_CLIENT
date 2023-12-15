@@ -4,7 +4,6 @@ import HomeCarousel from '../../components/Home/HomeCarousel'
 import AboutUs from '../../components/Home/AboutUs'
 import WhyChooseUs from '../../components/Home/WhyChooseUs'
 import PopularSpecialist from '../../components/Home/PopularSpecialist'
-import MemoryHigh from '../../components/Home/MemoryHigh'
 import OurFeatures from '../../components/Home/OurFeatures'
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
             <OurFeatures />
             <WhyChooseUs />
             <PopularSpecialist />
-            <MemoryHigh />
         </div>
     )
 }
