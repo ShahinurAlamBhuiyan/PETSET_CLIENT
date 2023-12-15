@@ -52,8 +52,8 @@ const SimpleCardForm = ({ handlePayment }) => {
         <div >
             <form onSubmit={handleSubmit}>
                 <CardElement id="card-element" />
-                <hr class="my-4" />
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Order</button>
+                <hr className="my-4" />
+                <button className="w-100 btn btn-primary btn-lg" type="submit">Order</button>
             </form >
         </div>
     );

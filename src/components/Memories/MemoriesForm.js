@@ -80,6 +80,7 @@ const MemoriesForm = ({ setShowForm }) => {
             return false
         }
     }
+    console.log(isFormComplete())
     return (
         <div className="form_container">
             <Form onSubmit={handleFormSubmit} style={{ width: '80%' }} className="mb-4">

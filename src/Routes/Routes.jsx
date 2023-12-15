@@ -14,11 +14,23 @@ import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPa
 import StorePage from '../pages/StorePage/StorePage'
 import DoctorAppointment from '../pages/ServicesPage/DoctorAppointment/DoctorAppointment'
 import Shipment from '../pages/StorePage/Shipment'
-import DashboardPage from '../pages/DashboardPage/DashboardPage'
+
+import Dashboard from '../Layout/Dashboard'
+import DProductsPage from '../pages/DashboardPage/DProductsPage'
+import DUsersPage from '../pages/DashboardPage/DUsersPage'
+import DDoctorsPage from '../pages/DashboardPage/DDoctorsPage'
+import DPostsPage from '../pages/DashboardPage/DPostsPage'
+import DMemoriesPage from '../pages/DashboardPage/DMemoriesPage'
+import DAdoptionsPage from '../pages/DashboardPage/DAdoptionsPage'
+import DLostAndFoundsPage from '../pages/DashboardPage/DLostAndFoundsPage'
+import DAppointmentsPage from '../pages/DashboardPage/DAppointmentsPage'
+import DAddDoctorPage from '../pages/DashboardPage/DAddDoctorPage'
+import DServices from '../pages/DashboardPage/DServices'
+import DOrders from '../pages/DashboardPage/DOrders'
+import DProfile from '../pages/DashboardPage/DProfile'
+import DAddServicePage from '../pages/DashboardPage/DAddServicePage'
+import DAddProductPage from '../pages/DashboardPage/DAddProductPage'
 import AdaptationDetailsPage from '../pages/AdaptationPage/AdaptationDetailsPage'
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -96,35 +108,138 @@ const router = createBrowserRouter([
             <Shipment />
           </PrivateRoute>
         )
-      },
+      }
+    ]
+  },
+  {
+    path: '/',
+    element: <Dashboard />,
+    children: [
       {
         path: 'dashboard',
+        element: <h1>Welcome to my fancy dashboard</h1>
+      },
+      {
+        path: 'users',
         element: (
-          <PrivateRoute path='/dashboard'>
-            <DashboardPage />
+          <PrivateRoute path='/users'>
+            <DUsersPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'profile',
+        element: (
+          <PrivateRoute path='/profile'>
+            <DProfile />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'dservices',
+        element: (
+          <PrivateRoute path='/dservices'>
+            <DServices />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'add_service',
+        element: (
+          <PrivateRoute path='/add_service'>
+            <DAddServicePage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'orders',
+        element: (
+          <PrivateRoute path='/orders'>
+            <DOrders />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'products',
+        element: (
+          <PrivateRoute path='/products'>
+            <DProductsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'add_product',
+        element: (
+          <PrivateRoute path='/add_product'>
+            <DAddProductPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'posts',
+        element: (
+          <PrivateRoute path='/posts'>
+            <DPostsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'posts/memories',
+        element: (
+          <PrivateRoute path='/posts/memories'>
+            <DMemoriesPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'posts/adoptions',
+        element: (
+          <PrivateRoute path='/posts/adoptions'>
+            <DAdoptionsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'posts/lost&founds',
+        element: (
+          <PrivateRoute path='/posts/lost&founds'>
+            <DLostAndFoundsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'doctors',
+        element: (
+          <PrivateRoute path='/doctors'>
+            <DDoctorsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'appointments',
+        element: (
+          <PrivateRoute path='/appointments'>
+            <DAppointmentsPage />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'add_doctor',
+        element: (
+          <PrivateRoute path='/add_doctor'>
+            <DAddDoctorPage />
           </PrivateRoute>
         )
       }
-      //   {
-      //     path: 'updateToys/:id',
-      //     element: (
-      //       <PrivateRoute>
-      //         <UpdateToys></UpdateToys>
-      //       </PrivateRoute>
-      //     ),
-      //     loader: ({ params }) =>
-      //       fetch(`https://toyland-server-weld.vercel.app/allToys/${params.id}`)
-      //   },
-      //   {
-      //     path: 'viewDetails/:id',
-      //     element: (
-      //       <PrivateRoute>
-      //         <ViewDetails></ViewDetails>
-      //       </PrivateRoute>
-      //     ),
-      //     loader: ({ params }) =>
-      //       fetch(`https://toyland-server-weld.vercel.app/allToys/${params.id}`)
-      //   }
+
+      // {
+      //   path: 'dashboard',
+      //   element: (
+      //     <PrivateRoute path='/dashboard'>
+      //       <DashboardPage />
+      //     </PrivateRoute>
+      //   )
+      // },
     ]
   },
   {

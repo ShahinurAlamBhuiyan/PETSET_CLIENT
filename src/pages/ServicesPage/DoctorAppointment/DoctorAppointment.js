@@ -59,6 +59,7 @@ const DoctorAppointment = () => {
         s_id: s_id,
         owner_name: loggedInUser?.full_name,
         owner_email: loggedInUser?.email,
+        service_name: "",
         contact: '+880',
         fee: '',
     });
@@ -76,10 +77,11 @@ const DoctorAppointment = () => {
     const handleAppointmentSubmit = async (e) => {
         e.preventDefault();
         const isAppointmentSuccessful = handleFormSubmission();
-
+        appointmentDetails.service_name = service.title;
         // booking appointment...
         if (isAppointmentSuccessful) {
             try {
+                console.log({ appointmentDetails })
                 await axios.post("http://localhost:8800/appointment", appointmentDetails)
                 alert('Appointment booked successfully! Assistant will contact you soon.');
                 navigate('/services');

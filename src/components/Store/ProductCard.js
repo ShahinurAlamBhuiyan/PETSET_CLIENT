@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Store.css';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 const ProductCard = ({ product }) => {
@@ -22,7 +21,7 @@ const ProductCard = ({ product }) => {
     const handleCloseForm = () => {
         setShowForm(false);
     };
-    console.log(product)
+
     return (
         <div className="product_card">
             <img
