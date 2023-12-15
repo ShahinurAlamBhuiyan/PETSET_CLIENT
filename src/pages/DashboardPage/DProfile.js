@@ -7,28 +7,15 @@ const DProfile = () => {
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext)
   const [newName, setNewName] = useState('')
   const [newEmail, setNewEmail] = useState('')
-  const [newImageUrl, setNewImageUrl] = useState('')
+  const [newImageUrl, setNewImageUrl] = useState()
   const [isUpdate, setIsUpdate] = useState(false)
 
-  // const [user, setUser] = useState({})
-
-  // useEffect(() => {
-  //   if (isUpdate) {
-  //     sessionStorage.removeItem('user');
-  //     setLoggedInUser({});
-  //     sessionStorage.setItem('user', JSON.stringify(newUser))
-
-  //     const USER = JSON.parse(sessionStorage.getItem('user'))
-  //     setLoggedInUser({ USER })
-  //     setIsUpdate(false)
-  //   }
-  // }, [loggedInUser])
 
   const handleUpdateUser = async (e) => {
     const newData = {
       full_name: newName ? newName : loggedInUser.full_name,
       email: newEmail ? newEmail : loggedInUser.email,
-      img_URL: newImageUrl ? newImageUrl : loggedInUser.image_URL
+      image_URL: newImageUrl ? newImageUrl : loggedInUser.image_URL
     }
 
     try {
@@ -38,7 +25,7 @@ const DProfile = () => {
         ...prevUser,
         full_name: newData.full_name,
         email: newData.email,
-        image_URL: newData.img_URL,
+        image_URL: newData.image_URL,
       }));
       setIsUpdate(true);
       window.location.reload();
@@ -68,7 +55,7 @@ const DProfile = () => {
         body: data,
       });
       const responseData = await response.json();
-      setNewImageUrl(responseData.data.display_url)
+      setNewImageUrl((responseData.data.display_url).toString())
     } catch (error) {
       console.error(error, 'error');
     }
@@ -112,7 +99,7 @@ const DProfile = () => {
       <Form>
         <Form.Group controlId="formImageUrl">
           <Form.Label>Image Upload</Form.Label>
-          <input type="file" name='image' id="file" onChange={(e) => handleImageUpload(e)} />
+          <input type="file" name='image_URL' id="file" onChange={(e) => handleImageUpload(e)} />
         </Form.Group>
       </Form>
       <Button disabled={!isFormComplete()} variant="primary" onClick={handleUpdateUser}>
