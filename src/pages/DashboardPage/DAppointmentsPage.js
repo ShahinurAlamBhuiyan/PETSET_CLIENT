@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const DAppointmentsPage = () => {
   const { loggedInUser } = useContext(AuthContext)

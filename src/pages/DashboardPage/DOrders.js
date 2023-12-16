@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const DOrders = () => {
   const { loggedInUser } = useContext(AuthContext)

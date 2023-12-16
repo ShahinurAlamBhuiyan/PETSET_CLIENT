@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DServiceModal from '../../components/Dashboard/DServiceModal';
+import Swal from 'sweetalert2'
 
 const DServicesPage = () => {
   const [services, setServices] = useState([]);

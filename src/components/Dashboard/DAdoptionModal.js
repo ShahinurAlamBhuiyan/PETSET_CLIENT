@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 
 const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, adoptionId }) => {
     const [adoptionPost, setAdoptionPost] = useState({});
@@ -32,10 +33,11 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
 
         try {
             const res = await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)
-            console.log(res)
-            alert('adoptionPost updated successfully!')
-            window.location.reload()
-
+            Swal.fire({
+                title: "Great!",
+                text: "Adoption post updated successfully!",
+                icon: "success"
+            }).then(() => window.location.reload());
         } catch (error) {
             console.log(error)
         }

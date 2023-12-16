@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-// import { Form } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const DAddProductPage = () => {
     const { loggedInUser } = useContext(AuthContext);

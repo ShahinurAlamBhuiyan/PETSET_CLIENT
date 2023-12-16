@@ -4,8 +4,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
 import { Button, Card, Carousel, Pagination } from 'react-bootstrap';
 import DAdoptionModal from '../../components/Dashboard/DAdoptionModal';
-import { Link } from 'react-router-dom';
-// import DMemoriesModal from '../../components/Dashboard/DMemoriesModal';
+import Swal from 'sweetalert2'
 
 const DAdoptionsPage = () => {
   const { loggedInUser } = useContext(AuthContext);

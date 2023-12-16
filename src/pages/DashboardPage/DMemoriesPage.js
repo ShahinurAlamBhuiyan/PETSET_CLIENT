@@ -4,6 +4,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
 import { Button, Card, Pagination } from 'react-bootstrap';
 import DMemoriesModal from '../../components/Dashboard/DMemoriesModal';
+import Swal from 'sweetalert2'
 
 const DMemoriesPage = () => {
   const { loggedInUser } = useContext(AuthContext);
@@ -54,9 +55,24 @@ const DMemoriesPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/memories/${id}`)
-      alert('Deleted successfully!')
-      window.location.reload();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Deleted Memory can't be undo!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/memories/${id}`)
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          }).then(() => window.location.reload());
+        }
+      });
     } catch (error) {
       console.log(error)
     }

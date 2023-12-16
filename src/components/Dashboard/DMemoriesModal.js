@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 
 const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
     const [memory, setMemory] = useState({});
@@ -19,7 +20,6 @@ const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setSh
         }
         getMemoryById()
     }, [memoryId])
-    // console.log(memory)
 
     const handleUpdateMemory = async () => {
         const newMemory = {
@@ -31,8 +31,11 @@ const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setSh
         try {
             const res = await axios.put(`http://localhost:8800/memories/${memoryId}`, newMemory)
             console.log(res)
-            alert('Memory updated successfully!')
-            window.location.reload()
+            Swal.fire({
+                title: "Great!",
+                text: "Memory updated successfully!",
+                icon: "success"
+            }).then(() => window.location.reload());
 
         } catch (error) {
             console.log(error)

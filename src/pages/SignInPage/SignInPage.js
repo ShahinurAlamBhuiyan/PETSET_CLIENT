@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const SignInPage = () => {
   const location = useLocation()
@@ -25,11 +26,20 @@ const SignInPage = () => {
       const res = await axios.post("http://localhost:8800/sign-in", formData)
       sessionStorage.setItem('user', JSON.stringify(res.data[0]))
       const redirectPath = (location.state && location.state.from && location.state.from !== '/sign-in') ? (location.state.from) : '/';
+      Swal.fire({
+        title: "Congratulation!",
+        text: "Sign-in successfully!",
+        icon: "success"
+      });
       navigate(redirectPath)
-      window.location.reload(); // bug here...
+      // window.location.reload(); // bug here...
     } catch (error) {
       console.log(error.response.data)
-      alert(error.response.data)
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data
+      });
     }
 
     // Reset form after submission

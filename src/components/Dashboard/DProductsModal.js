@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 
 const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
     const [newProductName, setNewProductName] = useState('');
@@ -18,12 +19,15 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
                         product_description: newProductDetails !== '' ? newProductDetails : product.product_description,
                     });
 
-                alert('product updated!')
                 setNewProductName('')
                 setNewProductPrice('')
                 setNewProductDetails('')
                 setShowModalEdit(false);
-                window.location.reload();
+                Swal.fire({
+                    title: "Congratulation!",
+                    text: "Product updated!",
+                    icon: "success"
+                }).then(() => window.location.reload());
             }
         } catch (error) {
             console.log(error);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 
 const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEdit, setShowModalEdit }) => {
   const [serviceWithSpecialists, setServiceWithSpecialists] = useState([])
@@ -36,13 +37,26 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
   }, [doctors.length])
 
   const handleDeleteDoctor = async (dr_id) => {
-    // console.log(serviceId + " " + dr_id)
     try {
-      const res =  await axios.delete(`http://localhost:8800/service/doctor/${serviceId}/${dr_id}`);
-      console.log(res)
-      console.log(serviceId + " " + dr_id)
-      setServiceWithSpecialists(prevState => prevState.filter(specialist => specialist.dr_id !== dr_id));
-      alert('Doctor deleted successfully!');
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This doctor will no longer in this service",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/service/doctor/${serviceId}/${dr_id}`);
+          setServiceWithSpecialists(prevState => prevState.filter(specialist => specialist.dr_id !== dr_id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
     } catch (error) {
       console.log(error)
     }
@@ -67,7 +81,11 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
 
           return [updatedService, ...prevState.slice(1)];
         });
-        alert('service updated!')
+        Swal.fire({
+          title: "Great!",
+          text: "Service updated!",
+          icon: "success"
+      })
         setNewServiceTitle('')
         setNewServiceDetails('')
         setShowModalEdit(false);
@@ -83,10 +101,14 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           img_URL: serviceWithSpecialists[0].img_URL,
           created_date: serviceWithSpecialists[0].created_date,
         });
-        alert('Dr. added to the service!');
+        
         setNewDoctorId('');
         setShowModalEdit(false);
-        window.location.reload();
+        Swal.fire({
+          title: "Great!",
+          text: "Dr. added to the service!",
+          icon: "success"
+      }).then(() => window.location.reload());
       }
     } catch (error) {
       console.log(error);

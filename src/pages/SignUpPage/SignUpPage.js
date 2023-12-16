@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const SignUpPage = () => {
@@ -28,7 +29,11 @@ const SignUpPage = () => {
     if (confirmPass === formData.password) {
       try {
         await axios.post("http://localhost:8800/sign-up", formData)
-        alert('sign-up successfully !');
+        Swal.fire({
+          title: "Congratulation!",
+          text: "Sign-up successfully!",
+          icon: "success"
+        });
         navigate('/sign-in');
       } catch (error) {
         alert(error.response.data)
@@ -44,7 +49,11 @@ const SignUpPage = () => {
       setConfirmPass('');
 
     } else {
-      alert('password not matched!')
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "password not matched!"
+      });
     }
 
   };

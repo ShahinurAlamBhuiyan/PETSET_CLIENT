@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const SimpleCardForm = ({ handlePayment }) => {
     const stripe = useStripe();
@@ -38,9 +39,11 @@ const SimpleCardForm = ({ handlePayment }) => {
 
     useEffect(() => {
         if (paymentSuccess && !processing) {
-            alert(
-                'Congratulation! Your order has been saved!'
-            )
+            Swal.fire({
+                title: "Congratulation!",
+                text: "Your order has been saved!",
+                icon: "success"
+            });
             navigate('/orders')
         } else if (!processing && paymentError) {
             alert(paymentError)

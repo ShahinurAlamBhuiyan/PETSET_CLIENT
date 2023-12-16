@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const AdaptationForm = ({ setShowForm }) => {
     const { loggedInUser } = useContext(AuthContext);
@@ -111,8 +112,12 @@ const AdaptationForm = ({ setShowForm }) => {
         try {
             await axios.post("http://localhost:8800/adaption", newAdaptationPost)
             console.log(newAdaptationPost)
-            setShowForm(false); // from upper level
-            alert('Adaptation post posted!');
+            setShowForm(false); 
+            Swal.fire({
+                title: "Great!",
+                text: "Adoption post posted!",
+                icon: "success"
+            }).then(() => window.location.reload());
             setNewAdaptationPost({
                 a_id: '',
                 u_id: loggedInUser?.u_id,

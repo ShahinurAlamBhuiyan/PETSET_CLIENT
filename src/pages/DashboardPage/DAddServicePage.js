@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const DAddServicePage = () => {
   const { loggedInUser } = useContext(AuthContext);

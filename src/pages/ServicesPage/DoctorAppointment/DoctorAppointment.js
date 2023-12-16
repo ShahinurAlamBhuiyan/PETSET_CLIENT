@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const DoctorAppointment = () => {
     const { loggedInUser } = useContext(AuthContext);
@@ -83,7 +84,11 @@ const DoctorAppointment = () => {
             try {
                 console.log({ appointmentDetails })
                 await axios.post("http://localhost:8800/appointment", appointmentDetails)
-                alert('Appointment booked successfully! Assistant will contact you soon.');
+                Swal.fire({
+                    title: "Congratulation!",
+                    text: "Appointment booked successfully! Assistant will contact you soon.",
+                    icon: "success"
+                });
                 navigate('/appointments');
             } catch (error) {
                 alert(error)

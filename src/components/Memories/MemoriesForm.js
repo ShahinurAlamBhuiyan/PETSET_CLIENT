@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const MemoriesForm = ({ setShowForm }) => {
     const { loggedInUser } = useContext(AuthContext);
@@ -67,7 +68,11 @@ const MemoriesForm = ({ setShowForm }) => {
         try {
             console.log(newMemory)
             await axios.post("http://localhost:8800/memories", newMemory)
-            alert('Memory posted!');
+            Swal.fire({
+                title: "Great!",
+                text: "Memory posted!",
+                icon: "success"
+            });
         } catch (error) {
             console.log(error)
         }

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const DProfile = () => {
   const { loggedInUser, setLoggedInUser } = useContext(AuthContext)
