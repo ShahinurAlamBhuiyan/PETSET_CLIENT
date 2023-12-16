@@ -35,6 +35,7 @@ const DProductsPage = () => {
   const handleDeleteProduct = async (product_id) => {
     try {
       const res = await axios.delete(`http://localhost:8800/product/${product_id}`)
+      console.log(res)
       if (res.data) {
         setProducts(products.filter(product => product.product_id !== product_id));
         alert('product deleted!')

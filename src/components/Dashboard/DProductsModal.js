@@ -6,18 +6,11 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
     const [newProductName, setNewProductName] = useState('');
     const [newProductDetails, setNewProductDetails] = useState('');
     const [newProductPrice, setNewProductPrice] = useState('');
-    // const [product, setProduct] = useState([]);
-
-    // console.log(product)
-    console.log(newProductName);
-    console.log(newProductPrice);
-    console.log(newProductDetails);
-
 
     const handleUpdateProduct = async () => {
         try {
             if (newProductName !== '' || newProductPrice !== '' || newProductDetails !== '') {
-                // Update service title, details
+                // Update Product title, details
                 await axios.put(`http://localhost:8800/product/${product.product_id}`,
                     {
                         product_name: newProductName !== '' ? newProductName : product.product_name,
@@ -48,7 +41,7 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="formServiceTitle">
+                    <Form.Group controlId="formProductTitle">
                         <Form.Label>Product Name</Form.Label>
                         <Form.Control
                             type="text"
@@ -59,7 +52,7 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
                     </Form.Group>
                 </Form>
                 <Form>
-                    <Form.Group controlId="formServiceTitle">
+                    <Form.Group controlId="formProductTitle">
                         <Form.Label>Product Price</Form.Label>
                         <Form.Control
                             type="text"
@@ -70,8 +63,8 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
                     </Form.Group>
                 </Form>
                 <Form>
-                    <Form.Group controlId="formServiceDetails">
-                        <Form.Label>Service Details</Form.Label>
+                    <Form.Group controlId="formProductDetails">
+                        <Form.Label>Product Details</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter product new details"
@@ -86,7 +79,7 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
                     Close
                 </Button>
                 <Button variant="primary" onClick={handleUpdateProduct}>
-                    Update Service
+                    Update Product
                 </Button>
             </Modal.Footer>
         </Modal>

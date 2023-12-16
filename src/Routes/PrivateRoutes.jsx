@@ -3,7 +3,7 @@ import { AuthContext } from '../Providers/AuthProvider'
 import { Navigate, useParams } from 'react-router-dom'
 
 const PrivateRoute = ({ children, path }) => {
-  const { s_id, dr_id, m_id, product_id } = useParams()
+  const { s_id, dr_id, m_id, product_id, a_id } = useParams()
   const { loggedInUser } = useContext(AuthContext)
   const [delayedRedirect, setDelayedRedirect] = useState(false)
 
@@ -23,6 +23,8 @@ const PrivateRoute = ({ children, path }) => {
     path = `/memories/${m_id}`
   } else if (path === '/payment/:product_id') {
     path = `/payment/${product_id}`
+  } else if (path === '/adaptation/:a_id') {
+    path = `/adaptation/${a_id}`
   }
 
   if (loggedInUser && loggedInUser.u_id) {

@@ -50,11 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'adaptation',
-        element: (
-          <PrivateRoute path='/adaptation'>
-            <AdaptationPage />
-          </PrivateRoute>
-        )
+        element: <AdaptationPage />
       },
       {
         path: 'memories',

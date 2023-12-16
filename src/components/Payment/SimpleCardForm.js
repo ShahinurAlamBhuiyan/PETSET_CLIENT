@@ -41,7 +41,7 @@ const SimpleCardForm = ({ handlePayment }) => {
             alert(
                 'Congratulation! Your order has been saved!'
             )
-            navigate('/store')
+            navigate('/orders')
         } else if (!processing && paymentError) {
             alert(paymentError)
         }

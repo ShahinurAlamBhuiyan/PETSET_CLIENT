@@ -36,8 +36,10 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
   }, [doctors.length])
 
   const handleDeleteDoctor = async (dr_id) => {
+    // console.log(serviceId + " " + dr_id)
     try {
-      await axios.delete(`http://localhost:8800/service/doctor/${serviceId}/${dr_id}`);
+      const res =  await axios.delete(`http://localhost:8800/service/doctor/${serviceId}/${dr_id}`);
+      console.log(res)
       console.log(serviceId + " " + dr_id)
       setServiceWithSpecialists(prevState => prevState.filter(specialist => specialist.dr_id !== dr_id));
       alert('Doctor deleted successfully!');

@@ -84,7 +84,7 @@ const DoctorAppointment = () => {
                 console.log({ appointmentDetails })
                 await axios.post("http://localhost:8800/appointment", appointmentDetails)
                 alert('Appointment booked successfully! Assistant will contact you soon.');
-                navigate('/services');
+                navigate('/appointments');
             } catch (error) {
                 alert(error)
             }

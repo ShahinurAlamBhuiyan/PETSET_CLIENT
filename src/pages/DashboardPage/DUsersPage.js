@@ -30,11 +30,23 @@ const DUsersPage = () => {
   }
 
   const handleDeleteUser = async (u_id) => {
+    console.log(u_id)
     try {
-      // delete appointment first for that user...
+      // delete memory  for that user...
+      await axios.delete(`http://localhost:8800/memories/user/${u_id}`);
+
+      // delete user comments
+      await axios.delete(`http://localhost:8800/adoption/comments/${u_id}`);
+
+      // delete user order
+      await axios.delete(`http://localhost:8800/order/user/${u_id}`);
+      // delete adoption  for that user...
+      const adoptionRes = await axios.delete(`http://localhost:8800/adoption/user/${u_id}`);
+      console.log(adoptionRes)
+      // delete appointment  for that user...
       const resAppointment = await axios.delete(`http://localhost:8800/appointment/user/${u_id}`)
       if (resAppointment.data) {
-        // delete memory second for that user...
+        // delete memory  for that user...
         const resMemory = await axios.delete(`http://localhost:8800/memories/user/${u_id}`)
         if (resMemory.data) {
           const res = await axios.delete(`http://localhost:8800/user/${u_id}`)
