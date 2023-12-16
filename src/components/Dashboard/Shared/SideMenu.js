@@ -41,7 +41,6 @@ const menuItems = [
             [
                 { name: "Memories", to: '/posts/memories', iconClassName: 'bi bi-emoji-laughing' },
                 { name: "Adoption", to: '/posts/adoptions', iconClassName: 'bi bi-star-fill' },
-                { name: "Lost & Found", to: '/posts/lost&founds', iconClassName: 'bi bi-star-fill' }
             ]
     },
     {

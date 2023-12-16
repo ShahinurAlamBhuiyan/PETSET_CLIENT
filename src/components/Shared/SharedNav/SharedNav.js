@@ -42,7 +42,6 @@ const SharedNav = () => {
                                 <a href="/" className="nav-item nav-link" >Home</a>
                                 <a href="/memories" className="nav-item nav-link" >Memories</a>
                                 <a href="/adaptation" className="nav-item nav-link" >Adoption</a>
-                                <a href="/lost&found" className="nav-item nav-link" >Lost & Found</a>
                                 <a href="/services" className="nav-item nav-link" >Services</a>
                                 <a href="/store" className="nav-item nav-link" >Store</a>
                             </>

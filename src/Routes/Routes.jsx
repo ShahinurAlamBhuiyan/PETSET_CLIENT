@@ -22,7 +22,6 @@ import DDoctorsPage from '../pages/DashboardPage/DDoctorsPage'
 import DPostsPage from '../pages/DashboardPage/DPostsPage'
 import DMemoriesPage from '../pages/DashboardPage/DMemoriesPage'
 import DAdoptionsPage from '../pages/DashboardPage/DAdoptionsPage'
-import DLostAndFoundsPage from '../pages/DashboardPage/DLostAndFoundsPage'
 import DAppointmentsPage from '../pages/DashboardPage/DAppointmentsPage'
 import DAddDoctorPage from '../pages/DashboardPage/DAddDoctorPage'
 import DServices from '../pages/DashboardPage/DServices'
@@ -69,10 +68,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         )
       },
-      // {
-      //   path: 'adaptation',
-      //   element: <AdaptationPage />
-      // },
       {
         path: 'adaptation/:a_id',
         element: (
@@ -200,14 +195,6 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: 'posts/lost&founds',
-        element: (
-          <PrivateRoute path='/posts/lost&founds'>
-            <DLostAndFoundsPage />
-          </PrivateRoute>
-        )
-      },
-      {
         path: 'doctors',
         element: (
           <PrivateRoute path='/doctors'>
@@ -231,15 +218,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         )
       }
-
-      // {
-      //   path: 'dashboard',
-      //   element: (
-      //     <PrivateRoute path='/dashboard'>
-      //       <DashboardPage />
-      //     </PrivateRoute>
-      //   )
-      // },
     ]
   },
   {
