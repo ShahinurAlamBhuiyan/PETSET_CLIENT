@@ -91,7 +91,7 @@ const DServicesPage = () => {
               {services.length > 0 &&
                 services.slice().reverse().map((service, index) => (
                   <tr key={index}>
-                    <td>{service.s_id}</td>
+                    <td><img src={service.img_URL} width={30} height={30} style={{borderRadius:'50%'}} alt="" /></td>
                     <td>{service.title}</td>
                     <td>{service.details}</td>
                     <td>

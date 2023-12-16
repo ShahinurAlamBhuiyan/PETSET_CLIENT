@@ -116,65 +116,70 @@ const DOrders = () => {
     <div className="row">
       <div className="col-md-12">
         <div className="table-container" style={{ maxWidth: '90vw', maxHeight: '80vh', overflow: 'auto' }}>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Customer Name</th>
-                <th>Customer Email</th>
-                <th>Customer Contact</th>
-                <th>Shipping Address</th>
-                <th>Order Date</th>
+          {orders.length > 0 ?
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>Customer Name</th>
+                  <th>Customer Email</th>
+                  <th>Customer Contact</th>
+                  <th>Shipping Address</th>
+                  <th>Order Date</th>
 
-                <th>Shipping Status</th>
-                <th>Action</th>
-                {loggedInUser?.role === 'admin' && <th>Change Status</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {orders.length > 0 &&
-                orders.slice().reverse().map((order, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{order.productName}</td>
-                      <td>$ {order.productPrice}</td>
-                      <td >{order.orderer_name}</td>
-                      <td>{order.orderer_email}</td>
-                      <td>{order.orderer_contact}</td>
-                      <td>{order.shipping_address}</td>
-                      <td>{order.order_date}</td>
-                      <td>{order.status}</td>
-                      <td>
-                        <button onClick={() => handleDeleteOrder(order.order_id)} className='btn btn-outline-primary'>
-                          Remove
-                        </button>
-                      </td>
-                      {loggedInUser?.role === 'admin' && (
+                  <th>Shipping Status</th>
+                  <th>Action</th>
+                  {loggedInUser?.role === 'admin' && <th>Change Status</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {orders.length > 0 &&
+                  orders.slice().reverse().map((order, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{order.productName}</td>
+                        <td>$ {order.productPrice}</td>
+                        <td >{order.orderer_name}</td>
+                        <td>{order.orderer_email}</td>
+                        <td>{order.orderer_contact}</td>
+                        <td>{order.shipping_address}</td>
+                        <td>{order.order_date}</td>
+                        <td>{order.status}</td>
                         <td>
-                          <div className="btn-group">
-                            <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Change Status
-                            </button>
-                            <div className="dropdown-menu">
-                              <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Processing')}>
-                                Processing
-                              </button>
-                              <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Shipping')}>
-                                Shipping
-                              </button>
-                              <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Pending')}>
-                                Pending
-                              </button>
-                            </div>
-                          </div>
+                          <button onClick={() => handleDeleteOrder(order.order_id)} className='btn btn-outline-primary'>
+                            Remove
+                          </button>
                         </td>
-                      )}
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>
+                        {loggedInUser?.role === 'admin' && (
+                          <td>
+                            <div className="btn-group">
+                              <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Change Status
+                              </button>
+                              <div className="dropdown-menu">
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Processing')}>
+                                  Processing
+                                </button>
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Shipping')}>
+                                  Shipping
+                                </button>
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Pending')}>
+                                  Pending
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+                    )
+                  })}
+              </tbody>
+            </table>
+            : 
+            <h2>No order ordered.</h2>
+
+          }
         </div>
       </div>
     </div>

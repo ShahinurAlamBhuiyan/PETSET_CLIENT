@@ -78,6 +78,7 @@ const DProductsPage = () => {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Type</th>
@@ -91,8 +92,8 @@ const DProductsPage = () => {
                 products.slice().reverse().map((product, index) => (
                   <tr key={index}>
 
+                    <td> <img width={30} style={{ borderRadius: '50%' }} height={30} src={product.product_image} alt={product.product_name} /></td>
                     <td >
-                      <img width={30} style={{ borderRadius: '50%' }} height={30} src={product.product_image} alt={product.product_name} />
                       &nbsp;&nbsp;{product.product_name}
                     </td>
                     <td>${product.product_price}</td>

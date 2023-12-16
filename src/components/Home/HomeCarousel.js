@@ -27,8 +27,8 @@ const HomeCarousel = () => {
                                     <h3 className="text-white mb-3 d-none d-sm-block">Best Pet <span className="text-primary">Services</span> and <span className="text-primary">Store</span></h3>
                                     <h1 className="display-3 text-white mb-3">Book <span className="text-secondary">Specialists</span> and Buy Pet <span className="text-primary">Goods</span></h1>
                                     <h5 className="text-white mb-3 d-none d-sm-block">This is a Place for Your Beloved Pets' Health Care and Buying Foods and Gifting Goods</h5>
-                                    <button href="/services" className="btn btn-lg btn-primary mt-3 mt-md-4" style={{marginRight:'10px'}}>Get Services</button>
-                                    <button href="/store" className="btn btn-lg btn-secondary mt-3 mt-md-4" >Buy from Store</button>
+                                    <a href="/services" className="btn btn-lg btn-primary mt-3 mt-md-4" style={{marginRight:'10px'}}>Get Services</a>
+                                    <a href="/store" className="btn btn-lg btn-secondary mt-3 mt-md-4" >Buy from Store</a>
                                 </div>
                             </div>
                     </div>

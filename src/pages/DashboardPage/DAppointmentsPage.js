@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { Spinner } from 'react-bootstrap';
 
 const DAppointmentsPage = () => {
   const { loggedInUser } = useContext(AuthContext)
@@ -52,7 +53,7 @@ const DAppointmentsPage = () => {
   }, [appointments]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div className='centering_items_flex'><Spinner /></div>;
   }
 
   if (error) {
@@ -91,41 +92,47 @@ const DAppointmentsPage = () => {
     <div className="row">
       <div className="col-md-12">
         <div className="table-container" style={{ maxWidth: '90vw', maxHeight: '80vh', overflow: 'auto' }}>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Service Name</th>
-                <th>Dr. Name</th>
-                <th>Vising Fees</th>
-                <th>Owner Name</th>
-                <th>Owner Email</th>
-                <th>Owner Contact.</th>
-                <th>Appointment Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {appointments.length > 0 &&
-                appointments.slice().reverse().map((appointment, index) => {
-                  return (
-                    <tr key={index}>
-                      <td >{appointment.service_name}</td>
-                      <td>{doctorNames[appointment.dr_id]}</td>
-                      <td>{appointment.fees}</td>
-                      <td>{appointment.owner_name}</td>
-                      <td>{appointment.owner_email}</td>
-                      <td>{appointment.contact}</td>
-                      <td>{appointment.appointment_date}</td>
-                      <td>
-                        <button onClick={() => handleDeleteAppointment(appointment.a_id)} className='btn btn-outline-primary'>
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>
+          {appointments.length > 0 ?
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Dr. Name</th>
+                  <th>Vising Fees</th>
+                  <th>Owner Name</th>
+                  <th>Owner Email</th>
+                  <th>Owner Contact.</th>
+                  <th>Appointment Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments.length > 0 &&
+                  appointments.slice().reverse().map((appointment, index) => {
+                    return (
+                      <tr key={index}>
+                        <td >{appointment.service_name}</td>
+                        <td>{doctorNames[appointment.dr_id]}</td>
+                        <td>{appointment.fees}</td>
+                        <td>{appointment.owner_name}</td>
+                        <td>{appointment.owner_email}</td>
+                        <td>{appointment.contact}</td>
+                        <td>{appointment.appointment_date}</td>
+                        <td>
+                          <button onClick={() => handleDeleteAppointment(appointment.a_id)} className='btn btn-outline-primary'>
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+              </tbody>
+            </table>
+            :
+            <h2>
+              No appointment taken.
+            </h2>
+          }
         </div>
       </div>
     </div>

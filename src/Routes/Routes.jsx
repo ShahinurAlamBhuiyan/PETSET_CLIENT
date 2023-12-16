@@ -108,7 +108,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'dashboard',
-        element: <h1>Welcome to my fancy dashboard</h1>
+        element: <h1>Welcome to PetSet Dashboard</h1>
       },
       {
         path: 'users',
