@@ -3,7 +3,6 @@ import '../../components/Memories/Memories.css'
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
 import { Button, Card, Pagination } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import DMemoriesModal from '../../components/Dashboard/DMemoriesModal';
 
 const DMemoriesPage = () => {
