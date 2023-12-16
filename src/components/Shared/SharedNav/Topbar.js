@@ -17,19 +17,19 @@ const Topbar = () => {
                 </div>
                 <div className="col-lg-6 text-center text-lg-right">
                     <div className="d-inline-flex align-items-center">
-                        <a className="text-white px-3" href="/">
+                        <a className="text-white px-3" href="https://facebook.com">
                             <i className="fab fa-facebook-f"></i>
                         </a>
-                        <a className="text-white px-3" href="/">
+                        <a className="text-white px-3" href="https://twitter.com">
                             <i className="fab fa-twitter"></i>
                         </a>
-                        <a className="text-white px-3" href="/">
+                        <a className="text-white px-3" href="https://linkedin.com">
                             <i className="fab fa-linkedin-in"></i>
                         </a>
-                        <a className="text-white px-3" href="/">
+                        <a className="text-white px-3" href="https://instagram.com">
                             <i className="fab fa-instagram"></i>
                         </a>
-                        <a className="text-white pl-3" href="/">
+                        <a className="text-white pl-3" href="https://youtube.com">
                             <i className="fab fa-youtube"></i>
                         </a>
                     </div>
