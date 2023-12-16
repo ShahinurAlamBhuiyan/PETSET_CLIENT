@@ -26,13 +26,8 @@ const SignInPage = () => {
       const res = await axios.post("http://localhost:8800/sign-in", formData)
       sessionStorage.setItem('user', JSON.stringify(res.data[0]))
       const redirectPath = (location.state && location.state.from && location.state.from !== '/sign-in') ? (location.state.from) : '/';
-      Swal.fire({
-        title: "Congratulation!",
-        text: "Sign-in successfully!",
-        icon: "success"
-      });
       navigate(redirectPath)
-      // window.location.reload(); // bug here...
+      window.location.reload(); // bug here...
     } catch (error) {
       console.log(error.response.data)
       Swal.fire({

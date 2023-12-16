@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
     return (
         <div className="product_card">
             <img
-                src="https://via.placeholder.com/150"
+                src={product.product_image ? product.product_image : "https://via.placeholder.com/150"}
                 alt="Product"
                 className="product-image"
             />
@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
                     <Modal.Title>{product.product_name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img src="https://cdn.shopify.com/s/files/1/0255/4205/files/can_dog_eat_human_medicine_480x480.jpg?v=1686677619" alt={product.product_name} />
+                    <img style={{maxWidth:"400px", maxHeight:'300px'}} src={product.product_image ? product.product_image : "https://via.placeholder.com/150"} alt={product.product_name} />
                     <br />
 
                     <span style={{ fontWeight: 'bold', color: 'black' }}>Name:</span> {product.product_name} <br />

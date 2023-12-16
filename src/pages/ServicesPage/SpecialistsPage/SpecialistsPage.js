@@ -28,7 +28,7 @@ const SpecialistsPage = () => {
       <h2>Service Name:  {service && service[0]?.title}</h2>
       {/* About Service */}
       <div className='centering_items_flex'>
-        <img width={375} height={300} src="https://img.freepik.com/free-vector/tiny-veterinarians-examining-dog-flat-vector-illustration-doctor-treating-huge-animal-vet-clinic-taking-care-health-determining-diagnosis-hospital-medical-pet-service-veterinary-concept_74855-25368.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699660800&semt=ais" alt="hello" />
+        <img width={375} height={300} src={service && service[0]?.img_URL} alt="hello" />
 
         <p className='text-justify' style={{ height: '50%', width: '60%' }}>
           {service[0]?.details} 

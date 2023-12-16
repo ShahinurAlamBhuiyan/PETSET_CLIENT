@@ -45,7 +45,7 @@ const StorePage = () => {
             {searchResults[0] ? (
                 <div>
                     <p>Search Results for: {searchQuery}</p>
-                    <ul>
+                    <ul className='centering_items_flex'>
                         {searchResults && searchResults.map((product, index) => (
                             <ProductCard key={index} product={product} />
                         ))}
