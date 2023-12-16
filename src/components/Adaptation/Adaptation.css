@@ -1,0 +1,23 @@
+.adaptationPosts_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    flex-wrap: wrap;
+  
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .adaptationPost_card {
+    height: 420px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .form_container{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

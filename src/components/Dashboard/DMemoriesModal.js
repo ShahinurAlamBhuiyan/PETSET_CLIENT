@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 
-const DMemoriesModal = ({ post, showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
+const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
     const [memory, setMemory] = useState({});
     const [newMemoryTitle, setNewMemoryTitle] = useState('');
     const [newMemoryDetails, setNewMemoryDetails] = useState('');

@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoutes'
 import MemoriesPage from '../pages/MemoriesPage/MemoriesPage'
 import ErrorPage from '../components/Shared/ErrorPage/ErrorPage'
 import AdaptationPage from '../pages/AdaptationPage/AdaptationPage'
+
 import MemoryDetailsPage from '../pages/MemoriesPage/MemoryDetailsPage'
 import ServicesPage from '../pages/ServicesPage/ServicesPage'
 import SpecialistsPage from '../pages/ServicesPage/SpecialistsPage/SpecialistsPage'
@@ -29,6 +30,7 @@ import DOrders from '../pages/DashboardPage/DOrders'
 import DProfile from '../pages/DashboardPage/DProfile'
 import DAddServicePage from '../pages/DashboardPage/DAddServicePage'
 import DAddProductPage from '../pages/DashboardPage/DAddProductPage'
+import AdaptationDetailsPage from '../pages/AdaptationPage/AdaptationDetailsPage'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,18 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute path='/memories/:m_id'>
             <MemoryDetailsPage />
+          </PrivateRoute>
+        )
+      },
+      // {
+      //   path: 'adaptation',
+      //   element: <AdaptationPage />
+      // },
+      {
+        path: 'adaptation/:a_id',
+        element: (
+          <PrivateRoute path='/adaptation/:a_id'>
+            <AdaptationDetailsPage />
           </PrivateRoute>
         )
       },

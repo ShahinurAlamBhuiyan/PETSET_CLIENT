@@ -69,7 +69,7 @@ const DUsersPage = () => {
                   <tr key={index}>
 
                     <td >
-                      <img width={30} style={{ borderRadius: '50%' }} height={30} src={user.image_URL} alt={user.full_name} />
+                      <img width={30} style={{ borderRadius: '50%' }} height={30} src={user.image_URL} alt='' />
                       &nbsp;&nbsp;{user.full_name}
                     </td>
                     <td>{user.email}</td>

@@ -4,7 +4,6 @@ import { Spinner, Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
-
 import MemoryCard from '../../components/Memories/MemoryCard';
 import MemoriesForm from '../../components/Memories/MemoriesForm';
 import Pagination from '../../components/Pagination/Pagination';
