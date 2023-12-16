@@ -21,7 +21,6 @@ const DProfile = () => {
 
     try {
       await axios.put(`http://localhost:8800/user/${loggedInUser.u_id}`, newData);
-      alert('Data Updated!');
       setLoggedInUser((prevUser) => ({
         ...prevUser,
         full_name: newData.full_name,
@@ -29,7 +28,11 @@ const DProfile = () => {
         image_URL: newData.image_URL,
       }));
       setIsUpdate(true);
-      window.location.reload();
+      Swal.fire({
+        title: "Success!",
+        text: "Data Updated!",
+        icon: "success"
+      }).then(() => window.location.reload());
     } catch (error) {
       console.log(error)
     }

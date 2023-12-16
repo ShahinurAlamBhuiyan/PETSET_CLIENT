@@ -62,7 +62,11 @@ const DOrders = () => {
         setOrders((prevOrders) =>
           prevOrders.map((order) => (order.order_id === orderId ? { ...order, status: newStatus } : order))
         );
-        alert('Order status updated successfully!');
+        Swal.fire({
+          title: "Success!",
+          text: "Order status changed successfully!",
+          icon: "success"
+        });
       }
     } catch (error) {
       console.log(error);
@@ -86,11 +90,24 @@ const DOrders = () => {
 
   const handleDeleteOrder = async (orderID) => {
     try {
-      const res = await axios.delete(`http://localhost:8800/order/${orderID}`)
-      if (res.data) {
-        alert('order deleted successfully!');
-        window.location.reload();
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This order will be lost forever!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/order/${orderID}`)
+          Swal.fire({
+            title: "Deleted!",
+            text: "Order deleted successfully!",
+            icon: "success"
+          }).then(() => window.location.reload());
+        }
+      });
     } catch (error) {
       console.log(error)
     }

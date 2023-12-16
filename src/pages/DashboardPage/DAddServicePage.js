@@ -75,8 +75,11 @@ const DAddServicePage = () => {
     event.preventDefault();
     try {
       await axios.post("http://localhost:8800/services", newService)
-      alert('Service Added!');
-      window.location.reload();
+      Swal.fire({
+        title: "Great!",
+        text: "Service Added!",
+        icon: "success"
+      }).then(() => window.location.reload());
     } catch (error) {
       console.log(error)
     }

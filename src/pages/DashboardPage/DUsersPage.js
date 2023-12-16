@@ -33,31 +33,37 @@ const DUsersPage = () => {
   const handleDeleteUser = async (u_id) => {
     console.log(u_id)
     try {
-      // delete memory  for that user...
-      await axios.delete(`http://localhost:8800/memories/user/${u_id}`);
-
-      // delete user comments
-      await axios.delete(`http://localhost:8800/adoption/comments/${u_id}`);
-
-      // delete user order
-      await axios.delete(`http://localhost:8800/order/user/${u_id}`);
-      // delete adoption  for that user...
-      const adoptionRes = await axios.delete(`http://localhost:8800/adoption/user/${u_id}`);
-      console.log(adoptionRes)
-      // delete appointment  for that user...
-      const resAppointment = await axios.delete(`http://localhost:8800/appointment/user/${u_id}`)
-      if (resAppointment.data) {
-        // delete memory  for that user...
-        const resMemory = await axios.delete(`http://localhost:8800/memories/user/${u_id}`)
-        if (resMemory.data) {
-          const res = await axios.delete(`http://localhost:8800/user/${u_id}`)
-          console.log({ res })
-          if (res.data) {
-            setUsers(users.filter(user => user.u_id !== u_id));
-            alert('user deleted!')
-          }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This User will no longer in PetSet",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // delete memory  for that user...
+          await axios.delete(`http://localhost:8800/memories/user/${u_id}`);
+          // delete user comments
+          await axios.delete(`http://localhost:8800/adoption/comments/${u_id}`);
+          // delete user order
+          await axios.delete(`http://localhost:8800/order/user/${u_id}`);
+          // delete adoption  for that user...
+          await axios.delete(`http://localhost:8800/adoption/user/${u_id}`);
+          // delete appointment  for that user...
+          await axios.delete(`http://localhost:8800/appointment/user/${u_id}`)
+          // delete memory  for that user...
+          await axios.delete(`http://localhost:8800/memories/user/${u_id}`)
+          await axios.delete(`http://localhost:8800/user/${u_id}`)
+          setUsers(users.filter(user => user.u_id !== u_id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "User deleted successfully!",
+            icon: "success"
+          });
         }
-      }
+      });
     } catch (error) {
       console.log(error)
     }

@@ -64,11 +64,24 @@ const DAppointmentsPage = () => {
 
   const handleDeleteAppointment = async (app_id) => {
     try {
-      const res = await axios.delete(`http://localhost:8800/appointment/${app_id}`)
-      if (res.data) {
-        alert('appointment deleted successfully!');
-        window.location.reload();
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This appointment will be lost forever!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/appointment/${app_id}`)
+          Swal.fire({
+            title: "Deleted!",
+            text: "Appointment deleted successfully!",
+            icon: "success"
+          }).then(() => window.location.reload());
+        }
+      });
     } catch (error) {
       console.log(error)
     }

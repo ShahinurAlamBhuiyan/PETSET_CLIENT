@@ -65,8 +65,11 @@ const DAddProductPage = () => {
         event.preventDefault();
         try {
             await axios.post("http://localhost:8800/product", newProduct)
-            alert('Product posted!');
-            window.location.reload();
+            Swal.fire({
+                title: "Great!",
+                text: "Product posted!",
+                icon: "success"
+            }).then(() => window.location.reload());
         } catch (error) {
             console.log(error)
         }

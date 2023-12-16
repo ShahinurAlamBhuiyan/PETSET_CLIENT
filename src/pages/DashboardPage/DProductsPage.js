@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DProductsModal from '../../components/Dashboard/DProductsModal';
+import Swal from 'sweetalert2'
 
 const DProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const DProductsPage = () => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [product, setProduct] = useState(null);
 
-// getting all products
+  // getting all products
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -23,7 +24,7 @@ const DProductsPage = () => {
     };
     fetchAllProducts();
   }, [products.length]);
-  
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -34,12 +35,25 @@ const DProductsPage = () => {
 
   const handleDeleteProduct = async (product_id) => {
     try {
-      const res = await axios.delete(`http://localhost:8800/product/${product_id}`)
-      console.log(res)
-      if (res.data) {
-        setProducts(products.filter(product => product.product_id !== product_id));
-        alert('product deleted!')
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This Product will no longer in PetSet",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/product/${product_id}`)
+          setProducts(products.filter(product => product.product_id !== product_id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Product deleted successfully!",
+            icon: "success"
+          });
+        }
+      });
     } catch (error) {
       console.log(error)
     }

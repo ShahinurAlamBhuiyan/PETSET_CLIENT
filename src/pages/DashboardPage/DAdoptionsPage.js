@@ -55,9 +55,25 @@ const DAdoptionsPage = () => {
 
   const handleDelete = async (adoptionId) => {
     try {
-      await axios.delete(`http://localhost:8800/adoption/${adoptionId}`)
-      alert('Deleted successfully!')
-      window.location.reload();
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Deleted Post Can't be Undo!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/adoption/${adoptionId}`)
+          Swal.fire({
+            title: "Deleted!",
+            text: "Adoption post deleted successfully!.",
+            icon: "success"
+          }).then(() => window.location.reload());
+        }
+      });
+
     } catch (error) {
       console.log(error)
     }

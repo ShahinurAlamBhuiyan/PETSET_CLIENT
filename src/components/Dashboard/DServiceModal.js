@@ -52,7 +52,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           setServiceWithSpecialists(prevState => prevState.filter(specialist => specialist.dr_id !== dr_id));
           Swal.fire({
             title: "Deleted!",
-            text: "Your file has been deleted.",
+            text: "Doctor deleted successfully!",
             icon: "success"
           });
         }

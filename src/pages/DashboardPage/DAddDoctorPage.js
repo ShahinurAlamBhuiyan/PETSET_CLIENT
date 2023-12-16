@@ -39,8 +39,11 @@ const DAddDoctorPage = () => {
     event.preventDefault();
     try {
       await axios.post("http://localhost:8800/doctors", newDoctor)
-      alert('Doctor Added!');
-      window.location.reload();
+      Swal.fire({
+        title: "Great!",
+        text: "Doctor Added!",
+        icon: "success"
+      }).then(() => window.location.reload());
     } catch (error) {
       console.log(error)
     }

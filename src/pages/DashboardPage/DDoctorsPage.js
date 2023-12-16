@@ -7,7 +7,7 @@ const DDoctorsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-// Get all doctors
+  // Get all doctors
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
@@ -33,25 +33,39 @@ const DDoctorsPage = () => {
 
   const handleDeleteDoctor = async (doctor_id) => {
     try {
-      // Delete doctors appointment first....
-      const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/doctor/${doctor_id}`)
-      console.log('39')
-      if (resDeleteAppointment.data) {
-        console.log('41')
-        // delete doctors service second...
-        const resDeleteDoctorService = await axios.delete(`http://localhost:8800/service/doctor/${doctor_id}`)
-        console.log('44')
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This doctor will no longer in PetSet!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Delete doctors appointment first....
+          const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/doctor/${doctor_id}`)
 
-        if (resDeleteDoctorService.data) {
-          // last delete dr. from doctors 
-          const res = await axios.delete(`http://localhost:8800/doctor/${doctor_id}`)
+          if (resDeleteAppointment.data) {
 
-          if (res.data) {
-            setDoctors(doctors.filter(doctor => doctor.dr_id !== doctor_id));
-            alert('doctor deleted!')
+            // delete doctors service second...
+            const resDeleteDoctorService = await axios.delete(`http://localhost:8800/service/doctor/${doctor_id}`)
+
+
+            if (resDeleteDoctorService.data) {
+              // last delete dr. from doctors 
+              await axios.delete(`http://localhost:8800/doctor/${doctor_id}`)
+              setDoctors(doctors.filter(doctor => doctor.dr_id !== doctor_id));
+            }
           }
+          Swal.fire({
+            title: "Deleted!",
+            text: "Doctor deleted",
+            icon: "success"
+          });
         }
-      }
+      });
+
     } catch (error) {
       console.log(error)
     }

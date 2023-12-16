@@ -36,11 +36,25 @@ const DServicesPage = () => {
 
   const handleServiceDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8800/service/${id}`)
-      if (res.data) {
-        setServices(services.filter(service => service.s_id !== id));
-        alert('service deleted!')
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This Service will no longer in PetSet!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:8800/service/${id}`)
+          setServices(services.filter(service => service.s_id !== id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Service deleted successfully!",
+            icon: "success"
+          });
+        }
+      });
     } catch (error) {
       console.log(error)
     }
@@ -51,11 +65,11 @@ const DServicesPage = () => {
     setShowModalView(true);
   };
 
-  const handleEditUser = (service) => { 
+  const handleEditUser = (service) => {
     setServiceId(service.s_id)
     setShowModalEdit(true);
   };
-console.log(services)
+  console.log(services)
 
 
   return (
