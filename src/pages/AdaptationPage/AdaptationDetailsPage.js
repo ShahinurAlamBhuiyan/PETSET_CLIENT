@@ -8,9 +8,9 @@ const AdaptationDetailsPage = () => {
     const { a_id } = useParams();
     const [adaptationPost, setAdaptationPost] = useState([]);
     const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState('');
     console.log(a_id)
 
+    // get adaption details
     const fetchAdaptationPostDetails = async () => {
         try {
             const res = await axios.get(`http://localhost:8800/adaption/${a_id}`);
@@ -22,7 +22,7 @@ const AdaptationDetailsPage = () => {
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get(`http://localhost:8800/comments/${a_id}`);
+            const res = await axios.get(`http://localhost:8800/adoption/comments/${a_id}`);
             setComments(res.data);
         } catch (error) {
             console.error('Error fetching comments:', error);
@@ -32,22 +32,10 @@ const AdaptationDetailsPage = () => {
     useEffect(() => {
         fetchAdaptationPostDetails();
         fetchComments();
-    }, [a_id]);
+    }, [a_id, comments.length]);
 
-    const handleCommentSubmit = async () => {
-        try {
-            await axios.post(`http://localhost:8800/comments`, {
-                adaptationId: a_id,
-                text: newComment,
-            });
 
-            fetchComments();
-            setNewComment('');
-        } catch (error) {
-            console.error('Error adding comment:', error);
-        }
-    };
-
+    console.log(comments)
     return (
         <Container className='mt-3'>
             {!adaptationPost[0] && <Spinner animation='border' />}
@@ -72,7 +60,7 @@ const AdaptationDetailsPage = () => {
                         </Card>
                     </Col>
                     <Col xs={12} md={4}>
-                        <CommentSection comments={comments} onAddComment={handleCommentSubmit} />
+                        <CommentSection comments={comments} adaptionId={adaptationPost[0].a_id} />
                     </Col>
                 </Row>
             )}

@@ -60,7 +60,7 @@ const AdaptationPage = () => {
                             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
                         >
                             <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
-                            SHARE YOUR ADOPTION POST
+                            SHARE PET ADOPTION POST
                         </Button>
                     }
 
