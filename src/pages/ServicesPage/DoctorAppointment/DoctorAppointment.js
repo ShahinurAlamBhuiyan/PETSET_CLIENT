@@ -130,7 +130,7 @@ const DoctorAppointment = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="fee" className="form-label">Consultation Fee</label>
-                    <input disabled type="text" className="form-control" id="fee" value={`$ ${doctor?.visiting_fees}`} />
+                    <input disabled type="text" className="form-control" id="fee" value={`৳ ${doctor?.visiting_fees}`} />
 
                 </div>
                 <button type="submit" className="btn btn-primary">Submit Appointment</button>

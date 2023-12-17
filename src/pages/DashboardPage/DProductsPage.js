@@ -96,7 +96,7 @@ const DProductsPage = () => {
                     <td >
                       &nbsp;&nbsp;{product.product_name}
                     </td>
-                    <td>${product.product_price}</td>
+                    <td>৳ {product.product_price}</td>
                     <td>{product.product_type}</td>
                     <td>{product.product_description}</td>
                     <td>

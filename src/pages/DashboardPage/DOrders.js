@@ -139,7 +139,7 @@ const DOrders = () => {
                     return (
                       <tr key={index}>
                         <td>{order.productName}</td>
-                        <td>$ {order.productPrice}</td>
+                        <td>৳ {order.productPrice}</td>
                         <td >{order.orderer_name}</td>
                         <td>{order.orderer_email}</td>
                         <td>{order.orderer_contact}</td>

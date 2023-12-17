@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     const handleCloseForm = () => {
         setShowForm(false);
     };
-
+    
     return (
         <div className="product_card">
             <img
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
                         <FontAwesomeIcon size="sm" icon={faInfo} />
                     </button>
                 </div>
-                <div className="product-price">$ {product.product_price}</div>
+                <div className="product-price">৳ {product.product_price}</div>
                 <a href={`payment/${product.product_id}`} className="buy-btn">
                     Buy Now
                 </a>
@@ -52,7 +52,7 @@ const ProductCard = ({ product }) => {
 
                     <span style={{ fontWeight: 'bold', color: 'black' }}>Name:</span> {product.product_name} <br />
                     <span style={{ fontWeight: 'bold', color: 'black' }}>Type:</span> {product.product_type} <br />
-                    <span style={{ fontWeight: 'bold', color: 'black' }}>Price:</span> $ {product.product_price} <br />
+                    <span style={{ fontWeight: 'bold', color: 'black' }}>Price:</span> ৳ {product.product_price} <br />
                     <span style={{ fontWeight: 'bold', color: 'black' }}>Description:</span> {product.product_description}<br />
 
                 </Modal.Body>

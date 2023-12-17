@@ -26,7 +26,7 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
                 <div>
                     <div className='centering_items_flex' style={{ justifyContent: 'space-between' }}>
                         <Card.Title style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{specialist?.dr_name}</Card.Title>
-                        <p >fees $50</p>
+                        <p >fees ৳ {specialist?.visiting_fees}</p>
                     </div>
                     <Card.Text style={{ textAlign: 'justify', color: '#555' }}>Degrees: {specialist?.specialise}</Card.Text>
                 </div>

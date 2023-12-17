@@ -112,7 +112,7 @@ const DAddProductPage = () => {
                     <Form.Label>Price</Form.Label>
                     <Form.Control
                         type="number"
-                        placeholder="Enter Product Price ($)"
+                        placeholder="Enter Product Price (৳)"
                         name="product_price"
                         value={newProduct.product_price}
                         onChange={handleInputChange}

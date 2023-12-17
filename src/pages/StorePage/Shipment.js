@@ -6,10 +6,12 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
 
 
+
 const Shipment = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { loggedInUser } = useContext(AuthContext);
     const { product_id } = useParams();
+    const [paymentMethod, setPaymentMethod] = useState('')
 
     const [shippingData, setShippingData] = useState(null);
     const [status] = useState('pending');
@@ -55,8 +57,12 @@ const Shipment = () => {
         console.log({ orderDetails })
     }
 
+    const handleMethodSystem = (event) => {
+        setPaymentMethod(event.target.value);
+    }
 
 
+    console.log(paymentMethod)
 
     return (
         <div className="container col-md-7 col-lg-8 py-5">
@@ -139,34 +145,25 @@ const Shipment = () => {
                 </div>
 
                 {/* PAYMENT */}
-                <div style={{ display: shippingData ? 'block' : 'none' }}>
-                    <h4 className="mb-3">Payment</h4>
+                <div style={{ display: shippingData ? 'block' : 'none' }} className='centering_items_flex'>
+                    <div className='centering_items_flex'>
+                        <h4 className="mb-3">Payment</h4>
 
-                    <div className="my-3">
-                        <div className="form-check">
-                            <input id="credit" name="paymentMethod" type="radio" className="form-check-input" checked required />
-                            <label className="form-check-label" for="credit">Credit card</label>
+                        <div className="my-3">
+                            <div className="form-check">
+                                <input onClick={(e) => handleMethodSystem(e)} value='credit' id="credit" name="paymentMethod" type="radio" className="form-check-input" required />
+                                <label className="form-check-label" for="credit">Credit card</label>
+                            </div>
+                            <div className="form-check">
+                                <input onClick={(e) => handleMethodSystem(e)} value='bKash' id="credit" name="paymentMethod" type="radio" className="form-check-input" required />
+                                <label className="form-check-label" for="credit">bKash</label>
+                            </div>
                         </div>
-                        <div className="form-check">
-                            <input id="debit" name="paymentMethod" type="radio" className="form-check-input" required />
-                            <label className="form-check-label" for="debit">Debit card</label>
+                        <br />
+                        <label for="creditCard">Credit Card</label>
+                        <div className="mt-3">
+                            <ProcessPayment paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} shippingData={shippingData} handlePayment={handlePaymentSuccess}></ProcessPayment>
                         </div>
-                        <div className="form-check">
-                            <input id="bKash" name="paymentMethod" type="radio" className="form-check-input" required />
-                            <label className="form-check-label" for="bKash">bKash</label>
-                        </div>
-                    </div>
-                    <label for="cc-name" className="form-label">Name on card</label>
-                    <input type="text" className="form-control" id="cc-name" placeholder="" required />
-                    <small className="text-muted">Full name as displayed on card</small>
-                    <div className="invalid-feedback">
-                        Name on card is required
-                    </div>
-                    <br />
-                    <br />
-                    <label for="creditCard">Credit Card</label>
-                    <div className="mt-3">
-                        <ProcessPayment shippingData={shippingData} handlePayment={handlePaymentSuccess}></ProcessPayment>
                     </div>
                 </div>
             </div>
