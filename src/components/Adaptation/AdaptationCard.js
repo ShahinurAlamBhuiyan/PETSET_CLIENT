@@ -29,7 +29,7 @@ const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
           ]
           return (
             <div key={post.m_id} className='memory_card'>
-              <Card style={{ height: '100%' }}>
+              <Card style={{ height: '100%', borderRadius:'15px' }}>
                 {myArray.length > 0 ? (
                   <Carousel nextLabel={''} prevLabel={''} interval={null}>
                     {myArray.map((memory, index) => (
@@ -38,7 +38,7 @@ const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
                           className='d-block w-100'
                           src={memory.img_url}
                           alt={`Slide ${index}`}
-                          style={{ objectFit: 'cover', height: '200px' }}
+                          style={{ objectFit: 'cover', height: '200px' , borderRadius: '15px', borderBottomLeftRadius: '0', borderBottomRightRadius: '0'}}
                         />
                       </Carousel.Item>
                     ))}

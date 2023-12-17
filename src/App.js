@@ -7,7 +7,7 @@ import Home from './pages/Home/Home';
 
 function App() {
   return (
-    <div>
+    <div className='memory_amit_container'>
       <Home />
     </div>
   );

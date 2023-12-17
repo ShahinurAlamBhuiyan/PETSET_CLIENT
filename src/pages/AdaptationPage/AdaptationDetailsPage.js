@@ -37,7 +37,7 @@ const AdaptationDetailsPage = () => {
 
     console.log(comments)
     return (
-        <Container className='mt-3'>
+        <Container className='mt-3 pb-5'>
             {!adaptationPost[0] && <Spinner animation='border' />}
             {adaptationPost[0] && (
                 <Row>

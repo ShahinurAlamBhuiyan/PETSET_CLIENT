@@ -46,7 +46,7 @@ const AdaptationPage = () => {
         setShowForm(false);
     };
   return (
-    <>
+    <div className='pb-5'>
             {!adaptationPosts.length && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Spinner animation='border' />
@@ -88,7 +88,7 @@ const AdaptationPage = () => {
                     {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own adoption post!</p>}
                 </div>
             )}
-        </>
+    </div>
   );
 };
 

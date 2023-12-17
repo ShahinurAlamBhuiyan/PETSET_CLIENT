@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const DoctorAppointment = () => {
     const { loggedInUser } = useContext(AuthContext);
@@ -105,7 +105,7 @@ const DoctorAppointment = () => {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 pb-5 appointment_amit_container appointment_amit_container_none">
             <h2>An appointment with {doctor?.dr_name}</h2>
             <form onSubmit={handleAppointmentSubmit}>
                 <div className="mb-3">

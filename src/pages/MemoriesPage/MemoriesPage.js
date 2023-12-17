@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { Spinner, Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
@@ -16,19 +16,18 @@ const MemoriesPage = () => {
     const [showForm, setShowForm] = useState(false); // State to control the visibility of the MemoriesForm modal
     const [memories, setMemories] = useState([]);
 
-
     // Fetching all memories --->
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/memories")
-                setMemories(res.data)
+                const res = await axios.get("http://localhost:8800/memories");
+                setMemories(res.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
-        fetchAllMemories()
-    }, [memories])
+        };
+        fetchAllMemories();
+    }, [memories]);
 
     // Pagination part --->
     const totalPages = Math.ceil(memories.length / itemsPerPage);
@@ -46,8 +45,13 @@ const MemoriesPage = () => {
         setShowForm(false);
     };
 
+    // Styling for the container with a background image
+    const containerStyle = {
+       
+    };
+
     return (
-        <>
+        <div  className='pb-5'>
             {!memories.length && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Spinner animation='border' />
@@ -55,7 +59,7 @@ const MemoriesPage = () => {
             )}
             {memories.length && (
                 <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                    {loggedInUser.u_id &&
+                    {loggedInUser.u_id && (
                         <Button
                             onClick={handleShowForm}
                             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
@@ -63,7 +67,7 @@ const MemoriesPage = () => {
                             <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
                             SHARE YOUR MEMORY
                         </Button>
-                    }
+                    )}
 
                     <Modal show={showForm} onHide={handleCloseForm}>
                         <Modal.Header closeLabel='cancel'>
@@ -89,7 +93,7 @@ const MemoriesPage = () => {
                     {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>}
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
