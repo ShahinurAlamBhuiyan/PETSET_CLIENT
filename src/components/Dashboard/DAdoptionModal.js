@@ -30,9 +30,11 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
             title: newAdoptionPostTitle ? newAdoptionPostTitle : adoptionPost.title,
             details: newAdoptionPostDetails ? newAdoptionPostDetails : adoptionPost.details,
         }
+        console.log(newAdoptionPost)
+        console.log(adoptionId)
 
         try {
-            const res = await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)
+            await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)
             Swal.fire({
                 title: "Great!",
                 text: "Adoption post updated successfully!",
