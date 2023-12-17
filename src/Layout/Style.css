@@ -7,7 +7,6 @@
   transition: margin-left 0.2s ease-in;
   padding: 50px;
   height: 100vh;
-  /* color: black; */
 }
 
 .RightContainer.inactive {
