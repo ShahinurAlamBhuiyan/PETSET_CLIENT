@@ -23,7 +23,7 @@ const MemoryDetailsPage = () => {
     }, [m_id]);
     console.log(memory)
     return (
-        <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
+        <div className='container pb-5' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
             {!memory[0] && <Spinner animation='border' />}
             {memory[0] &&
                 <div>

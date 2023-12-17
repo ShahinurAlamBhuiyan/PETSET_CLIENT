@@ -15,7 +15,6 @@
   background-image: url('../src/assets/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5; /* Adjust the opacity as needed */
+  opacity: 0.2; 
   z-index: -1;
 }
-

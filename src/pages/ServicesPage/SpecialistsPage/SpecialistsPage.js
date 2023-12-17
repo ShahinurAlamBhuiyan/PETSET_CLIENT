@@ -24,7 +24,7 @@ const SpecialistsPage = () => {
 
 
   return (
-    <div className='container mt-5'>
+    <div className='container mt-5 pb-5'>
       <h2>Service Name:  {service && service[0]?.title}</h2>
       {/* About Service */}
       <div className='centering_items_flex'>
