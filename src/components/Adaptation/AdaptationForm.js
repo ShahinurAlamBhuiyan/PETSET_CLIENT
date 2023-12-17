@@ -110,6 +110,7 @@ const AdaptationForm = ({ setShowForm }) => {
         event.preventDefault();
         newAdaptationPost.a_id = generateAdaptionId();
         try {
+            console.log({newAdaptationPost})
             await axios.post("http://localhost:8800/adaption", newAdaptationPost)
             console.log(newAdaptationPost)
             setShowForm(false); 
@@ -117,7 +118,7 @@ const AdaptationForm = ({ setShowForm }) => {
                 title: "Great!",
                 text: "Adoption post posted!",
                 icon: "success"
-            }).then(() => window.location.reload());
+            });
             setNewAdaptationPost({
                 a_id: '',
                 u_id: loggedInUser?.u_id,
