@@ -18,7 +18,7 @@ const ServicesPage = () => {
         fetchAllMemories()
     }, [services.length])
     return (
-        <div className='container mt-3 centering_items_flex' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
+        <div className='container mt-3 centering_items_flex pb-5' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
             <h3>Our services for your PET</h3>
             <div className='centering_items_flex' >
                 {services &&

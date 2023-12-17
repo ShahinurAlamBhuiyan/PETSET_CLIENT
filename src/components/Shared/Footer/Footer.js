@@ -4,7 +4,7 @@ import logo from '../../../assets/petsetlogo.png';
 const Footer = () => {
   return (
     <>
-      <div className="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
+      <div className="container-fluid bg-dark text-white  py-5 px-sm-3 px-md-5">
         <div className="row pt-5">
           <div className="col-lg-4 col-md-12 mb-5 pl-5">
             <a href="/" className="navbar-brand" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '5px' }}>
