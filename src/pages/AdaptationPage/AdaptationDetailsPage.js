@@ -50,12 +50,12 @@ const AdaptationDetailsPage = () => {
                             <Card.Body>
                                 <Card.Title>{adaptationPost[0].title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
-                                    Shared by {adaptationPost.creatorName || 'Shahinur Alam Bhuiyan'}
+                                    Shared by {adaptationPost.creatorName || 'Amit Mahmud'}
                                 </Card.Subtitle>
                                 <Card.Text>{adaptationPost[0].details}</Card.Text>
                             </Card.Body>
                             <Card.Footer className="text-muted">
-                                Shared on {adaptationPost[0].createdDate || '02 November, 2023'}
+                                Shared on {adaptationPost[0].created_date || '18 December, 2023'}
                             </Card.Footer>
                         </Card>
                     </Col>

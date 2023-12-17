@@ -34,10 +34,10 @@ const MemoryDetailsPage = () => {
                         <Card.Img variant="top" src={memory[0].img_URL} />
                         <Card.Body>
                             <Card.Title>{memory[0].title}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Shared by {memory.creatorName || 'Shahinur Alam Bhuiyan'}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">Shared by {memory.creatorName || 'Bhuiyan'}</Card.Subtitle>
                             <Card.Text>{memory[0].details}</Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted">Shared on {memory[0].createdDate || '02 November, 2023'}</Card.Footer>
+                        <Card.Footer className="text-muted">Shared on {memory[0].created_date || '02 November, 2023'}</Card.Footer>
                     </Card>
                 </div>
             }

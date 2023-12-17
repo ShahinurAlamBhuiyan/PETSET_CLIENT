@@ -98,7 +98,7 @@ const DDoctorsPage = () => {
                     <td>{doctor.specialise}</td>
                     <td>{doctor.dr_degrees}</td>
                     <td>{doctor.experience_yr} yrs.</td>
-                    <td>$ {doctor.visiting_fees}</td>
+                    <td>৳ {doctor.visiting_fees}</td>
                     <td>{doctor.dr_contact}</td>
                     <td>{doctor.dr_email}</td>
                     <td>
