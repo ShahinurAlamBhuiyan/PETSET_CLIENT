@@ -59,7 +59,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <Container>
+    <Container className='pb-5'>
       <Row className="justify-content-md-center mt-5">
         <Col md={6}>
           <Card>
