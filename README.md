@@ -16,13 +16,14 @@ PetSet goes beyond being just a website; it's a dedicated platform to cater to e
 
 ## Technology
 
+
 ### Frontend Tech
 - Reactjs
 - Stripe.js
 - AOS animation
 - React-bootstrap
 - Axios
-- React-router-dom
+- React-router-dom 
 
 ### Backend Tech
 - Nodejs
