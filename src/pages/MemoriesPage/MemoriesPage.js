@@ -44,12 +44,6 @@ const MemoriesPage = () => {
     const handleCloseForm = () => {
         setShowForm(false);
     };
-
-    // Styling for the container with a background image
-    const containerStyle = {
-       
-    };
-
     return (
         <div  className='pb-5'>
             {!memories.length && (
