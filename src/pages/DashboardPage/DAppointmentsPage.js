@@ -17,9 +17,9 @@ const DAppointmentsPage = () => {
         console.log(loggedInUser)
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:8800/appointments');
-          else if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:8800/appointments/doctor/${loggedInUser?.u_id}`);
-          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:8800/appointments/user/${loggedInUser?.u_id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-api.onrender.com/appointments');
+          else if (loggedInUser.role === 'doctor') response = await axios.get(`https://petset-api.onrender.com/appointments/doctor/${loggedInUser?.u_id}`);
+          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-api.onrender.com/appointments/user/${loggedInUser?.u_id}`);
 
           setAppointments(response.data);
           setLoading(false);
@@ -35,7 +35,7 @@ const DAppointmentsPage = () => {
 
   const fetchDoctorById = async (drId) => {
     try {
-      const res = await axios.get(`http://localhost:8800/doctor/${drId}`);
+      const res = await axios.get(`https://petset-api.onrender.com/doctor/${drId}`);
       setDoctorNames((prevDoctorNames) => ({
         ...prevDoctorNames,
         [drId]: res.data[0]?.dr_name || 'Unknown Doctor', // Default to 'Unknown Doctor' if name is not available
@@ -75,7 +75,7 @@ const DAppointmentsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/appointment/${app_id}`)
+          await axios.delete(`https://petset-api.onrender.com/appointment/${app_id}`)
           Swal.fire({
             title: "Deleted!",
             text: "Appointment deleted successfully!",

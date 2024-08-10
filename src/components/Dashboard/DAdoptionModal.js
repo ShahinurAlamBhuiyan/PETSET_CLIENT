@@ -15,7 +15,7 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
     useEffect(() => {
         const getAdoptionPostById = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/adaption/${adoptionId}`)
+                const res = await axios.get(`https://petset-api.onrender.com/adaption/${adoptionId}`)
                 setAdoptionPost(res.data[0])
             }
             catch (error) {
@@ -25,7 +25,7 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         getAdoptionPostById()
     }, [adoptionId])
 
-    const handleUpdateAdoptionPost = async() => {
+    const handleUpdateAdoptionPost = async () => {
         const newAdoptionPost = {
             title: newAdoptionPostTitle ? newAdoptionPostTitle : adoptionPost.title,
             details: newAdoptionPostDetails ? newAdoptionPostDetails : adoptionPost.details,
@@ -34,7 +34,7 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         console.log(adoptionId)
 
         try {
-            await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)
+            await axios.put(`https://petset-api.onrender.com/adoption/${adoptionId}`, newAdoptionPost)
             Swal.fire({
                 title: "Great!",
                 text: "Adoption post updated successfully!",

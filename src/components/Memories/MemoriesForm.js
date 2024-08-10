@@ -67,7 +67,7 @@ const MemoriesForm = ({ setShowForm }) => {
         setShowForm(false); // from upper level
         try {
             console.log(newMemory)
-            await axios.post("http://localhost:8800/memories", newMemory)
+            await axios.post("https://petset-api.onrender.com/memories", newMemory)
             Swal.fire({
                 title: "Great!",
                 text: "Memory posted!",

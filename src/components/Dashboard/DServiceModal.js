@@ -14,7 +14,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/services/${serviceId}`);
+        const res = await axios.get(`https://petset-api.onrender.com/services/${serviceId}`);
         setServiceWithSpecialists(res.data);
       } catch (error) {
         console.error('Error fetching Service details:', error);
@@ -27,7 +27,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:8800/doctors')
+        const res = await axios.get('https://petset-api.onrender.com/doctors')
         setDoctors(res.data)
       } catch (error) {
 
@@ -48,7 +48,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/service/doctor/${serviceId}/${dr_id}`);
+          await axios.delete(`https://petset-api.onrender.com/service/doctor/${serviceId}/${dr_id}`);
           setServiceWithSpecialists(prevState => prevState.filter(specialist => specialist.dr_id !== dr_id));
           Swal.fire({
             title: "Deleted!",
@@ -66,7 +66,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
     try {
       if (newServiceTitle !== '' || newServiceDetails !== '') {
         // Update service title, details
-        await axios.put(`http://localhost:8800/services/${serviceId}`, { title: newServiceTitle !== '' ? newServiceTitle : serviceWithSpecialists[0].title, details: newServiceDetails !== '' ? newServiceDetails : serviceWithSpecialists[0].details });
+        await axios.put(`https://petset-api.onrender.com/services/${serviceId}`, { title: newServiceTitle !== '' ? newServiceTitle : serviceWithSpecialists[0].title, details: newServiceDetails !== '' ? newServiceDetails : serviceWithSpecialists[0].details });
 
 
         // Update the state with the new data
@@ -85,7 +85,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           title: "Great!",
           text: "Service updated!",
           icon: "success"
-      })
+        })
         setNewServiceTitle('')
         setNewServiceDetails('')
         setShowModalEdit(false);
@@ -93,7 +93,7 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
 
       // Fetch add new doctor to the service
       if (newDoctorId !== '') {
-        await axios.post(`http://localhost:8800/services`, {
+        await axios.post(`https://petset-api.onrender.com/services`, {
           dr_id: newDoctorId,
           s_id: serviceWithSpecialists[0]?.s_id,
           title: newServiceTitle !== '' ? newServiceTitle : serviceWithSpecialists[0]?.title,
@@ -101,14 +101,14 @@ const DServiceModal = ({ showModalView, setShowModalView, serviceId, showModalEd
           img_URL: serviceWithSpecialists[0].img_URL,
           created_date: serviceWithSpecialists[0].created_date,
         });
-        
+
         setNewDoctorId('');
         setShowModalEdit(false);
         Swal.fire({
           title: "Great!",
           text: "Dr. added to the service!",
           icon: "success"
-      }).then(() => window.location.reload());
+        }).then(() => window.location.reload());
       }
     } catch (error) {
       console.log(error);

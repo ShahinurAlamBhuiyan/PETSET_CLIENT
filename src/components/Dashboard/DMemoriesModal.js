@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import Swal from 'sweetalert2'
 
-const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
+const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
     const [memory, setMemory] = useState({});
     const [newMemoryTitle, setNewMemoryTitle] = useState('');
     const [newMemoryDetails, setNewMemoryDetails] = useState('');
@@ -15,7 +15,7 @@ const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setSh
 
     useEffect(() => {
         const getMemoryById = async () => {
-            const res = await axios.get(`http://localhost:8800/memories/${memoryId}`)
+            const res = await axios.get(`https://petset-api.onrender.com/memories/${memoryId}`)
             setMemory(res.data[0])
         }
         getMemoryById()
@@ -29,7 +29,7 @@ const DMemoriesModal = ({  showModalEdit, setShowModalEdit, showModalView, setSh
         }
 
         try {
-            const res = await axios.put(`http://localhost:8800/memories/${memoryId}`, newMemory)
+            const res = await axios.put(`https://petset-api.onrender.com/memories/${memoryId}`, newMemory)
             console.log(res)
             Swal.fire({
                 title: "Great!",

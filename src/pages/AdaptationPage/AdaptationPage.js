@@ -10,8 +10,8 @@ import Pagination from '../../components/Pagination/Pagination';
 import { AuthContext } from '../../Providers/AuthProvider'
 
 const AdaptationPage = () => {
-  const { loggedInUser } = useContext(AuthContext);
-  const [currentPage, setCurrentPage] = useState(1);
+    const { loggedInUser } = useContext(AuthContext);
+    const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
     const [showForm, setShowForm] = useState(false); // State to control the visibility of the adaptationPostsForm modal
     const [adaptationPosts, setAdaptationPosts] = useState([]);
@@ -21,7 +21,7 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/adaptions")
+                const res = await axios.get("https://petset-api.onrender.com/adaptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)
@@ -45,8 +45,8 @@ const AdaptationPage = () => {
     const handleCloseForm = () => {
         setShowForm(false);
     };
-  return (
-    <div className='pb-5'>
+    return (
+        <div className='pb-5'>
             {!adaptationPosts.length && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Spinner animation='border' />
@@ -88,8 +88,8 @@ const AdaptationPage = () => {
                     {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own adoption post!</p>}
                 </div>
             )}
-    </div>
-  );
+        </div>
+    );
 };
 
 export default AdaptationPage

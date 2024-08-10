@@ -28,7 +28,7 @@ const SignUpPage = () => {
     e.preventDefault();
     if (confirmPass === formData.password) {
       try {
-        await axios.post("http://localhost:8800/sign-up", formData)
+        await axios.post("https://petset-api.onrender.com/sign-up", formData)
         Swal.fire({
           title: "Congratulation!",
           text: "Sign-up successfully!",

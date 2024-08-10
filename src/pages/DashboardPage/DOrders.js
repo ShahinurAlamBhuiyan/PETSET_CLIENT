@@ -31,8 +31,8 @@ const DOrders = () => {
       if (loggedInUser.role) {
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:8800/orders');
-          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:8800/order/customer/${loggedInUser?.u_id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-api.onrender.com/orders');
+          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-api.onrender.com/order/customer/${loggedInUser?.u_id}`);
 
           setOrders(response.data);
           setLoading(false);
@@ -56,7 +56,7 @@ const DOrders = () => {
 
   const handleChangeStatus = async (orderId, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:8800/order/${orderId}`, { status: newStatus });
+      const res = await axios.put(`https://petset-api.onrender.com/order/${orderId}`, { status: newStatus });
 
       if (res.data) {
         setOrders((prevOrders) =>
@@ -75,7 +75,7 @@ const DOrders = () => {
 
   const getProductById = async (productID) => {
     try {
-      const res = await axios.get(`http://localhost:8800/product/${productID}`);
+      const res = await axios.get(`https://petset-api.onrender.com/product/${productID}`);
       // console.log(res.data[0])
       return res.data[0];
     } catch (error) {
@@ -100,7 +100,7 @@ const DOrders = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/order/${orderID}`)
+          await axios.delete(`https://petset-api.onrender.com/order/${orderID}`)
           Swal.fire({
             title: "Deleted!",
             text: "Order deleted successfully!",
@@ -176,7 +176,7 @@ const DOrders = () => {
                   })}
               </tbody>
             </table>
-            : 
+            :
             <h2>No order ordered.</h2>
 
           }

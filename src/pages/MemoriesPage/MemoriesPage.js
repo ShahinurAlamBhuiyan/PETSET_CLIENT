@@ -20,7 +20,7 @@ const MemoriesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/memories");
+                const res = await axios.get("https://petset-api.onrender.com/memories");
                 setMemories(res.data);
             } catch (error) {
                 console.log(error);
@@ -45,7 +45,7 @@ const MemoriesPage = () => {
         setShowForm(false);
     };
     return (
-        <div  className='pb-5'>
+        <div className='pb-5'>
             {!memories.length && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Spinner animation='border' />

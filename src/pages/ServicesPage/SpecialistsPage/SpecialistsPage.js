@@ -12,7 +12,7 @@ const SpecialistsPage = () => {
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/services/${s_id}`);
+        const res = await axios.get(`https://petset-api.onrender.com/services/${s_id}`);
         setService(res.data);
       } catch (error) {
         console.error('Error fetching Service details:', error);
@@ -31,7 +31,7 @@ const SpecialistsPage = () => {
         <img width={375} height={300} src={service && service[0]?.img_URL} alt="hello" />
 
         <p className='text-justify' style={{ height: '50%', width: '60%' }}>
-          {service[0]?.details} 
+          {service[0]?.details}
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, commodi animi distinctio cumque temporibus accusamus minima repudiandae voluptas? Neque tenetur nam quaerat porro ea dignissimos enim ut in quo reprehenderit, pariatur optio voluptas ab ipsum est accusantium. Voluptatum, vel modi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis quis doloremque id repellat maiores necessitatibus deserunt officia magni, dolore culpa cumque nobis porro provident veniam.</p>
       </div>
 

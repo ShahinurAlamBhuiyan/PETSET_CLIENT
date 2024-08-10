@@ -11,7 +11,7 @@ const DDoctorsPage = () => {
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/doctors');
+        const response = await axios.get('https://petset-api.onrender.com/doctors');
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {
@@ -44,17 +44,17 @@ const DDoctorsPage = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           // Delete doctors appointment first....
-          const resDeleteAppointment = await axios.delete(`http://localhost:8800/appointment/doctor/${doctor_id}`)
+          const resDeleteAppointment = await axios.delete(`https://petset-api.onrender.com/appointment/doctor/${doctor_id}`)
 
           if (resDeleteAppointment.data) {
 
             // delete doctors service second...
-            const resDeleteDoctorService = await axios.delete(`http://localhost:8800/service/doctor/${doctor_id}`)
+            const resDeleteDoctorService = await axios.delete(`https://petset-api.onrender.com/service/doctor/${doctor_id}`)
 
 
             if (resDeleteDoctorService.data) {
               // last delete dr. from doctors 
-              await axios.delete(`http://localhost:8800/doctor/${doctor_id}`)
+              await axios.delete(`https://petset-api.onrender.com/doctor/${doctor_id}`)
               setDoctors(doctors.filter(doctor => doctor.dr_id !== doctor_id));
             }
           }

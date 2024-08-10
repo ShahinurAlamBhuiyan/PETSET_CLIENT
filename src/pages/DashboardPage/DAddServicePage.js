@@ -20,7 +20,7 @@ const DAddServicePage = () => {
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:8800/doctors')
+        const res = await axios.get('https://petset-api.onrender.com/doctors')
         setDoctors(res.data)
       } catch (error) {
 
@@ -74,7 +74,7 @@ const DAddServicePage = () => {
     console.log(newService)
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8800/services", newService)
+      await axios.post("https://petset-api.onrender.com/services", newService)
       Swal.fire({
         title: "Great!",
         text: "Service Added!",

@@ -20,7 +20,7 @@ const DProfile = () => {
     }
 
     try {
-      await axios.put(`http://localhost:8800/user/${loggedInUser.u_id}`, newData);
+      await axios.put(`https://petset-api.onrender.com/user/${loggedInUser.u_id}`, newData);
       setLoggedInUser((prevUser) => ({
         ...prevUser,
         full_name: newData.full_name,

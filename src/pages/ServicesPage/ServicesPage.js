@@ -7,9 +7,9 @@ const ServicesPage = () => {
     const [services, setServices] = useState([])
     // Fetching all memories --->
     useEffect(() => {
-        const   fetchAllMemories = async () => {
+        const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/services")
+                const res = await axios.get("https://petset-api.onrender.com/services")
                 setServices(res.data)
             } catch (error) {
                 console.log(error)

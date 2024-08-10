@@ -28,8 +28,8 @@ const DMemoriesPage = () => {
     const fetchAllMemories = async () => {
       let res;
       try {
-        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:8800/memories")
-        else res = await axios.get(`http://localhost:8800/memories/user/${loggedInUser?.u_id}`);
+        if (loggedInUser.role === 'admin') res = await axios.get("https://petset-api.onrender.com/memories")
+        else res = await axios.get(`https://petset-api.onrender.com/memories/user/${loggedInUser?.u_id}`);
         setMemories(res.data)
       } catch (error) {
         console.log(error)
@@ -65,7 +65,7 @@ const DMemoriesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/memories/${id}`)
+          await axios.delete(`https://petset-api.onrender.com/memories/${id}`)
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",

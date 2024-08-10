@@ -14,7 +14,7 @@ const DServicesPage = () => {
   useEffect(() => {
     const fetchAllServices = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/services');
+        const response = await axios.get('https://petset-api.onrender.com/services');
         setServices(response.data);
         setLoading(false);
       } catch (error) {
@@ -46,7 +46,7 @@ const DServicesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/service/${id}`)
+          await axios.delete(`https://petset-api.onrender.com/service/${id}`)
           setServices(services.filter(service => service.s_id !== id));
           Swal.fire({
             title: "Deleted!",
@@ -91,7 +91,7 @@ const DServicesPage = () => {
               {services.length > 0 &&
                 services.slice().reverse().map((service, index) => (
                   <tr key={index}>
-                    <td><img src={service.img_URL} width={30} height={30} style={{borderRadius:'50%'}} alt="" /></td>
+                    <td><img src={service.img_URL} width={30} height={30} style={{ borderRadius: '50%' }} alt="" /></td>
                     <td>{service.title}</td>
                     <td>{service.details}</td>
                     <td>

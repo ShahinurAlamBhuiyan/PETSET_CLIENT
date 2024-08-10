@@ -10,7 +10,7 @@ const DUsersPage = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/users');
+        const response = await axios.get('https://petset-api.onrender.com/users');
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -44,18 +44,18 @@ const DUsersPage = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           // delete memory  for that user...
-          await axios.delete(`http://localhost:8800/memories/user/${u_id}`);
+          await axios.delete(`https://petset-api.onrender.com/memories/user/${u_id}`);
           // delete user comments
-          await axios.delete(`http://localhost:8800/adoption/comments/${u_id}`);
+          await axios.delete(`https://petset-api.onrender.com/adoption/comments/${u_id}`);
           // delete user order
-          await axios.delete(`http://localhost:8800/order/user/${u_id}`);
+          await axios.delete(`https://petset-api.onrender.com/order/user/${u_id}`);
           // delete adoption  for that user...
-          await axios.delete(`http://localhost:8800/adoption/user/${u_id}`);
+          await axios.delete(`https://petset-api.onrender.com/adoption/user/${u_id}`);
           // delete appointment  for that user...
-          await axios.delete(`http://localhost:8800/appointment/user/${u_id}`)
+          await axios.delete(`https://petset-api.onrender.com/appointment/user/${u_id}`)
           // delete memory  for that user...
-          await axios.delete(`http://localhost:8800/memories/user/${u_id}`)
-          await axios.delete(`http://localhost:8800/user/${u_id}`)
+          await axios.delete(`https://petset-api.onrender.com/memories/user/${u_id}`)
+          await axios.delete(`https://petset-api.onrender.com/user/${u_id}`)
           setUsers(users.filter(user => user.u_id !== u_id));
           Swal.fire({
             title: "Deleted!",

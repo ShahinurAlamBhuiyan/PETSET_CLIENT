@@ -12,7 +12,7 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
         try {
             if (newProductName !== '' || newProductPrice !== '' || newProductDetails !== '') {
                 // Update Product title, details
-                await axios.put(`http://localhost:8800/product/${product.product_id}`,
+                await axios.put(`https://petset-api.onrender.com/product/${product.product_id}`,
                     {
                         product_name: newProductName !== '' ? newProductName : product.product_name,
                         product_price: newProductPrice !== '' ? newProductPrice : product.product_price,

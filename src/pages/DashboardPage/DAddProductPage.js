@@ -64,7 +64,7 @@ const DAddProductPage = () => {
         console.log(newProduct)
         event.preventDefault();
         try {
-            await axios.post("http://localhost:8800/product", newProduct)
+            await axios.post("https://petset-api.onrender.com/product", newProduct)
             Swal.fire({
                 title: "Great!",
                 text: "Product posted!",

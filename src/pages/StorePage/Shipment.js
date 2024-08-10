@@ -50,7 +50,7 @@ const Shipment = () => {
 
 
         try {
-            await axios.post('http://localhost:8800/order', orderDetails)
+            await axios.post('https://petset-api.onrender.com/order', orderDetails)
         } catch (error) {
             console.log(error)
         }
