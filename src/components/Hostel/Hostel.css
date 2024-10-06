@@ -1,0 +1,261 @@
+.hostel-header {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden; /* Ensure no content overflows */
+}
+
+.hostel-header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  color: white !important;
+}
+
+.hostel-header-content h2 {
+  color: #ee5b2b;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.hostel-header-form {
+  background-image: url("../../assets/bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.hostel-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/hostel/petset-hostel-header.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.hostel-header-content,
+.hostel-header-form {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 992px) {
+  .hostel-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.hostel-header-content {
+  max-width: 500px;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .hostel-header-content {
+    text-align: left;
+  }
+}
+
+.hostel-header-form {
+  max-width: 400px;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .hostel-header-form {
+    margin-left: 40px;
+  }
+}
+
+/* ------Quality Hostel Component */
+.qualityHostel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* Adjusted spacing */
+  padding: 40px;
+  flex-wrap: wrap; /* For responsiveness */
+}
+
+.qualityHostel-images {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.qualityHostel-singleImage img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px; /* Optional styling for rounded corners */
+}
+
+.qualityHostel-doubleImages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qualityHostel-doubleImages img {
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px; /* Optional styling for rounded corners */
+}
+
+.qualityHostel-content {
+  max-width: 400px;
+  text-align: left;
+}
+
+.qualityHostel-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ee5b2b;
+}
+
+.qualityHostel-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .qualityHostel {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .qualityHostel-content {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .qualityHostel-images {
+    flex-direction: column;
+  }
+
+  .qualityHostel-singleImage img,
+  .qualityHostel-doubleImages img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ------Quality Hostel Service Component */
+.qualityHostelService {
+  padding-top: 40px;
+  background-color: rgba(59, 56, 52, 0.592);
+}
+
+.qualityHostelServiceCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+  padding: 20px;
+  padding-bottom: 30px;
+}
+
+.quality-service-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.quality-service-card:hover {
+  transform: translateY(-5px);
+}
+
+.quality-service-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.quality-service-card-content {
+  padding: 20px;
+}
+
+.quality-service-card-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.quality-service-card-content p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .qualityHostelServiceCardContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quality-service-card {
+    max-width: 100%;
+  }
+}
+
+/* Hostel Map Component */
+.hostel-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.hostel-map {
+  width: 600px;
+}
+
+.hostel-location {
+  text-align: left;
+}
+
+.hostel-location h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.hostel-location p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+@media (max-width: 768px) {
+  .hostel-map-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hostel-map,
+  .hostel-location {
+    max-width: 100%;
+  }
+}

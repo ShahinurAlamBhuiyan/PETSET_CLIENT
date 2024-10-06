@@ -30,6 +30,7 @@ import DProfile from '../pages/DashboardPage/DProfile'
 import DAddServicePage from '../pages/DashboardPage/DAddServicePage'
 import DAddProductPage from '../pages/DashboardPage/DAddProductPage'
 import AdaptationDetailsPage from '../pages/AdaptationPage/AdaptationDetailsPage'
+import HostelPage from '../pages/HostelPage/HostelPage'
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: 'store',
         element: <StorePage />
+      },
+      {
+        path: 'hostel',
+        element: <HostelPage />
       },
       {
         path: 'payment/:product_id',
