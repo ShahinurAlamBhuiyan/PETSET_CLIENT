@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import './Hostel.css';
+import HostelReservationForm from './HostelReservationForm';
 
 const HostelHeader = () => {
     return (
@@ -12,39 +13,7 @@ const HostelHeader = () => {
             </div>
 
             {/* Form Design */}
-            <div className='hostel-header-form mx-3 mt-4 mt-lg-0'>
-                <Form className="bg-white shadow-lg p-5 rounded-lg">
-                    <h3 className="text-center mb-4">Online Reservation</h3>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Pet Type</Form.Label>
-                        <Form.Control as="select" defaultValue="">
-                            <option>Select Pet Type</option>
-                            <option value="dog">Dog</option>
-                            <option value="cat">Cat</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Guests</Form.Label>
-                        <Form.Control type="number" defaultValue="2" />
-                    </Form.Group>
-                    <Row className="mb-3">
-                        <Form.Group as={Col}>
-                            <Form.Label>Check-in</Form.Label>
-                            <Form.Control type="date" placeholder="Check-in Date" />
-                        </Form.Group>
-
-                        <Form.Group as={Col}>
-                            <Form.Label>Check-out</Form.Label>
-                            <Form.Control type="date" placeholder="Check-out Date" />
-                        </Form.Group>
-                    </Row>
-
-                    <Button variant="dark" type="submit" className="w-100">
-                        Check Availability
-                    </Button>
-                </Form>
-            </div>
+            <HostelReservationForm />
         </div>
     );
 };

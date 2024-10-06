@@ -4,15 +4,16 @@ import { useParams } from 'react-router';
 import ProcessPayment from '../../components/Payment/ProcessPayment';
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
+import { HostelContext } from '../../Providers/HostelCheckoutProvider';
 
 
 
 const Shipment = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { loggedInUser } = useContext(AuthContext);
+    const { hostelBookingData } = useContext(HostelContext);
     const { product_id } = useParams();
     const [paymentMethod, setPaymentMethod] = useState('')
-
     const [shippingData, setShippingData] = useState(null);
     const [status] = useState('pending');
 
@@ -35,6 +36,7 @@ const Shipment = () => {
     }
 
     const handlePaymentSuccess = async (paymentId) => {
+        // Prepare order details for product order
         const orderDetails = {
             order_id: generateOrderId(),
             product_id,
@@ -44,26 +46,57 @@ const Shipment = () => {
             orderer_email: shippingData.consumerEmail,
             orderer_contact: shippingData.phone,
             order_date: formattedDate,
-            shipping_address: shippingData.address + " " + shippingData.district + " " + shippingData.zip + " " + shippingData.division,
+            shipping_address: `${shippingData.address} ${shippingData.district} ${shippingData.zip} ${shippingData.division}`,
             status,
         };
 
+        // Prepare order details for hostel order
+        const hostelOrderDetails = {
+            order_id: generateOrderId(),
+            customer_id: loggedInUser.u_id,
+            payment_id: paymentId,
+            orderer_name: shippingData.consumerName,
+            orderer_email: shippingData.consumerEmail,
+            orderer_contact: shippingData.phone,
+            order_date: formattedDate,
+            shipping_address: `${shippingData.address} ${shippingData.district} ${shippingData.zip} ${shippingData.division}`,
+            orderData: {
+                petType: hostelBookingData?.petType,
+                guests: hostelBookingData?.guests,
+                checkIn: hostelBookingData?.checkIn,
+                checkOut: hostelBookingData?.checkOut,
+                totalPrice: hostelBookingData?.totalAmount
+            }
+        };
 
         try {
-            await axios.post('http://localhost:8800/order', orderDetails)
+            // Check if it's a hostel booking or product order
+            if (product_id === 'hostel-payment') {
+                console.log('Hostel Booking Data:', hostelBookingData);
+                console.log('Hostel Order Details:', hostelOrderDetails);
+
+                // API request to save hostel order and log the response
+                const response = await axios.post('http://localhost:8800/hostel-order', hostelOrderDetails);
+
+                // Log the API response to see the result
+                console.log('Hostel Order Response:', response.data);
+
+                // Optionally remove hostel booking data from local storage after successful order
+                localStorage.removeItem('hostelBookingData');
+            } else {
+                // API request to save product order and log the response
+                const response = await axios.post('http://localhost:8800/order', orderDetails);
+                console.log('Product Order Response:', response.data);
+            }
         } catch (error) {
-            console.log(error)
+            console.log('Error placing the order:', error);
         }
-        console.log({ orderDetails })
-    }
+    };
+
 
     const handleMethodSystem = (event) => {
         setPaymentMethod(event.target.value);
     }
-
-
-    console.log(paymentMethod)
-
     return (
         <div className="container col-md-7 col-lg-8 py-5">
             <div className="row">
@@ -162,7 +195,7 @@ const Shipment = () => {
                         <br />
                         <label for="creditCard">Credit Card</label>
                         <div className="mt-3">
-                            <ProcessPayment paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} shippingData={shippingData} handlePayment={handlePaymentSuccess}></ProcessPayment>
+                            <ProcessPayment paymentFor={product_id === 'hostel-payment' ? 'hostel' : 'product'} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} shippingData={shippingData} handlePayment={handlePaymentSuccess}></ProcessPayment>
                         </div>
                     </div>
                 </div>
