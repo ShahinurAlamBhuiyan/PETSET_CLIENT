@@ -66,7 +66,6 @@ const MemoriesForm = ({ setShowForm }) => {
         event.preventDefault();
         setShowForm(false); // from upper level
         try {
-            console.log(newMemory)
             await axios.post("http://localhost:8800/memories", newMemory)
             Swal.fire({
                 title: "Great!",
@@ -85,7 +84,6 @@ const MemoriesForm = ({ setShowForm }) => {
             return false
         }
     }
-    console.log(isFormComplete())
     return (
         <div className="form_container">
             <Form onSubmit={handleFormSubmit} style={{ width: '80%' }} className="mb-4">

@@ -25,7 +25,6 @@ const StorePage = () => {
             console.error('Error searching products:', error);
         }
     };
-    console.log(searchResults)
 
     const handleClear = () => {
         setSearchQuery('');

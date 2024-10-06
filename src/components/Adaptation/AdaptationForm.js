@@ -110,9 +110,7 @@ const AdaptationForm = ({ setShowForm }) => {
         event.preventDefault();
         newAdaptationPost.a_id = generateAdaptionId();
         try {
-            console.log({ newAdaptationPost })
             await axios.post("http://localhost:8800/adaption", newAdaptationPost)
-            console.log(newAdaptationPost)
             setShowForm(false);
             Swal.fire({
                 title: "Great!",

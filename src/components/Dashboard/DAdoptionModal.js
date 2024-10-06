@@ -30,8 +30,6 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
             title: newAdoptionPostTitle ? newAdoptionPostTitle : adoptionPost.title,
             details: newAdoptionPostDetails ? newAdoptionPostDetails : adoptionPost.details,
         }
-        console.log(newAdoptionPost)
-        console.log(adoptionId)
 
         try {
             await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)

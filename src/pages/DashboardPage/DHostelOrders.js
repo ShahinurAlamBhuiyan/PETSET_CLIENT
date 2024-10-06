@@ -41,25 +41,6 @@ const DHostelOrders = () => {
         return <p>Error: {error.message}</p>;
     }
 
-    // const handleChangeStatus = async (orderId, newStatus) => {
-    //     try {
-    //         const res = await axios.put(`http://localhost:8800/hostel-order/${orderId}`, { status: newStatus });
-
-    //         if (res.data) {
-    //             setHostelOrders((prevOrders) =>
-    //                 prevOrders.map((order) => (order.order_id === orderId ? { ...order, status: newStatus } : order))
-    //             );
-    //             Swal.fire({
-    //                 title: "Success!",
-    //                 text: "Hostel order status changed successfully!",
-    //                 icon: "success"
-    //             });
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
     const handleDeleteOrder = async (orderID) => {
         try {
             Swal.fire({

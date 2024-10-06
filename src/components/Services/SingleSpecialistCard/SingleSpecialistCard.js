@@ -3,7 +3,7 @@ import { Button, Card, Modal } from 'react-bootstrap';
 
 const SingleSpecialistCard = ({ specialist, serviceId }) => {
     const [showDoctorDetails, setShowDoctorDetails] = useState(false);
-    console.log(specialist)
+    
     // Function to show the dr. details modal
     const handleShowDoctorDetails = () => {
         setShowDoctorDetails(true);

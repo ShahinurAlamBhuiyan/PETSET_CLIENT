@@ -61,7 +61,6 @@ const DAddProductPage = () => {
 
 
     const handleFormSubmit = async (event) => {
-        console.log(newProduct)
         event.preventDefault();
         try {
             await axios.post("http://localhost:8800/product", newProduct)

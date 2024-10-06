@@ -71,7 +71,6 @@ const DAddServicePage = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(newService)
     event.preventDefault();
     try {
       await axios.post("http://localhost:8800/services", newService)

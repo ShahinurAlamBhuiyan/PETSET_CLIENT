@@ -82,7 +82,6 @@ const DoctorAppointment = () => {
         // booking appointment...
         if (isAppointmentSuccessful) {
             try {
-                console.log({ appointmentDetails })
                 await axios.post("http://localhost:8800/appointment", appointmentDetails)
                 Swal.fire({
                     title: "Congratulation!",

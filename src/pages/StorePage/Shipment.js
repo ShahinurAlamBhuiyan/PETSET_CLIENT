@@ -72,9 +72,6 @@ const Shipment = () => {
         try {
             // Check if it's a hostel booking or product order
             if (product_id === 'hostel-payment') {
-                console.log('Hostel Booking Data:', hostelBookingData);
-                console.log('Hostel Order Details:', hostelOrderDetails);
-
                 // API request to save hostel order and log the response
                 const response = await axios.post('http://localhost:8800/hostel-order', hostelOrderDetails);
 

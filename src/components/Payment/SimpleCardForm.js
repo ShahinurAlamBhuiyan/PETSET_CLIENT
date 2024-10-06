@@ -28,7 +28,6 @@ const SimpleCardForm = ({ handlePayment, paymentMethod, paymentFor }) => {
             type: 'card',
             card: cardElement,
         });
-        console.log(paymentMethod)
 
         if (!error) {
             setPaymentSuccess(true)

@@ -5,9 +5,7 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 const MenuItem = ({ name, iconClassName, to, exact, subMenus, role }) => {
   const { loggedInUser } = useContext(AuthContext)
   const [expand, setExpand] = useState(false);
-  if (subMenus.name) {
-    console.log('first')
-  }
+  
   return (
     <li style={{ listStyle: 'none', display:`${(role === loggedInUser.role || role === 'all') ? 'block' : 'none'}` }}>
       <NavLink exact to={to} className='menu-item' onClick={() => setExpand(!expand)}>

@@ -69,8 +69,6 @@ const DServicesPage = () => {
     setServiceId(service.s_id)
     setShowModalEdit(true);
   };
-  console.log(services)
-
 
   return (
     <div className="row">

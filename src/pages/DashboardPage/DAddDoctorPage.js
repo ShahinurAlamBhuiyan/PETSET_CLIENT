@@ -35,7 +35,6 @@ const DAddDoctorPage = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(newDoctor)
     event.preventDefault();
     try {
       await axios.post("http://localhost:8800/doctors", newDoctor)

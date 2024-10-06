@@ -2,8 +2,7 @@ import React from 'react'
 import './Pagination.css'
 import { Button } from 'react-bootstrap'
 
-const Pagination = ({ handlePageChange, currentPage, totalPages, itemsPerPage, setItemsPerPage }) => {
-    // console.log(currentPage)
+const Pagination = ({ handlePageChange, currentPage, totalPages }) => {
     return (
         <>
             <div className="pagination">
@@ -19,15 +18,6 @@ const Pagination = ({ handlePageChange, currentPage, totalPages, itemsPerPage, s
                     Next
                 </Button>
             </div>
-            {/* <Form.Group controlId="formItemsPerPage">
-                <Form.Label>Items per Page</Form.Label>
-                <Form.Control
-                    type="number"
-                    value={itemsPerPage}
-                    onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
-                />
-            </Form.Group> */}
-
         </>
     )
 }

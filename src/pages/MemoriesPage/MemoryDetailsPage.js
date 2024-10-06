@@ -7,7 +7,6 @@ import { Link, useParams } from 'react-router-dom';
 const MemoryDetailsPage = () => {
     const { m_id } = useParams();
     const [memory, setMemory] = useState([]);
-    console.log(memory)
     useEffect(() => {
         const fetchMemoryDetails = async () => {
             try {
@@ -21,7 +20,6 @@ const MemoryDetailsPage = () => {
 
         fetchMemoryDetails();
     }, [m_id]);
-    console.log(memory)
     return (
         <div className='container pb-5' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
             {!memory[0] && <Spinner animation='border' />}

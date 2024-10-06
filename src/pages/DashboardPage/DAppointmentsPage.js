@@ -14,7 +14,6 @@ const DAppointmentsPage = () => {
   useEffect(() => {
     const fetchAllAppointments = async () => {
       if (loggedInUser.role) {
-        console.log(loggedInUser)
         try {
           let response;
           if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:8800/appointments');

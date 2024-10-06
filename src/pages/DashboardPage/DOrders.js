@@ -76,7 +76,6 @@ const DOrders = () => {
   const getProductById = async (productID) => {
     try {
       const res = await axios.get(`http://localhost:8800/product/${productID}`);
-      // console.log(res.data[0])
       return res.data[0];
     } catch (error) {
       console.log(error);

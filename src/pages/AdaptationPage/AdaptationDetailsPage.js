@@ -8,7 +8,6 @@ const AdaptationDetailsPage = () => {
     const { a_id } = useParams();
     const [adaptationPost, setAdaptationPost] = useState([]);
     const [comments, setComments] = useState([]);
-    console.log(a_id)
 
     // get adaption details
     const fetchAdaptationPostDetails = async () => {
@@ -33,9 +32,6 @@ const AdaptationDetailsPage = () => {
         fetchAdaptationPostDetails();
         fetchComments();
     }, [a_id, comments.length]);
-
-
-    console.log(comments)
     return (
         <Container className='mt-3 pb-5'>
             {!adaptationPost[0] && <Spinner animation='border' />}

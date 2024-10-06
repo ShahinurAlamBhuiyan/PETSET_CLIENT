@@ -31,7 +31,6 @@ const DUsersPage = () => {
   }
 
   const handleDeleteUser = async (u_id) => {
-    console.log(u_id)
     try {
       Swal.fire({
         title: "Are you sure?",

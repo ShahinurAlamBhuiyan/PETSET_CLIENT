@@ -39,9 +39,6 @@ const CommentSection = ({ comments, adaptionId }) => {
         } catch (error) {
             console.log(error)
         }
-
-
-        console.log(newComment);
     };
 
 
