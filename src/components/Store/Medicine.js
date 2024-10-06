@@ -7,7 +7,7 @@ const Medicine = () => {
   useEffect(() => {
     const fetchingMedicineProduct = async () => {
       try {
-        const response = await axios.get(`https://petset-api.onrender.com/product?product_type=Pet Medicine`);
+        const response = await axios.get(`http://localhost:8800/product?product_type=Pet Medicine`);
         setMedicines(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);

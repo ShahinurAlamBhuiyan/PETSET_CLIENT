@@ -12,7 +12,7 @@ const SpecialistsPage = () => {
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
-        const res = await axios.get(`https://petset-api.onrender.com/services/${s_id}`);
+        const res = await axios.get(`http://localhost:8800/services/${s_id}`);
         setService(res.data);
       } catch (error) {
         console.error('Error fetching Service details:', error);

@@ -15,7 +15,7 @@ const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
 
     useEffect(() => {
         const getMemoryById = async () => {
-            const res = await axios.get(`https://petset-api.onrender.com/memories/${memoryId}`)
+            const res = await axios.get(`http://localhost:8800/memories/${memoryId}`)
             setMemory(res.data[0])
         }
         getMemoryById()
@@ -29,7 +29,7 @@ const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         }
 
         try {
-            const res = await axios.put(`https://petset-api.onrender.com/memories/${memoryId}`, newMemory)
+            const res = await axios.put(`http://localhost:8800/memories/${memoryId}`, newMemory)
             console.log(res)
             Swal.fire({
                 title: "Great!",

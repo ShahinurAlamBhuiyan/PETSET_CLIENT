@@ -21,7 +21,7 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("https://petset-api.onrender.com/adaptions")
+                const res = await axios.get("http://localhost:8800/adaptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)

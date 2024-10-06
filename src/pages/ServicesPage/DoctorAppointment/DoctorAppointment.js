@@ -18,7 +18,7 @@ const DoctorAppointment = () => {
     useEffect(() => {
         const fetchDoctorDetails = async () => {
             try {
-                const res = await axios.get(`https://petset-api.onrender.com/doctor/${dr_id}`);
+                const res = await axios.get(`http://localhost:8800/doctor/${dr_id}`);
 
                 setDoctor(res.data[0]);
             } catch (error) {
@@ -33,7 +33,7 @@ const DoctorAppointment = () => {
     useEffect(() => {
         const fetchServiceDetails = async () => {
             try {
-                const res = await axios.get(`https://petset-api.onrender.com/service/${s_id}`);
+                const res = await axios.get(`http://localhost:8800/service/${s_id}`);
 
                 setService(res.data[0]);
             } catch (error) {
@@ -83,7 +83,7 @@ const DoctorAppointment = () => {
         if (isAppointmentSuccessful) {
             try {
                 console.log({ appointmentDetails })
-                await axios.post("https://petset-api.onrender.com/appointment", appointmentDetails)
+                await axios.post("http://localhost:8800/appointment", appointmentDetails)
                 Swal.fire({
                     title: "Congratulation!",
                     text: "Appointment booked successfully! Assistant will contact you soon.",

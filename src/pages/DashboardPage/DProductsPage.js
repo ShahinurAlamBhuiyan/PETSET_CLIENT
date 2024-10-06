@@ -14,7 +14,7 @@ const DProductsPage = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get('https://petset-api.onrender.com/products');
+        const response = await axios.get('http://localhost:8800/products');
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -45,7 +45,7 @@ const DProductsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`https://petset-api.onrender.com/product/${product_id}`)
+          await axios.delete(`http://localhost:8800/product/${product_id}`)
           setProducts(products.filter(product => product.product_id !== product_id));
           Swal.fire({
             title: "Deleted!",

@@ -14,7 +14,7 @@ const DServicesPage = () => {
   useEffect(() => {
     const fetchAllServices = async () => {
       try {
-        const response = await axios.get('https://petset-api.onrender.com/services');
+        const response = await axios.get('http://localhost:8800/services');
         setServices(response.data);
         setLoading(false);
       } catch (error) {
@@ -46,7 +46,7 @@ const DServicesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`https://petset-api.onrender.com/service/${id}`)
+          await axios.delete(`http://localhost:8800/service/${id}`)
           setServices(services.filter(service => service.s_id !== id));
           Swal.fire({
             title: "Deleted!",

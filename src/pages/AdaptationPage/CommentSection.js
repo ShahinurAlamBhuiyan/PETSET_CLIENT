@@ -30,7 +30,7 @@ const CommentSection = ({ comments, adaptionId }) => {
         }
 
         try {
-            await axios.post('https://petset-api.onrender.com/comment', newComment)
+            await axios.post('http://localhost:8800/comment', newComment)
             Swal.fire({
                 title: "Success!",
                 text: "comment added",

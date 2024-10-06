@@ -38,7 +38,7 @@ const DAddDoctorPage = () => {
     console.log(newDoctor)
     event.preventDefault();
     try {
-      await axios.post("https://petset-api.onrender.com/doctors", newDoctor)
+      await axios.post("http://localhost:8800/doctors", newDoctor)
       Swal.fire({
         title: "Great!",
         text: "Doctor Added!",

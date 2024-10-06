@@ -20,7 +20,7 @@ const MemoriesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("https://petset-api.onrender.com/memories");
+                const res = await axios.get("http://localhost:8800/memories");
                 setMemories(res.data);
             } catch (error) {
                 console.log(error);

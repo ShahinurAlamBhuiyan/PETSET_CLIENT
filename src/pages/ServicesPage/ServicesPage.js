@@ -9,7 +9,7 @@ const ServicesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("https://petset-api.onrender.com/services")
+                const res = await axios.get("http://localhost:8800/services")
                 setServices(res.data)
             } catch (error) {
                 console.log(error)
