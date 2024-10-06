@@ -50,6 +50,10 @@ Connect with professional pet specialists for grooming, spa treatments, training
 ### Pet Store
 Explore our online store which offers a curated selection of premium pet products. From high-quality pet food and essential medicines to engaging toys, find everything your pet needs for a happy and healthy life.
 
+### Pet Hostel
+pet hostel offers premium boarding services for dogs and cats, prioritizing comfort, safety, and personalized care. With 24/7 monitoring, secure accommodations, and dedicated play areas, your facility ensures a stress-free environment. Flexible booking options are available for both short and long stays, making it an ideal choice for pet owners seeking reliable, high-quality care.
+
+
 ### Authentication
 Our system employs Bcrypt encryption for password storage, enhancing security and protecting your credentials. Rest easy knowing your information is fortified against unauthorized access.
 
