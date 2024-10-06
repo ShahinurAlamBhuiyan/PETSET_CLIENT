@@ -23,6 +23,22 @@
   color: #ee5b2b;
   font-size: 42px;
   font-weight: 900;
+
+  /* Text shadow effect */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+  /* Background styling */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent white background */
+  padding: 10px 20px; /* Add space around the text */
+  border-radius: 8px; /* Rounded corners for a softer look */
+
+  /* Optional: Add more shadow to the background */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .hostel-header-form {
@@ -42,8 +58,10 @@
   background-image: url("../../assets/hostel/petset-hostel-header.jpeg");
   background-size: cover;
   background-position: center;
-  opacity: 0.6;
   z-index: -1;
+
+  /* Black shadow overlay */
+  background-color: rgba(0, 0, 0, 0.6); /* 0.6 is the opacity */
 }
 
 .hostel-header-content,
