@@ -99,9 +99,17 @@ const router = createBrowserRouter([
         element: <HostelPage />
       },
       {
-        path: 'payment/:product_id',
+        path: 'store/payment/:product_id',
         element: (
-          <PrivateRoute path='/payment/:product_id'>
+          <PrivateRoute path='/store/payment/:product_id'>
+            <Shipment />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'hostel/payment/:product_id',
+        element: (
+          <PrivateRoute path='/hostel/payment/:product_id'>
             <Shipment />
           </PrivateRoute>
         )

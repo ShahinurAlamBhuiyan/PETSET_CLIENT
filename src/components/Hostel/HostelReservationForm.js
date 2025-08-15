@@ -101,7 +101,7 @@ const HostelReservationForm = () => {
                     // If the user confirmed, save the data and navigate
                     setHostelBookingData(updatedFormData);
                     localStorage.setItem('hostelBookingData', JSON.stringify(updatedFormData));
-                    navigate('/payment/hostel-payment');
+                    navigate('/hostel/payment/hostel-payment');
                 }
             });
         }

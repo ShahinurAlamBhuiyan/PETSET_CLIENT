@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     const handleCloseForm = () => {
         setShowForm(false);
     };
-    
+
     return (
         <div className="product_card">
             <img
@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
                     </button>
                 </div>
                 <div className="product-price">৳ {product.product_price}</div>
-                <a href={`payment/${product.product_id}`} className="buy-btn">
+                <a href={`store/payment/${product._id}`} className="buy-btn">
                     Buy Now
                 </a>
             </div>
@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
                     <Modal.Title>{product.product_name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img style={{maxWidth:"400px", maxHeight:'300px'}} src={product.product_image ? product.product_image : "https://via.placeholder.com/150"} alt={product.product_name} />
+                    <img style={{ maxWidth: "400px", maxHeight: '300px' }} src={product.product_image ? product.product_image : "https://via.placeholder.com/150"} alt={product.product_name} />
                     <br />
 
                     <span style={{ fontWeight: 'bold', color: 'black' }}>Name:</span> {product.product_name} <br />

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import ProcessPayment from '../../components/Payment/ProcessPayment';
 import { AuthContext } from '../../Providers/AuthProvider';
 import axios from 'axios';
@@ -9,56 +9,54 @@ import { HostelContext } from '../../Providers/HostelCheckoutProvider';
 
 
 const Shipment = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loggedInUser } = useContext(AuthContext);
-    const { hostelBookingData } = useContext(HostelContext);
     const { product_id } = useParams();
+    const location = useLocation();
+    const { loggedInUser } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { hostelBookingData } = useContext(HostelContext);
     const [paymentMethod, setPaymentMethod] = useState('')
     const [shippingData, setShippingData] = useState(null);
     const [status] = useState('pending');
+    // Check if it's store or hostel based on pathname
+    const isStorePayment = location.pathname.startsWith("/store");
+    const isHostelPayment = location.pathname.startsWith("/hostel");
 
     const onSubmit = data => {
         setShippingData(data);
     }
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}-${month}-${year}`;
+    };
 
-    const currentDate = new Date();
-    const day = currentDate.getDate().toString().padStart(2, '0');
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-    const year = currentDate.getFullYear();
-
-    const formattedDate = `${day}-${month}-${year}`;
-    const generateOrderId = () => {
-        const timestamp = new Date().getTime();
-
-        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-
-        return uniqueID;
-    }
 
     const handlePaymentSuccess = async (paymentId) => {
         // Prepare order details for product order
         const orderDetails = {
-            order_id: generateOrderId(),
             product_id,
-            customer_id: loggedInUser.u_id,
+            customer_id: loggedInUser.id,
             payment_id: paymentId,
             orderer_name: shippingData.consumerName,
             orderer_email: shippingData.consumerEmail,
             orderer_contact: shippingData.phone,
-            order_date: formattedDate,
+            order_date: new Date(),
             shipping_address: `${shippingData.address} ${shippingData.district} ${shippingData.zip} ${shippingData.division}`,
             status,
         };
 
+
+
         // Prepare order details for hostel order
         const hostelOrderDetails = {
-            order_id: generateOrderId(),
-            customer_id: loggedInUser.u_id,
+            customer_id: loggedInUser.id,
             payment_id: paymentId,
             orderer_name: shippingData.consumerName,
             orderer_email: shippingData.consumerEmail,
             orderer_contact: shippingData.phone,
-            order_date: formattedDate,
+            order_date: formatDate(new Date()), // formatted date
             shipping_address: `${shippingData.address} ${shippingData.district} ${shippingData.zip} ${shippingData.division}`,
             orderData: {
                 petType: hostelBookingData?.petType,
@@ -69,9 +67,10 @@ const Shipment = () => {
             }
         };
 
+
         try {
             // Check if it's a hostel booking or product order
-            if (product_id === 'hostel-payment') {
+            if (isHostelPayment) {
                 // API request to save hostel order and log the response
                 const response = await axios.post('http://localhost:5001/api/hostel-orders', hostelOrderDetails);
 
@@ -80,8 +79,9 @@ const Shipment = () => {
 
                 // Optionally remove hostel booking data from local storage after successful order
                 localStorage.removeItem('hostelBookingData');
-            } else {
+            } else if (isStorePayment) {
                 // API request to save product order and log the response
+                console.log(orderDetails)
                 const response = await axios.post('http://localhost:5001/api/orders', orderDetails);
                 console.log('Product Order Response:', response.data);
             }

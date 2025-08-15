@@ -21,8 +21,10 @@ const PrivateRoute = ({ children, path }) => {
     path = `/appointment/${s_id}/${dr_id}`
   } else if (path === '/memories/:m_id') {
     path = `/memories/${m_id}`
-  } else if (path === '/payment/:product_id') {
-    path = `/payment/${product_id}`
+  } else if (path === '/store/payment/:product_id') {
+    path = `/store/payment/${product_id}`
+  } else if (path === '/hostel/payment/:product_id') {
+    path = `/hostel/payment/${product_id}`
   } else if (path === '/adaptation/:a_id') {
     path = `/adaptation/${a_id}`
   }
