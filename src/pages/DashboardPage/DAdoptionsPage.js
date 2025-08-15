@@ -13,7 +13,7 @@ const DAdoptionsPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalView, setShowModalView] = useState(false);
-  const [adoptionId, setAdoptionId] = useState('');
+  const [selectedAdoption, setSelectedAdoption] = useState({});
 
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
@@ -28,8 +28,8 @@ const DAdoptionsPage = () => {
     const fetchAllAdoptions = async () => {
       let res;
       try {
-        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:8800/adaptions")
-        else res = await axios.get(`http://localhost:8800/adaption/user/${loggedInUser?.u_id}`);
+        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:5001/api/adoptions")
+        else res = await axios.get(`http://localhost:5001/api/adoptions/user/${loggedInUser?.id}`);
         setAdoptionPosts(res.data)
       } catch (error) {
         console.log(error)
@@ -45,11 +45,11 @@ const DAdoptionsPage = () => {
   };
 
   const handleEdit = (adoptionPost) => {
-    setAdoptionId(adoptionPost.a_id)
+    setSelectedAdoption(adoptionPost)
     setShowModalEdit(true);
   };
   const handleDetails = (adoptionPost) => {
-    setAdoptionId(adoptionPost.a_id)
+    setSelectedAdoption(adoptionPost)
     setShowModalView(true);
   };
 
@@ -65,7 +65,7 @@ const DAdoptionsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/adoption/${adoptionId}`)
+          await axios.delete(`http://localhost:5001/api/adoptions/${adoptionId}`)
           Swal.fire({
             title: "Deleted!",
             text: "Adoption post deleted successfully!.",
@@ -94,7 +94,7 @@ const DAdoptionsPage = () => {
               { img_url: post.img_URL3 },
             ]
             return (
-              <div key={post.m_id} className='memory_card'>
+              <div key={post._id} className='memory_card'>
                 <Card style={{ height: '100%' }}>
                   {myArray.length > 0 ? (
                     <Carousel nextLabel={''} prevLabel={''} interval={null}>
@@ -121,11 +121,11 @@ const DAdoptionsPage = () => {
 
 
                     {
-                      (loggedInUser.role === 'user' || loggedInUser.u_id === post.u_id) &&
+                      (loggedInUser.role === 'user' || loggedInUser.id === post.owner_id) &&
                       <Button onClick={() => handleEdit(post)} variant="outline-primary ">Edit</Button>
                     }
 
-                    <Button onClick={() => handleDelete(post.a_id)} variant="outline-primary ">Delete</Button>
+                    <Button onClick={() => handleDelete(post)} variant="outline-primary ">Delete</Button>
                   </Card.Footer>
                 </Card>
               </div>
@@ -136,7 +136,7 @@ const DAdoptionsPage = () => {
       <DAdoptionModal
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
-        adoptionId={adoptionId}
+        selectedAdoption={selectedAdoption}
         showModalView={showModalView}
         setShowModalView={setShowModalView}
       />

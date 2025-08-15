@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import Swal from 'sweetalert2'
 
-const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, memoryId }) => {
-    const [memory, setMemory] = useState({});
+const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, memory }) => {
     const [newMemoryTitle, setNewMemoryTitle] = useState('');
     const [newMemoryDetails, setNewMemoryDetails] = useState('');
     const [newMemoryImageUrl, setNewMemoryImageUrl] = useState('');
@@ -12,14 +11,6 @@ const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         setShowModalEdit(false);
         setShowModalView(false)
     };
-
-    useEffect(() => {
-        const getMemoryById = async () => {
-            const res = await axios.get(`http://localhost:8800/memories/${memoryId}`)
-            setMemory(res.data[0])
-        }
-        getMemoryById()
-    }, [memoryId])
 
     const handleUpdateMemory = async () => {
         const newMemory = {
@@ -29,8 +20,7 @@ const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         }
 
         try {
-            const res = await axios.put(`http://localhost:8800/memories/${memoryId}`, newMemory)
-            console.log(res)
+            const res = await axios.put(`http://localhost:5001/api/memories/${memory._id}`, newMemory)
             Swal.fire({
                 title: "Great!",
                 text: "Memory updated successfully!",

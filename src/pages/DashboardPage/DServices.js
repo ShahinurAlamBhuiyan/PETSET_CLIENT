@@ -9,13 +9,13 @@ const DServicesPage = () => {
   const [error, setError] = useState(null);
   const [showModalView, setShowModalView] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-  const [serviceId, setServiceId] = useState('');
+  const [selectedService, setSelectedService] = useState({});
 
   useEffect(() => {
     const fetchAllServices = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/services');
-        setServices(response.data);
+        const response = await axios.get('http://localhost:5001/api/services');
+        setServices(response.data.services);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -46,7 +46,7 @@ const DServicesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/service/${id}`)
+          await axios.delete(`http://localhost:5001/api/services/${id}`)
           setServices(services.filter(service => service.s_id !== id));
           Swal.fire({
             title: "Deleted!",
@@ -61,12 +61,12 @@ const DServicesPage = () => {
   }
 
   const handleViewSpecialist = (service) => {
-    setServiceId(service.s_id)
+    setSelectedService(service)
     setShowModalView(true);
   };
 
   const handleEditUser = (service) => {
-    setServiceId(service.s_id)
+    setSelectedService(service)
     setShowModalEdit(true);
   };
 
@@ -77,7 +77,6 @@ const DServicesPage = () => {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>ID.</th>
                 <th>Title</th>
                 <th>Details</th>
                 <th>Specialists</th>
@@ -89,9 +88,8 @@ const DServicesPage = () => {
               {services.length > 0 &&
                 services.slice().reverse().map((service, index) => (
                   <tr key={index}>
-                    <td><img src={service.img_URL} width={30} height={30} style={{ borderRadius: '50%' }} alt="" /></td>
-                    <td>{service.title}</td>
-                    <td>{service.details}</td>
+                    <td>{service.service_name}</td>
+                    <td>{service.service_details}</td>
                     <td>
                       <button onClick={() => handleViewSpecialist(service)} className="btn btn-outline-secondary">
                         View
@@ -103,7 +101,7 @@ const DServicesPage = () => {
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => handleServiceDelete(service.s_id)} className="btn btn-outline-primary">
+                      <button onClick={() => handleServiceDelete(service._id)} className="btn btn-outline-primary">
                         Delete
                       </button>
                     </td>
@@ -119,7 +117,7 @@ const DServicesPage = () => {
         setShowModalView={setShowModalView}
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
-        serviceId={serviceId}
+        selectedService={selectedService}
       />
     </div>
   );

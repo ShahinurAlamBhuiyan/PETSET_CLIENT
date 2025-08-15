@@ -18,7 +18,7 @@ const DoctorAppointment = () => {
     useEffect(() => {
         const fetchDoctorDetails = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/doctor/${dr_id}`);
+                const res = await axios.get(`http://localhost:5001/api/specialists/${dr_id}`);
 
                 setDoctor(res.data[0]);
             } catch (error) {
@@ -33,7 +33,7 @@ const DoctorAppointment = () => {
     useEffect(() => {
         const fetchServiceDetails = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/service/${s_id}`);
+                const res = await axios.get(`http://localhost:5001/api/services/${s_id}`);
 
                 setService(res.data[0]);
             } catch (error) {
@@ -82,7 +82,7 @@ const DoctorAppointment = () => {
         // booking appointment...
         if (isAppointmentSuccessful) {
             try {
-                await axios.post("http://localhost:8800/appointment", appointmentDetails)
+                await axios.post("http://localhost:5001/api/appointments", appointmentDetails)
                 Swal.fire({
                     title: "Congratulation!",
                     text: "Appointment booked successfully! Assistant will contact you soon.",

@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, path }) => {
   const [delayedRedirect, setDelayedRedirect] = useState(false)
 
   useEffect(() => {
-    if (!loggedInUser || !loggedInUser.u_id) {
+    if (!loggedInUser || !loggedInUser.id) {
       const delay = 500 // Set the delay in milliseconds (e.g., 2000 for 2 seconds)
       const timeoutId = setTimeout(() => {
         setDelayedRedirect(true)
@@ -27,7 +27,7 @@ const PrivateRoute = ({ children, path }) => {
     path = `/adaptation/${a_id}`
   }
 
-  if (loggedInUser && loggedInUser.u_id) {
+  if (loggedInUser && loggedInUser.id) {
     return children
   } else if (delayedRedirect) {
     return <Navigate to='/sign-in' state={{ from: path }} replace />

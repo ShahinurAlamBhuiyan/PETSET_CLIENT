@@ -10,8 +10,8 @@ const DUsersPage = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/users');
-        setUsers(response.data);
+        const response = await axios.get('http://localhost:5001/api/users');
+        setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -21,7 +21,6 @@ const DUsersPage = () => {
 
     fetchAllUsers();
   }, [users.length]);
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -43,19 +42,19 @@ const DUsersPage = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           // delete memory  for that user...
-          await axios.delete(`http://localhost:8800/memories/user/${u_id}`);
+          await axios.delete(`http://localhost:5001/api/memories/user/${u_id}`);
           // delete user comments
-          await axios.delete(`http://localhost:8800/adoption/comments/${u_id}`);
+          await axios.delete(`http://localhost:5001/api/adoptions/comments/user/${u_id}`);
           // delete user order
-          await axios.delete(`http://localhost:8800/order/user/${u_id}`);
+          await axios.delete(`http://localhost:5001/api/orders/customer/${u_id}`);
           // delete adoption  for that user...
-          await axios.delete(`http://localhost:8800/adoption/user/${u_id}`);
+          await axios.delete(`http://localhost:5001/api/adoptions/user/${u_id}`);
           // delete appointment  for that user...
-          await axios.delete(`http://localhost:8800/appointment/user/${u_id}`)
+          await axios.delete(`http://localhost:5001/api/appointments/user/${u_id}`)
           // delete memory  for that user...
-          await axios.delete(`http://localhost:8800/memories/user/${u_id}`)
-          await axios.delete(`http://localhost:8800/user/${u_id}`)
-          setUsers(users.filter(user => user.u_id !== u_id));
+          await axios.delete(`http://localhost:5001/api/memories/user/${u_id}`)
+          await axios.delete(`http://localhost:5001/api/users/${u_id}`)
+          setUsers(users.filter(user => user._id !== u_id));
           Swal.fire({
             title: "Deleted!",
             text: "User deleted successfully!",
@@ -85,7 +84,6 @@ const DUsersPage = () => {
               {users.length > 0 &&
                 users.slice().reverse().map((user, index) => (
                   <tr key={index}>
-
                     <td >
                       <img width={30} style={{ borderRadius: '50%' }} height={30} src={user.image_URL} alt='' />
                       &nbsp;&nbsp;{user.full_name}
@@ -93,7 +91,7 @@ const DUsersPage = () => {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>
-                      <button onClick={() => handleDeleteUser(user.u_id)} className='btn btn-outline-primary'>
+                      <button onClick={() => handleDeleteUser(user._id)} className='btn btn-outline-primary'>
                         Remove
                       </button>
                     </td>

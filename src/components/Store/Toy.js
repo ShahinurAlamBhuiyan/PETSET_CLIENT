@@ -7,7 +7,7 @@ const Toy = () => {
     useEffect(() => {
         const fetchingToyProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:8800/product?product_type=Pet Toy`);
+                const response = await axios.get(`http://localhost:5001/api/products?product_type=Pet Toy`);
                 setToys(response.data);
             } catch (error) {
                 console.error('Error fetching product:', error);

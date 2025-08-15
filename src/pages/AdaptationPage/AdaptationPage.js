@@ -21,7 +21,7 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/adaptions")
+                const res = await axios.get("http://localhost:5001/api/adaptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)

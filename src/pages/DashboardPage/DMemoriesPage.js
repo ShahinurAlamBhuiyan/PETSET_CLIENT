@@ -13,7 +13,7 @@ const DMemoriesPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalView, setShowModalView] = useState(false);
-  const [memoryId, setMemoryId] = useState('');
+  const [selectedMemory, setSelectedMemory] = useState({});
 
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
@@ -28,9 +28,9 @@ const DMemoriesPage = () => {
     const fetchAllMemories = async () => {
       let res;
       try {
-        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:8800/memories")
-        else res = await axios.get(`http://localhost:8800/memories/user/${loggedInUser?.u_id}`);
-        setMemories(res.data)
+        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:5001/api/memories")
+        else res = await axios.get(`http://localhost:5001/api/memories/user/${loggedInUser?.id}`);
+        setMemories(res.data.memories)
       } catch (error) {
         console.log(error)
       }
@@ -45,11 +45,11 @@ const DMemoriesPage = () => {
   };
 
   const handleEdit = (memory) => {
-    setMemoryId(memory.m_id)
+    setSelectedMemory(memory)
     setShowModalEdit(true);
   };
   const handleDetails = (memory) => {
-    setMemoryId(memory.m_id)
+    setSelectedMemory(memory)
     setShowModalView(true);
   };
 
@@ -65,7 +65,7 @@ const DMemoriesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/memories/${id}`)
+          await axios.delete(`http://localhost:5001/api/memories/${id}`)
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -83,8 +83,8 @@ const DMemoriesPage = () => {
       {loggedInUser.role === 'admin' ? <h2>All Memories shared by user.</h2> : <h2>My Memories -</h2>}
 
       <div className='memories_container'>
-        {memories && memories.slice(startIndex, endIndex).map((memory) => (
-          <div key={memory.m_id} className='memory_card'>
+        {memories.length > 0 && memories.slice(startIndex, endIndex).map((memory) => (
+          <div key={memory._id} className='memory_card'>
             <Card style={{ height: '100%' }}>
               <Card.Img style={{ objectFit: 'cover' }} height={200} variant="top" src={memory.img_URL} />
               <Card.Body>
@@ -96,11 +96,11 @@ const DMemoriesPage = () => {
 
 
                 {
-                  (loggedInUser.role === 'user' || loggedInUser.u_id === memory.u_id) &&
+                  (loggedInUser.role === 'user' || loggedInUser.id === memory.author_id) &&
                   <Button onClick={() => handleEdit(memory)} variant="outline-primary ">Edit</Button>
                 }
 
-                <Button onClick={() => handleDelete(memory.m_id)} variant="outline-primary ">Delete</Button>
+                <Button onClick={() => handleDelete(memory._id)} variant="outline-primary ">Delete</Button>
 
               </Card.Footer>
             </Card>
@@ -111,7 +111,7 @@ const DMemoriesPage = () => {
       <DMemoriesModal
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
-        memoryId={memoryId}
+        memory={selectedMemory}
         showModalView={showModalView}
         setShowModalView={setShowModalView}
       />

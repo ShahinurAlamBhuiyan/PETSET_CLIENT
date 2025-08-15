@@ -7,12 +7,12 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
     const [newProductName, setNewProductName] = useState('');
     const [newProductDetails, setNewProductDetails] = useState('');
     const [newProductPrice, setNewProductPrice] = useState('');
-
+    console.log(product)
     const handleUpdateProduct = async () => {
         try {
             if (newProductName !== '' || newProductPrice !== '' || newProductDetails !== '') {
                 // Update Product title, details
-                await axios.put(`http://localhost:8800/product/${product.product_id}`,
+                await axios.put(`http://localhost:5001/api/products/${product._id}`,
                     {
                         product_name: newProductName !== '' ? newProductName : product.product_name,
                         product_price: newProductPrice !== '' ? newProductPrice : product.product_price,

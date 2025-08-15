@@ -7,20 +7,13 @@ import Swal from 'sweetalert2'
 const DAddProductPage = () => {
     const { loggedInUser } = useContext(AuthContext);
     const [newProduct, setNewProduct] = useState({
-        product_id: '',
         product_type: '',
         product_name: '',
         product_price: '',
         product_description: '',
         product_image: '',
     });
-
-    const generateProductId = () => {
-        const timestamp = new Date().getTime();
-        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-        return uniqueID;
-    }
-
+    console.log(process.env.REACT_APP_IMGBB_API_KEY)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -46,11 +39,9 @@ const DAddProductPage = () => {
             });
 
             const responseData = await response.json();
-            const productId = generateProductId()
             setNewProduct({
                 ...newProduct,
                 product_image: responseData.data.display_url,
-                product_id: productId,
             })
 
         } catch (error) {
@@ -63,7 +54,7 @@ const DAddProductPage = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post("http://localhost:8800/product", newProduct)
+            await axios.post("http://localhost:5001/api/products", newProduct)
             Swal.fire({
                 title: "Great!",
                 text: "Product posted!",
@@ -75,7 +66,7 @@ const DAddProductPage = () => {
     };
 
     const isFormComplete = () => {
-        if (newProduct.product_id && newProduct.product_type && newProduct.product_name && newProduct.product_price && newProduct.product_description && newProduct.product_image) {
+        if (newProduct.product_type && newProduct.product_name && newProduct.product_price && newProduct.product_description && newProduct.product_image) {
             return true
         } else {
             return false

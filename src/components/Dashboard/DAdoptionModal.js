@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import Swal from 'sweetalert2'
 
-const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, adoptionId }) => {
-    const [adoptionPost, setAdoptionPost] = useState({});
+const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setShowModalView, selectedAdoption }) => {
     const [newAdoptionPostTitle, setNewAdoptionPostTitle] = useState('');
     const [newAdoptionPostDetails, setNewAdoptionPostDetails] = useState('');
     const handleCloseModalView = () => {
@@ -12,27 +11,14 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         setShowModalView(false)
     };
 
-    useEffect(() => {
-        const getAdoptionPostById = async () => {
-            try {
-                const res = await axios.get(`http://localhost:8800/adaption/${adoptionId}`)
-                setAdoptionPost(res.data[0])
-            }
-            catch (error) {
-                console.log(error)
-            }
-        }
-        getAdoptionPostById()
-    }, [adoptionId])
-
     const handleUpdateAdoptionPost = async () => {
         const newAdoptionPost = {
-            title: newAdoptionPostTitle ? newAdoptionPostTitle : adoptionPost.title,
-            details: newAdoptionPostDetails ? newAdoptionPostDetails : adoptionPost.details,
+            title: newAdoptionPostTitle ? newAdoptionPostTitle : selectedAdoption.title,
+            details: newAdoptionPostDetails ? newAdoptionPostDetails : selectedAdoption.details,
         }
 
         try {
-            await axios.put(`http://localhost:8800/adoption/${adoptionId}`, newAdoptionPost)
+            await axios.put(`http://localhost:5001/api/adoptions/${selectedAdoption._id}`, newAdoptionPost)
             Swal.fire({
                 title: "Great!",
                 text: "Adoption post updated successfully!",
@@ -58,7 +44,7 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
             {/* edit */}
             <Modal show={showModalEdit} onHide={handleCloseModalView}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{adoptionPost.title}</Modal.Title>
+                    <Modal.Title>{selectedAdoption.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -97,14 +83,14 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
             {/* view */}
             <Modal show={showModalView} onHide={handleCloseModalView}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{adoptionPost.title}</Modal.Title>
+                    <Modal.Title>{selectedAdoption.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img style={{ maxHeight: '300px', maxWidth: '400px', objectFit: 'fill' }} src={adoptionPost.img_URL} alt={adoptionPost.title} />
+                    <img style={{ maxHeight: '300px', maxWidth: '400px', objectFit: 'fill' }} src={selectedAdoption.img_URL} alt={selectedAdoption.title} />
 
                     {/* <div > */}
-                    <p><span style={{ fontWeight: 'bold' }}>Title: <br /></span> {adoptionPost.title}</p>
-                    <p><span style={{ fontWeight: 'bold' }}>Details: <br /></span> {adoptionPost.details}</p>
+                    <p><span style={{ fontWeight: 'bold' }}>Title: <br /></span> {selectedAdoption.title}</p>
+                    <p><span style={{ fontWeight: 'bold' }}>Details: <br /></span> {selectedAdoption.details}</p>
                     {/* </div> */}
                 </Modal.Body>
                 <Modal.Footer>

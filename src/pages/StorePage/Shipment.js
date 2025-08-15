@@ -73,7 +73,7 @@ const Shipment = () => {
             // Check if it's a hostel booking or product order
             if (product_id === 'hostel-payment') {
                 // API request to save hostel order and log the response
-                const response = await axios.post('http://localhost:8800/hostel-order', hostelOrderDetails);
+                const response = await axios.post('http://localhost:5001/api/hostel-orders', hostelOrderDetails);
 
                 // Log the API response to see the result
                 console.log('Hostel Order Response:', response.data);
@@ -82,7 +82,7 @@ const Shipment = () => {
                 localStorage.removeItem('hostelBookingData');
             } else {
                 // API request to save product order and log the response
-                const response = await axios.post('http://localhost:8800/order', orderDetails);
+                const response = await axios.post('http://localhost:5001/api/orders', orderDetails);
                 console.log('Product Order Response:', response.data);
             }
         } catch (error) {

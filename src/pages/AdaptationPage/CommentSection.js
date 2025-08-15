@@ -30,7 +30,7 @@ const CommentSection = ({ comments, adaptionId }) => {
         }
 
         try {
-            await axios.post('http://localhost:8800/comment', newComment)
+            await axios.post('http://localhost:5001/api/adoptions/comments', newComment)
             Swal.fire({
                 title: "Success!",
                 text: "comment added",

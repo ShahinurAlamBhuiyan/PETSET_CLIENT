@@ -26,9 +26,10 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (confirmPass === formData.password) {
       try {
-        await axios.post("http://localhost:8800/sign-up", formData)
+        await axios.post("http://localhost:5001/api/auth/sign-up", formData);
         Swal.fire({
           title: "Congratulation!",
           text: "Sign-up successfully!",
@@ -36,8 +37,14 @@ const SignUpPage = () => {
         });
         navigate('/sign-in');
       } catch (error) {
-        alert(error.response.data)
+        // Read message from backend JSON response
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response?.data?.message || "Something went wrong!"
+        });
       }
+
       setFormData({
         firstName: '',
         lastName: '',
@@ -52,11 +59,11 @@ const SignUpPage = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "password not matched!"
+        text: "Password not matched!"
       });
     }
-
   };
+
 
   return (
     <Container className='pb-5'>

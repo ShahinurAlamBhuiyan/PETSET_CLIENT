@@ -8,19 +8,17 @@ const DAddServicePage = () => {
   const { loggedInUser } = useContext(AuthContext);
   const [doctors, setDoctors] = useState([])
   const [newService, setNewService] = useState({
-    s_id: '',
-    dr_id: '',
-    title: '',
-    details: '',
-    img_URL: '',
-    created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    dr_ids: [],
+    service_name: '',
+    service_details: '',
+    service_img: '',
   });
 
   // Get all doctors...
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:8800/doctors')
+        const res = await axios.get('http://localhost:5001/api/specialists')
         setDoctors(res.data)
       } catch (error) {
 
@@ -28,12 +26,6 @@ const DAddServicePage = () => {
     }
     fetchAllDoctors();
   }, [doctors.length])
-
-  const generateServiceId = () => {
-    const timestamp = new Date().getTime();
-    const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-    return uniqueID;
-  }
 
   // uploading image to the imgbb
   const handleImageUpload = async (event) => {
@@ -48,11 +40,9 @@ const DAddServicePage = () => {
       });
 
       const responseData = await response.json();
-      const service_id = generateServiceId()
       setNewService({
         ...newService,
-        img_URL: responseData.data.display_url,
-        s_id: service_id,
+        service_img: responseData.data.display_url,
       })
 
     } catch (error) {
@@ -73,7 +63,7 @@ const DAddServicePage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8800/services", newService)
+      await axios.post("http://localhost:5001/api/services", newService)
       Swal.fire({
         title: "Great!",
         text: "Service Added!",
@@ -85,12 +75,14 @@ const DAddServicePage = () => {
   };
 
   const isFormComplete = () => {
-    if (newService.s_id && newService.dr_id && newService.title && newService.details && newService.img_URL && newService.created_date) {
-      return true
-    } else {
-      return false
-    }
-  }
+    return (
+      newService.dr_ids.length > 0 &&
+      newService.service_name.trim() !== '' &&
+      newService.service_details.trim() !== '' &&
+      newService.service_img.trim() !== ''
+    );
+  };
+
 
 
 
@@ -101,26 +93,28 @@ const DAddServicePage = () => {
         <Form.Group controlId="formTitle">
           <Form.Label>Add a primary doctor for the service: &nbsp;</Form.Label>
           <Form.Select
-            name="dr_id"
-            value={newService.dr_id}
-            onChange={handleInputChange}
+            name="dr_ids"
+            value={newService.dr_ids[0] || ""}
+            onChange={(e) =>
+              setNewService({ ...newService, dr_ids: [e.target.value] })
+            }
           >
             <option value="">Select Dr.</option>
-            {doctors &&
-              doctors.map((doctor, index) => (
-                <option value={doctor.dr_id}>{doctor.dr_name}</option>
-              ))
-
-            }
+            {doctors.map((doctor) => (
+              <option key={doctor._id} value={doctor._id}>
+                {doctor.dr_name}
+              </option>
+            ))}
           </Form.Select>
+
         </Form.Group>
         <Form.Group controlId="formTitle">
           <Form.Label>Service Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Service Name"
-            name="title"
-            value={newService.title}
+            name="service_name"
+            value={newService.service_name}
             onChange={handleInputChange}
           />
         </Form.Group>
@@ -131,14 +125,14 @@ const DAddServicePage = () => {
             as="textarea"
             rows={3}
             placeholder="Enter your product description"
-            name="details"
-            value={newService.details}
+            name="service_details"
+            value={newService.service_details}
             onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group controlId="formImageUrl">
           <Form.Label>Image Upload</Form.Label>
-          <input type="file" name='img_URL' id="file"
+          <input type="file" name='service_img' id="file"
             onChange={(e) => handleImageUpload(e)}
           />
         </Form.Group>

@@ -18,7 +18,7 @@ const StorePage = () => {
 
     const handleSearch = async (query) => {
         try {
-            const response = await axios.get(`http://localhost:8800/search?query=${query}`);
+            const response = await axios.get(`http://localhost:5001/api/products/search?query=${query}`);
             console.log(response.data)
             setSearchResults(response.data);
         } catch (error) {
@@ -52,20 +52,20 @@ const StorePage = () => {
                 </div>
             ) : (
                 <Tabs
-                    defaultActiveKey="medicine"
+                    defaultActiveKey="toy"
                     id="justify-tab-example"
                     className="mb-3 custom-tabs"
                     justify
                     variant='tabs'
                 >
+                    <Tab eventKey="toy" title="Toy">
+                        <Toy />
+                    </Tab>
                     <Tab eventKey="medicine" title="Medicine">
                         <Medicine />
                     </Tab>
                     <Tab eventKey="food" title="Food">
                         <Food />
-                    </Tab>
-                    <Tab eventKey="toy" title="Toy">
-                        <Toy />
                     </Tab>
                 </Tabs>
             )}

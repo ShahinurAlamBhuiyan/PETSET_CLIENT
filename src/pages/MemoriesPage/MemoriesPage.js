@@ -20,8 +20,8 @@ const MemoriesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/memories");
-                setMemories(res.data);
+                const res = await axios.get("http://localhost:5001/api/memories");
+                setMemories(res.data.memories);
             } catch (error) {
                 console.log(error);
             }
@@ -53,7 +53,7 @@ const MemoriesPage = () => {
             )}
             {memories.length && (
                 <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                    {loggedInUser.u_id && (
+                    {loggedInUser.id && (
                         <Button
                             onClick={handleShowForm}
                             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
@@ -84,7 +84,7 @@ const MemoriesPage = () => {
                         totalPages={totalPages}
                         handlePageChange={handlePageChange}
                     />
-                    {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>}
+                    {!loggedInUser.id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>}
                 </div>
             )}
         </div>

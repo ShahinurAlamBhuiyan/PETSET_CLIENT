@@ -16,9 +16,9 @@ const DAppointmentsPage = () => {
       if (loggedInUser.role) {
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:8800/appointments');
-          else if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:8800/appointments/doctor/${loggedInUser?.u_id}`);
-          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:8800/appointments/user/${loggedInUser?.u_id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:5001/api/appointments');
+          else if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:5001/api/appointments/doctor/${loggedInUser?.id}`);
+          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:5001/api/appointments/user/${loggedInUser?.id}`);
 
           setAppointments(response.data);
           setLoading(false);
@@ -34,10 +34,10 @@ const DAppointmentsPage = () => {
 
   const fetchDoctorById = async (drId) => {
     try {
-      const res = await axios.get(`http://localhost:8800/doctor/${drId}`);
+      const res = await axios.get(`http://localhost:5001/api/specialists/${drId}`);
       setDoctorNames((prevDoctorNames) => ({
         ...prevDoctorNames,
-        [drId]: res.data[0]?.dr_name || 'Unknown Doctor', // Default to 'Unknown Doctor' if name is not available
+        [drId]: res.data.dr_name || 'Unknown Doctor',
       }));
     } catch (error) {
       console.log(error);
@@ -74,7 +74,7 @@ const DAppointmentsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:8800/appointment/${app_id}`)
+          await axios.delete(`http://localhost:5001/api/appointments/${app_id}`)
           Swal.fire({
             title: "Deleted!",
             text: "Appointment deleted successfully!",
@@ -113,12 +113,12 @@ const DAppointmentsPage = () => {
                         <td >{appointment.service_name}</td>
                         <td>{doctorNames[appointment.dr_id]}</td>
                         <td>{appointment.fees}</td>
-                        <td>{appointment.owner_name}</td>
-                        <td>{appointment.owner_email}</td>
-                        <td>{appointment.contact}</td>
+                        <td>{appointment.patient_name}</td>
+                        <td>{appointment.patient_email}</td>
+                        <td>{appointment.patient_contact}</td>
                         <td>{appointment.appointment_date}</td>
                         <td>
-                          <button onClick={() => handleDeleteAppointment(appointment.a_id)} className='btn btn-outline-primary'>
+                          <button onClick={() => handleDeleteAppointment(appointment._id)} className='btn btn-outline-primary'>
                             Remove
                           </button>
                         </td>
