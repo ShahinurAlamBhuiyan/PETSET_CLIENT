@@ -21,7 +21,7 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("http://localhost:5001/api/adaptions")
+                const res = await axios.get("http://localhost:5001/api/adoptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)
@@ -54,7 +54,7 @@ const AdaptationPage = () => {
             )}
             {adaptationPosts.length && (
                 <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                    {loggedInUser.u_id &&
+                    {loggedInUser.id &&
                         <Button
                             onClick={handleShowForm}
                             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
@@ -85,7 +85,7 @@ const AdaptationPage = () => {
                         totalPages={totalPages}
                         handlePageChange={handlePageChange}
                     />
-                    {!loggedInUser.u_id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own adoption post!</p>}
+                    {!loggedInUser.id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own adoption post!</p>}
                 </div>
             )}
         </div>
