@@ -3,7 +3,7 @@ import { Button, Card, Modal } from 'react-bootstrap';
 
 const SingleSpecialistCard = ({ specialist, serviceId }) => {
     const [showDoctorDetails, setShowDoctorDetails] = useState(false);
-    
+
     // Function to show the dr. details modal
     const handleShowDoctorDetails = () => {
         setShowDoctorDetails(true);
@@ -20,7 +20,7 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
             <Card.Img
                 variant="top"
                 dr_img
-                src={specialist.dr_img ? specialist.dr_img : "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg2OC1zYXNpLTA2LmpwZw.jpg"}
+                src={specialist.img_URL ? specialist.img_URL : "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg2OC1zYXNpLTA2LmpwZw.jpg"}
                 style={{ borderRadius: '15px 15px 0 0', height: '50%', objectFit: 'contain' }}
             />
             <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -38,11 +38,10 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
                     </Modal.Header>
                     <Modal.Body>
                         <>
-                            <p>Degrees:{specialist?.specialise} </p>
-                            <p>Address: {specialist?.dr_address}</p>
-                            <p>Email: {specialist?.dr_email} </p>
-                            <p>Phone: {specialist?.dr_contact}</p>
-                            <p>Website: www.{(specialist?.dr_name).toLowerCase()}.com</p>
+                            <p><strong>Degrees:</strong> {specialist?.specialise} </p>
+                            <p><strong>Address:</strong> {specialist?.dr_address}</p>
+                            <p><strong>Email:</strong> {specialist?.dr_email} </p>
+                            <p><strong>Phone:</strong> {specialist?.dr_contact}</p>
                         </>
                     </Modal.Body>
                     <Modal.Footer>
@@ -51,7 +50,7 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <Button href={`/appointment/${serviceId}/${specialist?.dr_id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
+                <Button href={`/appointment/${serviceId}/${specialist?._id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );

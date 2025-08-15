@@ -10,13 +10,14 @@ const ServicesPage = () => {
         const fetchAllMemories = async () => {
             try {
                 const res = await axios.get("http://localhost:5001/api/services")
-                setServices(res.data)
+                setServices(res.data.services)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchAllMemories()
-    }, [services.length])
+    }, [services])
+    console.log(services)
     return (
         <div className='container mt-3 centering_items_flex pb-5' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
             <h3>Our services for your PET</h3>
