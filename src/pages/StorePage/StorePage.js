@@ -19,8 +19,7 @@ const StorePage = () => {
     const handleSearch = async (query) => {
         try {
             const response = await axios.get(`http://localhost:5001/api/products/search?query=${query}`);
-            console.log(response.data)
-            setSearchResults(response.data);
+            setSearchResults(response.data.products);
         } catch (error) {
             console.error('Error searching products:', error);
         }
@@ -30,7 +29,7 @@ const StorePage = () => {
         setSearchQuery('');
         setSearchResults([])
     };
-
+    console.log(searchResults)
     return (
         <div className='container mt-5'>
             <SearchStoreProduct
