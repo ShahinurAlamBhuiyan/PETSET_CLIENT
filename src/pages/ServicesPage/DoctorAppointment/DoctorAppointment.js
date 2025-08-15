@@ -9,66 +9,61 @@ const DoctorAppointment = () => {
 
     const navigate = useNavigate();
     const { dr_id, s_id } = useParams();
-    const [doctor, setDoctor] = useState({})
     const [service, setService] = useState({})
+    const [doctor, setDoctor] = useState({})
 
 
 
     // fetching doctor details
-    useEffect(() => {
-        const fetchDoctorDetails = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5001/api/specialists/${dr_id}`);
+    // useEffect(() => {
+    //     const fetchDoctorDetails = async () => {
+    //         try {
+    //             const res = await axios.get(`http://localhost:5001/api/specialists/${dr_id}`);
 
-                setDoctor(res.data[0]);
-            } catch (error) {
-                console.error('Error fetching memory details:', error);
-            }
-        };
+    //             setDoctor(res.data[0]);
+    //         } catch (error) {
+    //             console.error('Error fetching memory details:', error);
+    //         }
+    //     };
 
-        fetchDoctorDetails();
-    }, [dr_id]);
+    //     fetchDoctorDetails();
+    // }, [dr_id]);
 
     // fetching service details
     useEffect(() => {
         const fetchServiceDetails = async () => {
+            console.log(s_id, 's_id');
+            console.log(dr_id, 'dr_id');
             try {
-                const res = await axios.get(`http://localhost:5001/api/services/${s_id}`);
-
-                setService(res.data[0]);
+                const res = await axios.get(`http://localhost:5001/api/services/with-doctor/${s_id}`);
+                setService(res.data.service)
+                setDoctor(res.data.service.dr_ids.find(doctor => doctor._id === dr_id));
             } catch (error) {
                 console.error('Error fetching memory details:', error);
             }
         };
 
         fetchServiceDetails();
-    }, [s_id]);
+    }, [doctor, service]);
 
+    console.log(doctor, 'matchedDoctor');
 
-    const generateAppointmentId = () => {
-        const timestamp = new Date().getTime();
-
-        const uniqueID = `appointment${timestamp}`;
-
-        return uniqueID;
-    }
     const [appointmentDetails, setAppointmentDetails] = useState({
-        u_id: loggedInUser.u_id,
+        patient_id: loggedInUser.id,
         dr_id: dr_id,
-        a_id: generateAppointmentId(),
         appointment_date: '',
-        s_id: s_id,
-        owner_name: loggedInUser?.full_name,
-        owner_email: loggedInUser?.email,
+        service_id: s_id,
         service_name: "",
-        contact: '+880',
-        fee: '',
+        patient_name: loggedInUser?.full_name,
+        patient_email: loggedInUser?.email,
+        patient_contact: '+880',
+        fees: '',
     });
 
     useEffect(() => {
         setAppointmentDetails((prevDetails) => ({
             ...prevDetails,
-            fee: doctor?.visiting_fees,
+            fees: doctor?.visiting_fees,
         }));
     }, [doctor]);
 
@@ -78,7 +73,7 @@ const DoctorAppointment = () => {
     const handleAppointmentSubmit = async (e) => {
         e.preventDefault();
         const isAppointmentSuccessful = handleFormSubmission();
-        appointmentDetails.service_name = service.title;
+        appointmentDetails.service_name = service.service_name;
         // booking appointment...
         if (isAppointmentSuccessful) {
             try {
@@ -108,20 +103,20 @@ const DoctorAppointment = () => {
             <h2>An appointment with {doctor?.dr_name}</h2>
             <form onSubmit={handleAppointmentSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="fee" className="form-label">Service Name</label>
-                    <input disabled type="text" className="form-control" id="service_name" value={service?.title} />
+                    <label htmlFor="service_name" className="form-label">Service Name</label>
+                    <input disabled type="text" className="form-control" id="service_name" value={service.service_name} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Your Name</label>
-                    <input type="text" className="form-control" id='owner_name' value={appointmentDetails.owner_name} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, owner_name: e.target.value }))} required />
+                    <input type="text" className="form-control" id='patient_name' value={appointmentDetails.patient_name} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, patient_name: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="contact" className="form-label">Your Contact</label>
-                    <input type='tel' className="form-control" id="contact" value={appointmentDetails.contact} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, contact: e.target.value }))} required />
+                    <input type='tel' className="form-control" id="patient_contact" value={appointmentDetails.patient_contact} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, patient_contact: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="owner_email" value={appointmentDetails.owner_email} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, owner_email: e.target.value }))} required />
+                    <input type="email" className="form-control" id="patient_email" value={appointmentDetails.patient_email} onChange={(e) => setAppointmentDetails((prevState) => ({ ...prevState, patient_email: e.target.value }))} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="appointment_date" className="form-label">Appointment Date</label>

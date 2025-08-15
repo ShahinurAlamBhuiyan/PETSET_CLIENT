@@ -50,7 +50,7 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <Button href={`/appointment/${serviceId}/${specialist?._id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
+                <Button href={`/appointment/${serviceId}/${specialist._id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );
