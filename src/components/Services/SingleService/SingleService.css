@@ -1,25 +1,25 @@
-.service_card {
+.pet_service_card {
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 8px 8px rgba(249, 90, 17, 0.2);
   overflow: hidden;
-  width: 500px; 
-  height: 250px;
- 
+  max-width: 600px;
+  height: 300px;
+
   display: flex;
   flex-wrap: nowrap;
   transition: transform 0.3s ease-in-out;
 }
 
-.service_card:hover {
+.pet_service_card:hover {
   transform: scale(1.05);
 }
 
-.service_card-content {
+.pet_service_card-content {
   display: flex;
 }
 
-.service_card-image {
+.pet_service_card-image {
   width: 50%;
   height: 100%;
   object-fit: cover;
@@ -33,20 +33,20 @@
   box-sizing: border-box;
 }
 
-.service_card-title {
+.pet_service_card-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.service_card-details {
+.pet_service_card-details {
   font-size: 14px;
   color: #555;
   margin-bottom: 15px;
   text-align: justify;
 }
 
-.service_card-button {
+.pet_service_card-button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -59,32 +59,32 @@
   transition: background-color 0.3s ease;
 }
 
-.service_card-button:hover {
+.pet_service_card-button:hover {
   background-color: #2980b9;
 }
 
-
 @media only screen and (max-width: 600px) {
-  .service_card {
-    width: 100%; 
-    height: auto; 
+  .pet_service_card {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .pet_service_card-content {
     flex-direction: column;
   }
 
-  .service_card-content {
-    flex-direction: column; 
-  }
-
-  .service_card-image {
-    width: 100%; 
+  .pet_service_card-image {
+    width: 100%;
     height: 200px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 0;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   .text-content {
-    width: 100%; 
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
   }

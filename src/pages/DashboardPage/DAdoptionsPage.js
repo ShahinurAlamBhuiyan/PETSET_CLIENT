@@ -125,7 +125,7 @@ const DAdoptionsPage = () => {
                       <Button onClick={() => handleEdit(post)} variant="outline-primary ">Edit</Button>
                     }
 
-                    <Button onClick={() => handleDelete(post)} variant="outline-primary ">Delete</Button>
+                    <Button onClick={() => handleDelete(post._id)} variant="outline-primary ">Delete</Button>
                   </Card.Footer>
                 </Card>
               </div>

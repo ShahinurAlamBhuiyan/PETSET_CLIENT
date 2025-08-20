@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Spinner, Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,7 +27,8 @@ const MemoriesPage = () => {
             }
         };
         fetchAllMemories();
-    }, [memories]);
+        console.log('hit')
+    }, [memories.length]);
 
     // Pagination part --->
     const totalPages = Math.ceil(memories.length / itemsPerPage);
@@ -46,22 +47,16 @@ const MemoriesPage = () => {
     };
     return (
         <div className='pb-5'>
-            {!memories.length && (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Spinner animation='border' />
-                </div>
-            )}
-            {memories.length && (
+            {loggedInUser.id && (
                 <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                    {loggedInUser.id && (
-                        <Button
-                            onClick={handleShowForm}
-                            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
-                        >
-                            <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
-                            SHARE YOUR MEMORY
-                        </Button>
-                    )}
+
+                    <Button
+                        onClick={handleShowForm}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
+                    >
+                        <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
+                        SHARE YOUR MEMORY
+                    </Button>
 
                     <Modal show={showForm} onHide={handleCloseForm}>
                         <Modal.Header closeLabel='cancel'>
@@ -76,6 +71,15 @@ const MemoriesPage = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+                </div>
+            )}
+
+            {!memories.length ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    No memories found.
+                </div>
+            ) : (
+                <>
                     <MemoryCard memories={memories} currentPage={currentPage} itemsPerPage={itemsPerPage} />
                     <Pagination
                         currentPage={currentPage}
@@ -84,8 +88,13 @@ const MemoriesPage = () => {
                         totalPages={totalPages}
                         handlePageChange={handlePageChange}
                     />
-                    {!loggedInUser.id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own memory!</p>}
-                </div>
+                </>
+            )}
+            {!loggedInUser.id && (
+                <p className='mt-4' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <a href="/sign-in">Sign in </a>
+                    - for share your own memory!
+                </p>
             )}
         </div>
     );

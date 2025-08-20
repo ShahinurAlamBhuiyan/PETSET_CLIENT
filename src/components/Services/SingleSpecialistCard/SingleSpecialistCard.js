@@ -16,12 +16,12 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
 
 
     return (
-        <Card style={{ width: '300px', height: '400px', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+        <Card style={{ width: '350px', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <Card.Img
                 variant="top"
                 dr_img
                 src={specialist.img_URL ? specialist.img_URL : "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjg2OC1zYXNpLTA2LmpwZw.jpg"}
-                style={{ borderRadius: '15px 15px 0 0', height: '50%', objectFit: 'contain' }}
+                style={{ borderRadius: '15px 15px 0 0', height: '240px', objectFit: 'cover' }}
             />
             <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
@@ -50,7 +50,7 @@ const SingleSpecialistCard = ({ specialist, serviceId }) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <Button href={`/appointment/${serviceId}/${specialist._id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end' }}>Take Appointment</Button>
+                <Button href={`/appointment/${serviceId}/${specialist._id}`} variant="outline-secondary" style={{ alignSelf: 'flex-end', marginTop: '10px' }}>Take Appointment</Button>
             </Card.Body>
         </Card>
     );

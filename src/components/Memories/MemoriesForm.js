@@ -39,6 +39,7 @@ const MemoriesForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
+            console.log(responseData)
             setNewMemory({
                 ...newMemory,
                 img_URL: responseData.data.display_url,
@@ -67,7 +68,7 @@ const MemoriesForm = ({ setShowForm }) => {
     };
 
     const isFormComplete = () => {
-        if (newMemory.title && newMemory.img_URL && newMemory.details && newMemory.created_date) {
+        if (newMemory.title && newMemory.img_URL && newMemory.details) {
             return true
         } else {
             return false

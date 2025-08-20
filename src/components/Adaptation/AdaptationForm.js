@@ -7,23 +7,14 @@ import Swal from 'sweetalert2'
 const AdaptationForm = ({ setShowForm }) => {
     const { loggedInUser } = useContext(AuthContext);
     const [newAdaptationPost, setNewAdaptationPost] = useState({
-        a_id: '',
-        u_id: loggedInUser?.u_id,
+        owner_id: loggedInUser?.id,
         title: '',
         details: '',
         img_URL: '',
         img_URL2: '',
         img_URL3: '',
-        created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     });
 
-    const generateAdaptionId = () => {
-        const timestamp = new Date().getTime();
-
-        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-
-        return uniqueID;
-    }
 
 
     const handleInputChange = (event) => {
@@ -108,9 +99,8 @@ const AdaptationForm = ({ setShowForm }) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        newAdaptationPost.a_id = generateAdaptionId();
         try {
-            await axios.post("https://petset-server.vercel.app/api/adaptions", newAdaptationPost)
+            await axios.post("https://petset-server.vercel.app/api/adoptions", newAdaptationPost)
             setShowForm(false);
             Swal.fire({
                 title: "Great!",
@@ -118,14 +108,12 @@ const AdaptationForm = ({ setShowForm }) => {
                 icon: "success"
             });
             setNewAdaptationPost({
-                a_id: '',
-                u_id: loggedInUser?.u_id,
+                owner_id: loggedInUser?.id,
                 title: '',
                 details: '',
                 img_URL: '',
                 img_URL2: '',
                 img_URL3: '',
-                created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
             })
 
         } catch (error) {
@@ -134,7 +122,7 @@ const AdaptationForm = ({ setShowForm }) => {
     };
 
     const isFormComplete = () => {
-        if (newAdaptationPost.title && newAdaptationPost.img_URL && newAdaptationPost.img_URL2 && newAdaptationPost.img_URL3 && newAdaptationPost.details && newAdaptationPost.created_date) {
+        if (newAdaptationPost.title && newAdaptationPost.img_URL && newAdaptationPost.img_URL2 && newAdaptationPost.img_URL3 && newAdaptationPost.details) {
             return true
         } else {
             return false

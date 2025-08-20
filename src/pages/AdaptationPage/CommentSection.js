@@ -54,16 +54,16 @@ const CommentSection = ({ comments, adaptionId }) => {
                     comments?.map((comment, index) => (
                         <Card className='mb-1' key={index}>
                             <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                <div className='centering_items_flex' style={{ justifyContent: 'flex-start', gap: '10px' }}>
-                                    <img
-                                        src={comment?.author_id?.image_URL || 'https://we-ha.com/wp-content/uploads/2019/09/PJK-Photo-2019-LOW-RESOLUTION.jpg'}
-                                        alt="Profile Pic"
-                                        style={{ borderRadius: '50%', marginRight: '10px', width: '55px', height: '55px' }}
-                                    />
-                                    <div>
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '10px' }}>
+                                        <img
+                                            src={comment?.author_id?.image_URL || 'https://we-ha.com/wp-content/uploads/2019/09/PJK-Photo-2019-LOW-RESOLUTION.jpg'}
+                                            alt="Profile Pic"
+                                            style={{ borderRadius: '50%', marginRight: '10px', width: '40px', height: '40px', objectFit: 'cover' }}
+                                        />
                                         <span style={{ fontWeight: 'bold' }}>{comment?.author_id?.full_name}</span>
-                                        <Card.Text>{comment.body}</Card.Text>
                                     </div>
+                                    <Card.Text style={{ marginLeft: '60px' }}>{comment.body}</Card.Text>
                                 </div>
                             </Card.Body>
                         </Card>

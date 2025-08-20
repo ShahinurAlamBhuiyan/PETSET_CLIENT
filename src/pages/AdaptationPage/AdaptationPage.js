@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { Spinner, Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
@@ -47,22 +47,17 @@ const AdaptationPage = () => {
     };
     return (
         <div className='pb-5'>
-            {!adaptationPosts.length && (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Spinner animation='border' />
-                </div>
-            )}
-            {adaptationPosts.length && (
+
+            {loggedInUser.id && (
                 <div className='container' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'column' }}>
-                    {loggedInUser.id &&
-                        <Button
-                            onClick={handleShowForm}
-                            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
-                        >
-                            <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
-                            SHARE PET ADOPTION POST
-                        </Button>
-                    }
+
+                    <Button
+                        onClick={handleShowForm}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginTop: '20px' }} variant='outline-primary'
+                    >
+                        <FontAwesomeIcon className="font-weight-normal text-secondary " icon={faUpload} />
+                        SHARE PET ADOPTION POST
+                    </Button>
 
                     <Modal show={showForm} onHide={handleCloseForm}>
                         <Modal.Header closeLabel='cancel'>
@@ -77,6 +72,15 @@ const AdaptationPage = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+                </div>
+            )}
+
+            {!adaptationPosts.length ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    No adoptions found.
+                </div>
+            ) : (
+                <>
                     <AdaptationCard adaptationPosts={adaptationPosts} currentPage={currentPage} itemsPerPage={itemsPerPage} />
                     <Pagination
                         currentPage={currentPage}
@@ -85,10 +89,13 @@ const AdaptationPage = () => {
                         totalPages={totalPages}
                         handlePageChange={handlePageChange}
                     />
-                    {!loggedInUser.id && <p className='mt-2'><a href="/sign-in">Sign in</a> for share your own adoption post!</p>}
-                </div>
+                </>
             )}
-        </div>
+
+            {!loggedInUser.id && (
+                <p className='mt-4' style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><a href="/sign-in">Sign in</a>- for share your own adoption post!</p>
+            )}
+        </div >
     );
 };
 
