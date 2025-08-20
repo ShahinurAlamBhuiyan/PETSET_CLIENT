@@ -9,7 +9,7 @@ const ServicesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("http://localhost:5001/api/services")
+                const res = await axios.get("https://petset-server.vercel.app/api/services")
                 setServices(res.data.services)
             } catch (error) {
                 console.log(error)

@@ -12,7 +12,7 @@ const AdaptationDetailsPage = () => {
     // get adaption details
     const fetchAdaptationPostDetails = async () => {
         try {
-            const res = await axios.get(`http://localhost:5001/api/adoptions/${a_id}`);
+            const res = await axios.get(`https://petset-server.vercel.app/api/adoptions/${a_id}`);
             setAdaptationPost(res.data);
         } catch (error) {
             console.error('Error fetching adoption details:', error);
@@ -21,7 +21,7 @@ const AdaptationDetailsPage = () => {
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get(`http://localhost:5001/api/adoptions/comments/post/${a_id}`);
+            const res = await axios.get(`https://petset-server.vercel.app/api/adoptions/comments/post/${a_id}`);
             setComments(res.data);
         } catch (error) {
             console.error('Error fetching comments:', error);

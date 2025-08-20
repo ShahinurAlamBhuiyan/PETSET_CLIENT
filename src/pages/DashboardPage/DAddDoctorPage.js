@@ -29,7 +29,7 @@ const DAddDoctorPage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5001/api/specialists", newDoctor)
+      await axios.post("https://petset-server.vercel.app/api/specialists", newDoctor)
       Swal.fire({
         title: "Great!",
         text: "Doctor Added!",

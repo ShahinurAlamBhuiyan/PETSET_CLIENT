@@ -64,7 +64,7 @@ const Shipment = () => {
             // Check if it's a hostel booking or product order
             if (isHostelPayment) {
                 // API request to save hostel order and log the response
-                const response = await axios.post('http://localhost:5001/api/hostel-orders', hostelOrderDetails);
+                const response = await axios.post('https://petset-server.vercel.app/api/hostel-orders', hostelOrderDetails);
 
                 // Log the API response to see the result
                 console.log('Hostel Order Response:', response.data);
@@ -74,7 +74,7 @@ const Shipment = () => {
             } else if (isStorePayment) {
                 // API request to save product order and log the response
                 console.log(orderDetails)
-                const response = await axios.post('http://localhost:5001/api/orders', orderDetails);
+                const response = await axios.post('https://petset-server.vercel.app/api/orders', orderDetails);
                 console.log('Product Order Response:', response.data);
             }
         } catch (error) {

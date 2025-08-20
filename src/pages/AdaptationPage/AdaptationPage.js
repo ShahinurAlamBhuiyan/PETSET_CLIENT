@@ -21,7 +21,7 @@ const AdaptationPage = () => {
     useEffect(() => {
         const fetchAllAdaptationPosts = async () => {
             try {
-                const res = await axios.get("http://localhost:5001/api/adoptions")
+                const res = await axios.get("https://petset-server.vercel.app/api/adoptions")
                 setAdaptationPosts(res.data)
             } catch (error) {
                 console.log(error)

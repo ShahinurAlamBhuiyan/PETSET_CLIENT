@@ -12,7 +12,7 @@ const SpecialistsPage = () => {
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/services/with-doctor/${s_id}`);
+        const res = await axios.get(`https://petset-server.vercel.app/api/services/with-doctor/${s_id}`);
         setService(res.data.service);
       } catch (error) {
         console.error('Error fetching Service details:', error);

@@ -29,7 +29,13 @@ const SignUpPage = () => {
 
     if (confirmPass === formData.password) {
       try {
-        await axios.post("http://localhost:5001/api/auth/sign-up", formData);
+        const payload = {
+          ...formData,
+          full_name: `${formData.firstName} ${formData.lastName}`.trim()
+        };
+
+        await axios.post("https://petset-server.vercel.app/api/auth/sign-up", payload);
+
         Swal.fire({
           title: "Congratulation!",
           text: "Sign-up successfully!",
@@ -37,7 +43,6 @@ const SignUpPage = () => {
         });
         navigate('/sign-in');
       } catch (error) {
-        // Read message from backend JSON response
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -63,6 +68,7 @@ const SignUpPage = () => {
       });
     }
   };
+
 
 
   return (

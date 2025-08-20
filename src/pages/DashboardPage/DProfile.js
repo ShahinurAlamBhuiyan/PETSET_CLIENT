@@ -20,7 +20,7 @@ const DProfile = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5001/api/users/${loggedInUser.u_id}`, newData);
+      await axios.put(`https://petset-server.vercel.app/api/users/${loggedInUser.id}`, newData);
       setLoggedInUser((prevUser) => ({
         ...prevUser,
         full_name: newData.full_name,

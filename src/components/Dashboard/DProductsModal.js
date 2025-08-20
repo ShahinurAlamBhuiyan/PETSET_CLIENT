@@ -12,7 +12,7 @@ const DProductsModal = ({ showModalEdit, setShowModalEdit, product }) => {
         try {
             if (newProductName !== '' || newProductPrice !== '' || newProductDetails !== '') {
                 // Update Product title, details
-                await axios.put(`http://localhost:5001/api/products/${product._id}`,
+                await axios.put(`https://petset-server.vercel.app/api/products/${product._id}`,
                     {
                         product_name: newProductName !== '' ? newProductName : product.product_name,
                         product_price: newProductPrice !== '' ? newProductPrice : product.product_price,

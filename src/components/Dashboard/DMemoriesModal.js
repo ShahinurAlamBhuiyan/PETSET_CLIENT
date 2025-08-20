@@ -20,7 +20,7 @@ const DMemoriesModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         }
 
         try {
-            const res = await axios.put(`http://localhost:5001/api/memories/${memory._id}`, newMemory)
+            const res = await axios.put(`https://petset-server.vercel.app/api/memories/${memory._id}`, newMemory)
             Swal.fire({
                 title: "Great!",
                 text: "Memory updated successfully!",

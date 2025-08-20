@@ -11,7 +11,7 @@ const DDoctorsPage = () => {
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/specialists');
+        const response = await axios.get('https://petset-server.vercel.app/api/specialists');
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {
@@ -45,19 +45,19 @@ const DDoctorsPage = () => {
         if (result.isConfirmed) {
 
           // 1️⃣ Delete appointments of this doctor
-          await axios.delete(`http://localhost:5001/api/appointments/doctor/${doctor_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/appointments/doctor/${doctor_id}`);
 
           // Get all services containing this doctor
-          const resServices = await axios.get(`http://localhost:5001/api/services/doctor/${doctor_id}`);
+          const resServices = await axios.get(`https://petset-server.vercel.app/api/services/doctor/${doctor_id}`);
           const services = resServices.data.services;
 
           // Remove doctor from each service
           for (let service of services) {
-            await axios.delete(`http://localhost:5001/api/services/doctor/${service._id}/${doctor_id}`);
+            await axios.delete(`https://petset-server.vercel.app/api/services/doctor/${service._id}/${doctor_id}`);
           }
 
           // 4️⃣ Delete the doctor itself
-          await axios.delete(`http://localhost:5001/api/specialists/${doctor_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/specialists/${doctor_id}`);
 
           // 5️⃣ Update UI
           setDoctors(doctors.filter(doctor => doctor._id !== doctor_id));

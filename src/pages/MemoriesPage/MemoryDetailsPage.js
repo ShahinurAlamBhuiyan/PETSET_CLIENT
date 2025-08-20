@@ -10,7 +10,7 @@ const MemoryDetailsPage = () => {
     useEffect(() => {
         const fetchMemoryDetails = async () => {
             try {
-                const res = await axios.get(`http://localhost:5001/api/memories/${m_id}`);
+                const res = await axios.get(`https://petset-server.vercel.app/api/memories/${m_id}`);
 
                 setMemory(res.data.memory);
             } catch (error) {

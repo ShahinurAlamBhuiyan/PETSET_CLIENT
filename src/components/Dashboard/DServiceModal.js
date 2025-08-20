@@ -16,7 +16,7 @@ const DServiceModal = ({ showModalView, setShowModalView, selectedService, showM
     const fetchServiceDetails = async () => {
       console.log(selectedService)
       try {
-        const res = await axios.get(`http://localhost:5001/api/services/with-doctor/${selectedService._id}`);
+        const res = await axios.get(`https://petset-server.vercel.app/api/services/with-doctor/${selectedService._id}`);
         setServiceWithSpecialists(res.data.service);
       } catch (error) {
         console.error('Error fetching Service details:', error);
@@ -29,7 +29,7 @@ const DServiceModal = ({ showModalView, setShowModalView, selectedService, showM
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/specialists')
+        const res = await axios.get('https://petset-server.vercel.app/api/specialists')
         setDoctors(res.data)
       } catch (error) {
         console.error('Error fetching doctors:', error);
@@ -52,7 +52,7 @@ const DServiceModal = ({ showModalView, setShowModalView, selectedService, showM
 
       if (result.isConfirmed) {
         // Send request to backend to remove doctor from service
-        await axios.delete(`http://localhost:5001/api/services/doctor/${selectedService._id}/${dr_id}`);
+        await axios.delete(`https://petset-server.vercel.app/api/services/doctor/${selectedService._id}/${dr_id}`);
 
         // Update state: remove the doctor from the service's dr_ids array
         setServiceWithSpecialists(prevService => ({
@@ -86,7 +86,7 @@ const DServiceModal = ({ showModalView, setShowModalView, selectedService, showM
       }
 
       const res = await axios.put(
-        `http://localhost:5001/api/services/${selectedService._id}`,
+        `https://petset-server.vercel.app/api/services/${selectedService._id}`,
         payload
       );
 

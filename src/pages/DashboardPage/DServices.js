@@ -14,7 +14,7 @@ const DServicesPage = () => {
   useEffect(() => {
     const fetchAllServices = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/services');
+        const response = await axios.get('https://petset-server.vercel.app/api/services');
         setServices(response.data.services);
         setLoading(false);
       } catch (error) {
@@ -46,7 +46,7 @@ const DServicesPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:5001/api/services/${id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/services/${id}`)
           setServices(services.filter(service => service.s_id !== id));
           Swal.fire({
             title: "Deleted!",

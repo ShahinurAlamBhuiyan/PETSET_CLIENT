@@ -31,8 +31,8 @@ const DOrders = () => {
       if (loggedInUser.role) {
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:5001/api/orders');
-          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:5001/api/orders/customer/${loggedInUser?.id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-server.vercel.app/api/orders');
+          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-server.vercel.app/api/orders/customer/${loggedInUser?.id}`);
 
           setOrders(response.data.orders);
           setLoading(false);
@@ -56,7 +56,7 @@ const DOrders = () => {
 
   const handleChangeStatus = async (orderId, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:5001/api/orders/${orderId}`, { status: newStatus });
+      const res = await axios.put(`https://petset-server.vercel.app/api/orders/${orderId}`, { status: newStatus });
 
       if (res.data) {
         setOrders((prevOrders) =>
@@ -75,7 +75,7 @@ const DOrders = () => {
 
   const getProductById = async (productID) => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/products/${productID}`);
+      const res = await axios.get(`https://petset-server.vercel.app/api/products/${productID}`);
       return res.data.product
     } catch (error) {
       console.log(error);
@@ -99,7 +99,7 @@ const DOrders = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:5001/api/orders/${orderID}`)
+          await axios.delete(`https://petset-server.vercel.app/api/orders/${orderID}`)
           Swal.fire({
             title: "Deleted!",
             text: "Order deleted successfully!",

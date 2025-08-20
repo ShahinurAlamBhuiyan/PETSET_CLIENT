@@ -14,7 +14,7 @@ const DProductsPage = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/products');
+        const response = await axios.get('https://petset-server.vercel.app/api/products');
         setProducts(response.data.products);
         setLoading(false);
       } catch (error) {
@@ -45,7 +45,7 @@ const DProductsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:5001/api/products/${product_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/products/${product_id}`)
           setProducts(products.filter(product => product.product_id !== product_id));
           Swal.fire({
             title: "Deleted!",

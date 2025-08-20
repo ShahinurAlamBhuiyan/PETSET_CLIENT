@@ -18,7 +18,7 @@ const StorePage = () => {
 
     const handleSearch = async (query) => {
         try {
-            const response = await axios.get(`http://localhost:5001/api/products/search?query=${query}`);
+            const response = await axios.get(`https://petset-server.vercel.app/api/products/search?query=${query}`);
             setSearchResults(response.data.products);
         } catch (error) {
             console.error('Error searching products:', error);

@@ -18,7 +18,7 @@ const DAddServicePage = () => {
   useEffect(() => {
     const fetchAllDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/specialists')
+        const res = await axios.get('https://petset-server.vercel.app/api/specialists')
         setDoctors(res.data)
       } catch (error) {
 
@@ -63,7 +63,7 @@ const DAddServicePage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5001/api/services", newService)
+      await axios.post("https://petset-server.vercel.app/api/services", newService)
       Swal.fire({
         title: "Great!",
         text: "Service Added!",

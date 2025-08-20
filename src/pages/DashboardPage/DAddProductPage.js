@@ -54,7 +54,7 @@ const DAddProductPage = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post("http://localhost:5001/api/products", newProduct)
+            await axios.post("https://petset-server.vercel.app/api/products", newProduct)
             Swal.fire({
                 title: "Great!",
                 text: "Product posted!",

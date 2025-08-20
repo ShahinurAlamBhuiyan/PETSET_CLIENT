@@ -16,9 +16,9 @@ const DAppointmentsPage = () => {
       if (loggedInUser.role) {
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('http://localhost:5001/api/appointments');
-          else if (loggedInUser.role === 'doctor') response = await axios.get(`http://localhost:5001/api/appointments/doctor/${loggedInUser?.id}`);
-          else if (loggedInUser.role === 'user') response = await axios.get(`http://localhost:5001/api/appointments/user/${loggedInUser?.id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-server.vercel.app/api/appointments');
+          else if (loggedInUser.role === 'doctor') response = await axios.get(`https://petset-server.vercel.app/api/appointments/doctor/${loggedInUser?.id}`);
+          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-server.vercel.app/api/appointments/user/${loggedInUser?.id}`);
 
           setAppointments(response.data);
           setLoading(false);
@@ -34,7 +34,7 @@ const DAppointmentsPage = () => {
 
   const fetchDoctorById = async (drId) => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/specialists/${drId}`);
+      const res = await axios.get(`https://petset-server.vercel.app/api/specialists/${drId}`);
       setDoctorNames((prevDoctorNames) => ({
         ...prevDoctorNames,
         [drId]: res.data.dr_name || 'Unknown Doctor',
@@ -74,7 +74,7 @@ const DAppointmentsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:5001/api/appointments/${app_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/appointments/${app_id}`)
           Swal.fire({
             title: "Deleted!",
             text: "Appointment deleted successfully!",

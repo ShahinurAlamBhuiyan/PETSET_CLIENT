@@ -10,7 +10,7 @@ const DUsersPage = () => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/users');
+        const response = await axios.get('https://petset-server.vercel.app/api/users');
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
@@ -42,18 +42,18 @@ const DUsersPage = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           // delete memory  for that user...
-          await axios.delete(`http://localhost:5001/api/memories/user/${u_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/memories/user/${u_id}`);
           // delete user comments
-          await axios.delete(`http://localhost:5001/api/adoptions/comments/user/${u_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/adoptions/comments/user/${u_id}`);
           // delete user order
-          await axios.delete(`http://localhost:5001/api/orders/customer/${u_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/orders/customer/${u_id}`);
           // delete adoption  for that user...
-          await axios.delete(`http://localhost:5001/api/adoptions/user/${u_id}`);
+          await axios.delete(`https://petset-server.vercel.app/api/adoptions/user/${u_id}`);
           // delete appointment  for that user...
-          await axios.delete(`http://localhost:5001/api/appointments/user/${u_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/appointments/user/${u_id}`)
           // delete memory  for that user...
-          await axios.delete(`http://localhost:5001/api/memories/user/${u_id}`)
-          await axios.delete(`http://localhost:5001/api/users/${u_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/memories/user/${u_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/users/${u_id}`)
           setUsers(users.filter(user => user._id !== u_id));
           Swal.fire({
             title: "Deleted!",

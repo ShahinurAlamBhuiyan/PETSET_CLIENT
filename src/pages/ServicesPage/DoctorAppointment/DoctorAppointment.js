@@ -18,7 +18,7 @@ const DoctorAppointment = () => {
     // useEffect(() => {
     //     const fetchDoctorDetails = async () => {
     //         try {
-    //             const res = await axios.get(`http://localhost:5001/api/specialists/${dr_id}`);
+    //             const res = await axios.get(`https://petset-server.vercel.app/api/specialists/${dr_id}`);
 
     //             setDoctor(res.data[0]);
     //         } catch (error) {
@@ -35,7 +35,7 @@ const DoctorAppointment = () => {
             console.log(s_id, 's_id');
             console.log(dr_id, 'dr_id');
             try {
-                const res = await axios.get(`http://localhost:5001/api/services/with-doctor/${s_id}`);
+                const res = await axios.get(`https://petset-server.vercel.app/api/services/with-doctor/${s_id}`);
                 setService(res.data.service)
                 setDoctor(res.data.service.dr_ids.find(doctor => doctor._id === dr_id));
             } catch (error) {
@@ -77,7 +77,7 @@ const DoctorAppointment = () => {
         // booking appointment...
         if (isAppointmentSuccessful) {
             try {
-                await axios.post("http://localhost:5001/api/appointments", appointmentDetails)
+                await axios.post("https://petset-server.vercel.app/api/appointments", appointmentDetails)
                 Swal.fire({
                     title: "Congratulation!",
                     text: "Appointment booked successfully! Assistant will contact you soon.",

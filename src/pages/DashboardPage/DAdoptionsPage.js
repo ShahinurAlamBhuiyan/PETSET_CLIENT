@@ -28,8 +28,8 @@ const DAdoptionsPage = () => {
     const fetchAllAdoptions = async () => {
       let res;
       try {
-        if (loggedInUser.role === 'admin') res = await axios.get("http://localhost:5001/api/adoptions")
-        else res = await axios.get(`http://localhost:5001/api/adoptions/user/${loggedInUser?.id}`);
+        if (loggedInUser.role === 'admin') res = await axios.get("https://petset-server.vercel.app/api/adoptions")
+        else res = await axios.get(`https://petset-server.vercel.app/api/adoptions/user/${loggedInUser?.id}`);
         setAdoptionPosts(res.data)
       } catch (error) {
         console.log(error)
@@ -65,7 +65,7 @@ const DAdoptionsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:5001/api/adoptions/${adoptionId}`)
+          await axios.delete(`https://petset-server.vercel.app/api/adoptions/${adoptionId}`)
           Swal.fire({
             title: "Deleted!",
             text: "Adoption post deleted successfully!.",

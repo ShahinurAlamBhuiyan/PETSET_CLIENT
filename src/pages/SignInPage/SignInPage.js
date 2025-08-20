@@ -23,7 +23,7 @@ const SignInPage = () => {
     e.preventDefault();
     try {
       // Send a POST request to the sign-in API
-      const res = await axios.post("http://localhost:5001/api/auth/sign-in", formData)
+      const res = await axios.post("https://petset-server.vercel.app/api/auth/sign-in", formData)
       console.log(res)
       sessionStorage.setItem('user', JSON.stringify(res.data.user))
       const redirectPath = (location.state && location.state.from && location.state.from !== '/sign-in') ? (location.state.from) : '/';

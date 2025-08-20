@@ -18,7 +18,7 @@ const DAdoptionModal = ({ showModalEdit, setShowModalEdit, showModalView, setSho
         }
 
         try {
-            await axios.put(`http://localhost:5001/api/adoptions/${selectedAdoption._id}`, newAdoptionPost)
+            await axios.put(`https://petset-server.vercel.app/api/adoptions/${selectedAdoption._id}`, newAdoptionPost)
             Swal.fire({
                 title: "Great!",
                 text: "Adoption post updated successfully!",

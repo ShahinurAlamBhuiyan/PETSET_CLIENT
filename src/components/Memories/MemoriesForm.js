@@ -55,7 +55,7 @@ const MemoriesForm = ({ setShowForm }) => {
         event.preventDefault();
         setShowForm(false); // from upper level
         try {
-            await axios.post("http://localhost:5001/api/memories", newMemory)
+            await axios.post("https://petset-server.vercel.app/api/memories", newMemory)
             Swal.fire({
                 title: "Great!",
                 text: "Memory posted!",

@@ -16,9 +16,9 @@ const DHostelOrders = () => {
                 try {
                     let response;
                     if (loggedInUser.role === 'admin') {
-                        response = await axios.get('http://localhost:5001/api/hostel-orders');
+                        response = await axios.get('https://petset-server.vercel.app/api/hostel-orders');
                     } else if (loggedInUser.role === 'user') {
-                        response = await axios.get(`http://localhost:5001/api/hostel-orders/customer/${loggedInUser.id}`);
+                        response = await axios.get(`https://petset-server.vercel.app/api/hostel-orders/customer/${loggedInUser.id}`);
                     }
 
                     setHostelOrders(response.data.orders);
@@ -53,7 +53,7 @@ const DHostelOrders = () => {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.delete(`http://localhost:5001/api/hostel-orders/${orderID}`);
+                    await axios.delete(`https://petset-server.vercel.app/api/hostel-orders/${orderID}`);
                     Swal.fire({
                         title: "Deleted!",
                         text: "Hostel order deleted successfully!",
@@ -68,7 +68,7 @@ const DHostelOrders = () => {
 
     const handleChangeStatus = async (orderId, newStatus) => {
         try {
-            const res = await axios.put(`http://localhost:5001/api/hostel-orders/${orderId}`, { status: newStatus });
+            const res = await axios.put(`https://petset-server.vercel.app/api/hostel-orders/${orderId}`, { status: newStatus });
 
             if (res.data) {
                 setHostelOrders((prevOrders) =>
