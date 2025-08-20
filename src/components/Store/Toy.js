@@ -7,15 +7,14 @@ const Toy = () => {
     useEffect(() => {
         const fetchingToyProduct = async () => {
             try {
-                const response = await axios.get(`https://petset-api.onrender.com/product?product_type=Pet Toy`);
-                setToys(response.data);
+                const response = await axios.get(`https://petset-server.vercel.app/api/products/by-type?product_type=Pet Toy`);
+                setToys(response.data.products);
             } catch (error) {
                 console.error('Error fetching product:', error);
             }
         }
         fetchingToyProduct();
     }, [])
-
 
     return (
         <div className='centering_items_flex'>

@@ -26,9 +26,16 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (confirmPass === formData.password) {
       try {
-        await axios.post("https://petset-api.onrender.com/sign-up", formData)
+        const payload = {
+          ...formData,
+          full_name: `${formData.firstName} ${formData.lastName}`.trim()
+        };
+
+        await axios.post("https://petset-server.vercel.app/api/auth/sign-up", payload);
+
         Swal.fire({
           title: "Congratulation!",
           text: "Sign-up successfully!",
@@ -36,8 +43,13 @@ const SignUpPage = () => {
         });
         navigate('/sign-in');
       } catch (error) {
-        alert(error.response.data)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response?.data?.message || "Something went wrong!"
+        });
       }
+
       setFormData({
         firstName: '',
         lastName: '',
@@ -52,11 +64,12 @@ const SignUpPage = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "password not matched!"
+        text: "Password not matched!"
       });
     }
-
   };
+
+
 
   return (
     <Container className='pb-5'>

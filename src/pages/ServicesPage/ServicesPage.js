@@ -9,14 +9,15 @@ const ServicesPage = () => {
     useEffect(() => {
         const fetchAllMemories = async () => {
             try {
-                const res = await axios.get("https://petset-api.onrender.com/services")
-                setServices(res.data)
+                const res = await axios.get("https://petset-server.vercel.app/api/services")
+                setServices(res.data.services)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchAllMemories()
-    }, [services.length])
+    }, [services])
+    console.log(services)
     return (
         <div className='container mt-3 centering_items_flex pb-5' style={{ flexDirection: 'column', flexWrap: 'nowrap' }}>
             <h3>Our services for your PET</h3>

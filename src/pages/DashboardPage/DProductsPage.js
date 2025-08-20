@@ -14,8 +14,8 @@ const DProductsPage = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get('https://petset-api.onrender.com/products');
-        setProducts(response.data);
+        const response = await axios.get('https://petset-server.vercel.app/api/products');
+        setProducts(response.data.products);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -45,7 +45,7 @@ const DProductsPage = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`https://petset-api.onrender.com/product/${product_id}`)
+          await axios.delete(`https://petset-server.vercel.app/api/products/${product_id}`)
           setProducts(products.filter(product => product.product_id !== product_id));
           Swal.fire({
             title: "Deleted!",
@@ -105,7 +105,7 @@ const DProductsPage = () => {
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => handleDeleteProduct(product.product_id)} className='btn btn-outline-primary'>
+                      <button onClick={() => handleDeleteProduct(product._id)} className='btn btn-outline-primary'>
                         Remove
                       </button>
                     </td>

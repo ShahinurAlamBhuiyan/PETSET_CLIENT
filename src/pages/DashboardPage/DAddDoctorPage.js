@@ -6,15 +6,7 @@ import Swal from 'sweetalert2'
 
 const DAddDoctorPage = () => {
   const { loggedInUser } = useContext(AuthContext);
-
-  const generateDoctorId = () => {
-    const timestamp = new Date().getTime();
-    const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-    return uniqueID;
-  }
-  // const [doctors, set] = useState([])
   const [newDoctor, setNewDoctor] = useState({
-    dr_id: generateDoctorId(),
     dr_name: '',
     specialise: '',
     experience_yr: '',
@@ -35,10 +27,9 @@ const DAddDoctorPage = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(newDoctor)
     event.preventDefault();
     try {
-      await axios.post("https://petset-api.onrender.com/doctors", newDoctor)
+      await axios.post("https://petset-server.vercel.app/api/specialists", newDoctor)
       Swal.fire({
         title: "Great!",
         text: "Doctor Added!",
@@ -50,7 +41,7 @@ const DAddDoctorPage = () => {
   };
 
   const isFormComplete = () => {
-    if (newDoctor.dr_id && newDoctor.dr_name && newDoctor.specialise && newDoctor.experience_yr && newDoctor.dr_degrees && newDoctor.dr_address && newDoctor.visiting_fees && newDoctor.dr_contact && newDoctor.dr_email) {
+    if (newDoctor.dr_name && newDoctor.specialise && newDoctor.experience_yr && newDoctor.dr_degrees && newDoctor.dr_address && newDoctor.visiting_fees && newDoctor.dr_contact && newDoctor.dr_email) {
       return true
     } else {
       return false

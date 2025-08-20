@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import bkashLogo from '../../assets/bkash_payment.png'
 import { Modal, Button } from 'react-bootstrap';
 
-const SimpleCardForm = ({ handlePayment, paymentMethod }) => {
+const SimpleCardForm = ({ handlePayment, paymentMethod, paymentFor }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [paymentError, setPaymentError] = useState(null);
@@ -28,7 +28,6 @@ const SimpleCardForm = ({ handlePayment, paymentMethod }) => {
             type: 'card',
             card: cardElement,
         });
-        console.log(paymentMethod)
 
         if (!error) {
             setPaymentSuccess(true)
@@ -63,7 +62,11 @@ const SimpleCardForm = ({ handlePayment, paymentMethod }) => {
                 text: "Your order has been saved!",
                 icon: "success"
             });
-            navigate('/orders')
+            if (paymentFor === 'product') {
+                navigate('/orders')
+            } else {
+                navigate('/hostel-orders')
+            }
         } else if (!processing && paymentError) {
             alert(paymentError)
         }

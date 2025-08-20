@@ -44,9 +44,10 @@ const SharedNav = () => {
                                 <a href="/adaptation" className="nav-item nav-link" >Adoption</a>
                                 <a href="/services" className="nav-item nav-link" >Services</a>
                                 <a href="/store" className="nav-item nav-link" >Store</a>
+                                <a href="/hostel" className="nav-item nav-link" >Hostel</a>
                             </>
                             <div className={` ${navItemClass}`}>
-                                {loggedInUser.u_id
+                                {loggedInUser.id
                                     ?
                                     <div className='centering_items_flex'>
                                         <a href='/dashboard' className="btn btn-lg btn-outline-primary px-3 d-lg-block">Dashboard</a>

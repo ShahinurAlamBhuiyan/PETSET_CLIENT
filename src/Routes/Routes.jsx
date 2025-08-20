@@ -30,6 +30,8 @@ import DProfile from '../pages/DashboardPage/DProfile'
 import DAddServicePage from '../pages/DashboardPage/DAddServicePage'
 import DAddProductPage from '../pages/DashboardPage/DAddProductPage'
 import AdaptationDetailsPage from '../pages/AdaptationPage/AdaptationDetailsPage'
+import HostelPage from '../pages/HostelPage/HostelPage'
+import DHostelOrders from '../pages/DashboardPage/DHostelOrders'
 
 const router = createBrowserRouter([
   {
@@ -93,9 +95,21 @@ const router = createBrowserRouter([
         element: <StorePage />
       },
       {
-        path: 'payment/:product_id',
+        path: 'hostel',
+        element: <HostelPage />
+      },
+      {
+        path: 'store/payment/:product_id',
         element: (
-          <PrivateRoute path='/payment/:product_id'>
+          <PrivateRoute path='/store/payment/:product_id'>
+            <Shipment />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'hostel/payment/:product_id',
+        element: (
+          <PrivateRoute path='/hostel/payment/:product_id'>
             <Shipment />
           </PrivateRoute>
         )
@@ -147,6 +161,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute path='/orders'>
             <DOrders />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'hostel-orders',
+        element: (
+          <PrivateRoute path='/hostel-orders'>
+            <DHostelOrders />
           </PrivateRoute>
         )
       },

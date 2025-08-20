@@ -18,20 +18,18 @@ const StorePage = () => {
 
     const handleSearch = async (query) => {
         try {
-            const response = await axios.get(`https://petset-api.onrender.com/search?query=${query}`);
-            console.log(response.data)
-            setSearchResults(response.data);
+            const response = await axios.get(`https://petset-server.vercel.app/api/products/search?query=${query}`);
+            setSearchResults(response.data.products);
         } catch (error) {
             console.error('Error searching products:', error);
         }
     };
-    console.log(searchResults)
 
     const handleClear = () => {
         setSearchQuery('');
         setSearchResults([])
     };
-
+    console.log(searchResults)
     return (
         <div className='container mt-5'>
             <SearchStoreProduct
@@ -53,20 +51,20 @@ const StorePage = () => {
                 </div>
             ) : (
                 <Tabs
-                    defaultActiveKey="medicine"
+                    defaultActiveKey="toy"
                     id="justify-tab-example"
                     className="mb-3 custom-tabs"
                     justify
                     variant='tabs'
                 >
+                    <Tab eventKey="toy" title="Toy">
+                        <Toy />
+                    </Tab>
                     <Tab eventKey="medicine" title="Medicine">
                         <Medicine />
                     </Tab>
                     <Tab eventKey="food" title="Food">
                         <Food />
-                    </Tab>
-                    <Tab eventKey="toy" title="Toy">
-                        <Toy />
                     </Tab>
                 </Tabs>
             )}

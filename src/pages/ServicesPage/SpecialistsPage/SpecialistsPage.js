@@ -12,8 +12,8 @@ const SpecialistsPage = () => {
   useEffect(() => {
     const fetchServiceDetails = async () => {
       try {
-        const res = await axios.get(`https://petset-api.onrender.com/services/${s_id}`);
-        setService(res.data);
+        const res = await axios.get(`https://petset-server.vercel.app/api/services/with-doctor/${s_id}`);
+        setService(res.data.service);
       } catch (error) {
         console.error('Error fetching Service details:', error);
       }
@@ -25,23 +25,23 @@ const SpecialistsPage = () => {
 
   return (
     <div className='container mt-5 pb-5'>
-      <h2>Service Name:  {service && service[0]?.title}</h2>
+      <h2>Service Name:  {service && service.service_name}</h2>
       {/* About Service */}
       <div className='centering_items_flex'>
-        <img width={375} height={300} src={service && service[0]?.img_URL} alt="hello" />
+        <img width={375} height={300} src={service && service.service_img} alt={service.service_name} />
 
         <p className='text-justify' style={{ height: '50%', width: '60%' }}>
-          {service[0]?.details}
+          {service.details}
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, commodi animi distinctio cumque temporibus accusamus minima repudiandae voluptas? Neque tenetur nam quaerat porro ea dignissimos enim ut in quo reprehenderit, pariatur optio voluptas ab ipsum est accusantium. Voluptatum, vel modi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis quis doloremque id repellat maiores necessitatibus deserunt officia magni, dolore culpa cumque nobis porro provident veniam.</p>
       </div>
 
       {/* Specialist of this service */}
       <div className=' mt-5'>
-        <h3>Specialist for {service && service[0]?.title}</h3>
+        <h3>Specialist for {service && service.service_name}</h3>
         <div className='centering_items_flex mt-3'>
-          {service &&
-            service.map((specialist, index) => (
-              <SingleSpecialistCard key={index} specialist={specialist} serviceId={service[0]?.s_id} />
+          {service.dr_ids &&
+            service?.dr_ids.map((specialist, index) => (
+              <SingleSpecialistCard key={index} specialist={specialist} serviceId={service._id} />
             ))
           }
           {!service &&

@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
 
 
-  // console.log(adaptationPosts.img_URL)
 
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
@@ -28,8 +27,8 @@ const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
             { img_url: post.img_URL3 },
           ]
           return (
-            <div key={post.m_id} className='memory_card'>
-              <Card style={{ height: '100%', borderRadius:'15px' }}>
+            <div key={post._id} className='memory_card'>
+              <Card style={{ height: '100%', borderRadius: '15px' }}>
                 {myArray.length > 0 ? (
                   <Carousel nextLabel={''} prevLabel={''} interval={null}>
                     {myArray.map((memory, index) => (
@@ -38,7 +37,7 @@ const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
                           className='d-block w-100'
                           src={memory.img_url}
                           alt={`Slide ${index}`}
-                          style={{ objectFit: 'cover', height: '200px' , borderRadius: '15px', borderBottomLeftRadius: '0', borderBottomRightRadius: '0'}}
+                          style={{ objectFit: 'cover', height: '200px', borderRadius: '15px', borderBottomLeftRadius: '0', borderBottomRightRadius: '0' }}
                         />
                       </Carousel.Item>
                     ))}
@@ -51,7 +50,7 @@ const AdaptationCard = ({ adaptationPosts, currentPage, itemsPerPage }) => {
                   <Card.Text style={{ textAlign: 'justify' }}>{truncateText(post.details, 90)}...</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/adaptation/${post.a_id}`}>
+                  <Link to={`/adaptation/${post._id}`}>
                     <Button variant='outline-primary'>Details</Button>
                   </Link>
                 </Card.Footer>

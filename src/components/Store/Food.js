@@ -7,8 +7,8 @@ const Food = () => {
   useEffect(() => {
     const fetchingFoodProduct = async () => {
       try {
-        const response = await axios.get(`https://petset-api.onrender.com/product?product_type=Pet Food`);
-        setFoods(response.data);
+        const response = await axios.get(`https://petset-server.vercel.app/api/products/by-type?product_type=Pet Food`);
+        setFoods(response.data.products);
       } catch (error) {
         console.error('Error fetching product:', error);
       }

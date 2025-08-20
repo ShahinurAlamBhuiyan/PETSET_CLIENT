@@ -110,9 +110,7 @@ const AdaptationForm = ({ setShowForm }) => {
         event.preventDefault();
         newAdaptationPost.a_id = generateAdaptionId();
         try {
-            console.log({ newAdaptationPost })
-            await axios.post("https://petset-api.onrender.com/adaption", newAdaptationPost)
-            console.log(newAdaptationPost)
+            await axios.post("https://petset-server.vercel.app/api/adaptions", newAdaptationPost)
             setShowForm(false);
             Swal.fire({
                 title: "Great!",

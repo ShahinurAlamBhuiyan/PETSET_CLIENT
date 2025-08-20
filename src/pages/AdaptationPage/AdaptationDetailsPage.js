@@ -8,12 +8,11 @@ const AdaptationDetailsPage = () => {
     const { a_id } = useParams();
     const [adaptationPost, setAdaptationPost] = useState([]);
     const [comments, setComments] = useState([]);
-    console.log(a_id)
 
     // get adaption details
     const fetchAdaptationPostDetails = async () => {
         try {
-            const res = await axios.get(`https://petset-api.onrender.com/adaption/${a_id}`);
+            const res = await axios.get(`https://petset-server.vercel.app/api/adoptions/${a_id}`);
             setAdaptationPost(res.data);
         } catch (error) {
             console.error('Error fetching adoption details:', error);
@@ -22,7 +21,7 @@ const AdaptationDetailsPage = () => {
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get(`https://petset-api.onrender.com/adoption/comments/${a_id}`);
+            const res = await axios.get(`https://petset-server.vercel.app/api/adoptions/comments/post/${a_id}`);
             setComments(res.data);
         } catch (error) {
             console.error('Error fetching comments:', error);
@@ -33,34 +32,29 @@ const AdaptationDetailsPage = () => {
         fetchAdaptationPostDetails();
         fetchComments();
     }, [a_id, comments.length]);
-
-
-    console.log(comments)
     return (
         <Container className='mt-3 pb-5'>
-            {!adaptationPost[0] && <Spinner animation='border' />}
-            {adaptationPost[0] && (
+            {!adaptationPost && <Spinner animation='border' />}
+            {adaptationPost && (
                 <Row>
                     <Col xs={12} md={8}>
                         <Link to={'/adaptation'}>
                             <Button variant="outline-primary" className='mb-3'>{'<'} Back</Button>
                         </Link>
                         <Card style={{ maxWidth: '100%' }}>
-                            <Card.Img variant="top" src={adaptationPost[0].img_URL} />
+                            <Card.Img variant="top" src={adaptationPost.img_URL} />
                             <Card.Body>
-                                <Card.Title>{adaptationPost[0].title}</Card.Title>
+                                <Card.Title>{adaptationPost.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
-                                    Shared by {adaptationPost.creatorName || 'Amit Mahmud'}
+                                    Shared by {adaptationPost?.owner_id?.full_name || 'Amit Mahmud'}
                                 </Card.Subtitle>
-                                <Card.Text>{adaptationPost[0].details}</Card.Text>
+                                <Card.Text>{adaptationPost.details}</Card.Text>
                             </Card.Body>
-                            <Card.Footer className="text-muted">
-                                Shared on {adaptationPost[0].created_date || '18 December, 2023'}
-                            </Card.Footer>
+                            <Card.Footer className="text-muted">Shared on {new Date(adaptationPost.createdAt).toLocaleDateString()}</Card.Footer>
                         </Card>
                     </Col>
                     <Col xs={12} md={4}>
-                        <CommentSection comments={comments} adaptionId={adaptationPost[0].a_id} />
+                        <CommentSection comments={comments} adaptionId={adaptationPost._id} />
                     </Col>
                 </Row>
             )}

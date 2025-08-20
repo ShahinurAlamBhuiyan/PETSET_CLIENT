@@ -7,21 +7,12 @@ import Swal from 'sweetalert2'
 const MemoriesForm = ({ setShowForm }) => {
     const { loggedInUser } = useContext(AuthContext);
     const [newMemory, setNewMemory] = useState({
-        m_id: '',
-        u_id: loggedInUser?.u_id,
+        author_id: loggedInUser?.id,
         title: '',
         details: '',
         img_URL: '',
-        created_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     });
 
-    const generateMemoryId = () => {
-        const timestamp = new Date().getTime();
-
-        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-
-        return uniqueID;
-    }
 
 
     const handleInputChange = (event) => {
@@ -48,11 +39,9 @@ const MemoriesForm = ({ setShowForm }) => {
             });
 
             const responseData = await response.json();
-            const memory_id = generateMemoryId()
             setNewMemory({
                 ...newMemory,
                 img_URL: responseData.data.display_url,
-                m_id: memory_id,
             })
 
         } catch (error) {
@@ -66,8 +55,7 @@ const MemoriesForm = ({ setShowForm }) => {
         event.preventDefault();
         setShowForm(false); // from upper level
         try {
-            console.log(newMemory)
-            await axios.post("https://petset-api.onrender.com/memories", newMemory)
+            await axios.post("https://petset-server.vercel.app/api/memories", newMemory)
             Swal.fire({
                 title: "Great!",
                 text: "Memory posted!",
@@ -85,7 +73,6 @@ const MemoriesForm = ({ setShowForm }) => {
             return false
         }
     }
-    console.log(isFormComplete())
     return (
         <div className="form_container">
             <Form onSubmit={handleFormSubmit} style={{ width: '80%' }} className="mb-4">

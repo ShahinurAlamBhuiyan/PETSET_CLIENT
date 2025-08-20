@@ -44,7 +44,10 @@ const menuItems = [
             ]
     },
     {
-        name: "Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill', role: 'all'
+        name: "Product Orders", exact: true, to: "/orders", iconClassName: 'bi bi-bag-fill', role: 'all'
+    },
+    {
+        name: "Hostel Bookings", exact: true, to: "/hostel-orders", iconClassName: 'fa fa-hotel', role: 'all'
     },
     {
         name: "Appointments", exact: true, to: "/appointments", iconClassName: 'bi bi-box-seam', role: 'all'

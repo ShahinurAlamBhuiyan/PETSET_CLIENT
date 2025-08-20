@@ -9,28 +9,15 @@ const CommentSection = ({ comments, adaptionId }) => {
     const [newCommentBody, setNewCommentBody] = useState('')
 
 
-    const generateCommentId = () => {
-        const timestamp = new Date().getTime();
-
-        const uniqueID = `${timestamp}${loggedInUser?.u_id}`;
-
-        return uniqueID;
-    }
-
-
     const handleCommentSubmit = async () => {
         const newComment = {
-            c_id: generateCommentId(),
-            a_id: adaptionId,
-            u_id: loggedInUser.u_id,
-            c_name: loggedInUser.full_name,
-            c_img_URL: loggedInUser.image_URL,
-            c_body: newCommentBody,
-            c_date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            adoption_id: adaptionId,
+            author_id: loggedInUser.id,
+            body: newCommentBody,
         }
 
         try {
-            await axios.post('https://petset-api.onrender.com/comment', newComment)
+            await axios.post('https://petset-server.vercel.app/api/adoptions/comments', newComment)
             Swal.fire({
                 title: "Success!",
                 text: "comment added",
@@ -39,13 +26,10 @@ const CommentSection = ({ comments, adaptionId }) => {
         } catch (error) {
             console.log(error)
         }
-
-
-        console.log(newComment);
     };
 
 
-
+    console.log(comments)
     return (
         <div className="mt-5">
             <h4>Comments</h4>
@@ -72,13 +56,13 @@ const CommentSection = ({ comments, adaptionId }) => {
                             <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                                 <div className='centering_items_flex' style={{ justifyContent: 'flex-start', gap: '10px' }}>
                                     <img
-                                        src={comment.c_img_URL}
+                                        src={comment?.author_id?.image_URL || 'https://we-ha.com/wp-content/uploads/2019/09/PJK-Photo-2019-LOW-RESOLUTION.jpg'}
                                         alt="Profile Pic"
-                                        style={{ borderRadius: '50%', marginRight: '10px', width: '30px', height: '30px' }}
+                                        style={{ borderRadius: '50%', marginRight: '10px', width: '55px', height: '55px' }}
                                     />
                                     <div>
-                                        <span style={{ fontWeight: 'bold' }}>{comment.c_name}</span>
-                                        <Card.Text>{comment.c_body}</Card.Text>
+                                        <span style={{ fontWeight: 'bold' }}>{comment?.author_id?.full_name}</span>
+                                        <Card.Text>{comment.body}</Card.Text>
                                     </div>
                                 </div>
                             </Card.Body>

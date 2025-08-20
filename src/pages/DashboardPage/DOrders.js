@@ -31,10 +31,10 @@ const DOrders = () => {
       if (loggedInUser.role) {
         try {
           let response;
-          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-api.onrender.com/orders');
-          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-api.onrender.com/order/customer/${loggedInUser?.u_id}`);
+          if (loggedInUser.role === 'admin') response = await axios.get('https://petset-server.vercel.app/api/orders');
+          else if (loggedInUser.role === 'user') response = await axios.get(`https://petset-server.vercel.app/api/orders/customer/${loggedInUser?.id}`);
 
-          setOrders(response.data);
+          setOrders(response.data.orders);
           setLoading(false);
         } catch (error) {
           setError(error);
@@ -56,7 +56,7 @@ const DOrders = () => {
 
   const handleChangeStatus = async (orderId, newStatus) => {
     try {
-      const res = await axios.put(`https://petset-api.onrender.com/order/${orderId}`, { status: newStatus });
+      const res = await axios.put(`https://petset-server.vercel.app/api/orders/${orderId}`, { status: newStatus });
 
       if (res.data) {
         setOrders((prevOrders) =>
@@ -75,9 +75,8 @@ const DOrders = () => {
 
   const getProductById = async (productID) => {
     try {
-      const res = await axios.get(`https://petset-api.onrender.com/product/${productID}`);
-      // console.log(res.data[0])
-      return res.data[0];
+      const res = await axios.get(`https://petset-server.vercel.app/api/products/${productID}`);
+      return res.data.product
     } catch (error) {
       console.log(error);
       return null;
@@ -100,7 +99,7 @@ const DOrders = () => {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios.delete(`https://petset-api.onrender.com/order/${orderID}`)
+          await axios.delete(`https://petset-server.vercel.app/api/orders/${orderID}`)
           Swal.fire({
             title: "Deleted!",
             text: "Order deleted successfully!",
@@ -147,7 +146,7 @@ const DOrders = () => {
                         <td>{order.order_date}</td>
                         <td>{order.status}</td>
                         <td>
-                          <button onClick={() => handleDeleteOrder(order.order_id)} className='btn btn-outline-primary'>
+                          <button onClick={() => handleDeleteOrder(order._id)} className='btn btn-outline-primary'>
                             Remove
                           </button>
                         </td>
@@ -158,13 +157,13 @@ const DOrders = () => {
                                 Change Status
                               </button>
                               <div className="dropdown-menu">
-                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Processing')}>
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order._id, 'Processing')}>
                                   Processing
                                 </button>
-                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Shipping')}>
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order._id, 'Shipping')}>
                                   Shipping
                                 </button>
-                                <button className="dropdown-item" onClick={() => handleChangeStatus(order.order_id, 'Pending')}>
+                                <button className="dropdown-item" onClick={() => handleChangeStatus(order._id, 'Pending')}>
                                   Pending
                                 </button>
                               </div>
